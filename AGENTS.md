@@ -105,4 +105,5 @@ Provide a structured summary to the user:
 | **Claude Code** | [`CLAUDE.md`](file:///d:/satrafoods/CLAUDE.md) | Auto-discovered at workspace root. |
 | **Antigravity** | [`.agent/rules/`](file:///d:/satrafoods/.agent/rules/) & [`AGENTS.md`](file:///d:/satrafoods/AGENTS.md) | Hierarchical discovery via `.agent/rules/*.md`. |
 | **GitHub Copilot** | [`.github/copilot-instructions.md`](file:///d:/satrafoods/.github/copilot-instructions.md) | Auto-loaded by Copilot Chat. |
-| **Frontend Module** | [`src/AGENTS.md`](file:///d:/satrafoods/src/AGENTS.md) | Discovered when editing files inside `src/`. |
+| **Frontend Workspace** | [`fe/AGENTS.md`](file:///d:/satrafoods/fe/AGENTS.md) | Discovered when working inside `fe/`. |
+| **Frontend Module** | [`fe/src/AGENTS.md`](file:///d:/satrafoods/fe/src/AGENTS.md) | Discovered when editing files inside `fe/src/`. |

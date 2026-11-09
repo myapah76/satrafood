@@ -73,32 +73,33 @@
 
 ```text
 satrafoods/
-├── public/                     # Static assets và hình ảnh mẫu
-│   └── assets/aistudio/        # Tài liệu hình ảnh thiết kế & design system
-├── src/
-│   ├── components/             # React UI Components
-│   │   ├── CartDrawer.tsx      # Giỏ hàng trượt và thanh toán
-│   │   ├── CategoryPage.tsx    # Trang danh mục & bộ lọc sản phẩm
-│   │   ├── Footer.tsx          # Chân trang & cam kết thương hiệu
-│   │   ├── Header.tsx          # Thanh điều hướng trên cùng & tìm kiếm
-│   │   ├── HomePage.tsx        # Trang chủ, banner ưu đãi, tìm cửa hàng
-│   │   ├── LocationModal.tsx   # Cửa sổ chọn quận/huyện giao nhanh 2h
-│   │   ├── MembershipModal.tsx # Thẻ thành viên ảo & tích điểm Satra Rewards
-│   │   └── TraceabilityModal.tsx # Cửa sổ hồ sơ truy xuất nguồn gốc VietGAP
-│   ├── data/
-│   │   └── mockData.ts         # Dữ liệu sản phẩm, ngành hàng, cửa hàng mẫu
-│   ├── types/
-│   │   └── index.ts            # Định nghĩa kiểu dữ liệu TypeScript
-│   ├── utils/
-│   │   ├── cart.ts             # Logic giỏ hàng, định dạng tiền tệ, lọc và sắp xếp
-│   │   └── cart.test.ts        # Unit test kiểm thử logic tính tiền và bộ lọc
-│   ├── App.tsx                 # Component gốc điều phối trạng thái ứng dụng
-│   ├── main.tsx                # Điểm khởi chạy React DOM
-│   └── index.css               # Định nghĩa token Tailwind v4 & typography
-├── index.html                  # HTML entry point, SEO meta & Google Fonts
-├── package.json                # Quản lý dependencies & scripts thực thi
-├── tsconfig.json               # Cấu hình TypeScript compiler
-└── vite.config.ts              # Cấu hình Vite build & path aliases
+├── be/                         # Module Backend
+│   └── AGENTS.md
+├── fe/                         # Workspace Frontend Chính (Vite + React 19 + TypeScript)
+│   ├── public/                 # Static assets (favicon.ico, favicon.svg, images/)
+│   ├── src/                    # Mã nguồn giao diện chính
+│   │   ├── components/         # Shared Components (Header, Footer, MobileBottomNav)
+│   │   ├── data/               # Single Source of Truth (*.json)
+│   │   ├── features/           # Module tính năng nghiệp vụ độc lập
+│   │   │   ├── home/           # HomeScreen, HeroBanner, WeeklyDeals, CategoryExplorer
+│   │   │   ├── catalog/        # CatalogScreen, ProductCard, FilterSidebar, SortToolbar
+│   │   │   ├── cart/           # CartDrawer
+│   │   │   ├── traceability/   # TraceabilityModal
+│   │   │   ├── membership/     # MembershipModal
+│   │   │   └── location/       # LocationModal
+│   │   ├── stores/             # Quản lý trạng thái (useCart hook)
+│   │   ├── types/              # Định nghĩa kiểu dữ liệu TypeScript (*.types.ts)
+│   │   ├── utils/              # Tiện ích logic tính toán & kiểm thử (cart.ts, cart.test.ts)
+│   │   ├── App.tsx             # Điều phối trạng thái và kết nối màn hình
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json            # Cấu hình dependencies frontend
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── package.json                # Kịch bản điều phối root monorepo
+├── AGENTS.md                   # Chỉ dẫn hệ thống đa tác tử (Single Source of Truth)
+└── README.md
 ```
 
 ---

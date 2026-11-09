@@ -37,7 +37,7 @@ Every AI coding agent must respect and preserve these verified technology choice
 
 ## 3. Directory Layout
 
-The repository follows a single unified structure rooted in `src/`:
+The repository follows a clean monorepo architecture with a dedicated `fe/` frontend workspace:
 
 ```text
 satrafoods/
@@ -45,35 +45,29 @@ satrafoods/
 │   └── rules/                  # Modular rules (project, architecture, frontend, etc.)
 ├── .github/                    # GitHub configuration & Copilot instructions
 │   └── copilot-instructions.md # GitHub Copilot entry point
-├── public/                     # Public assets served directly by Vite
-│   └── assets/aistudio/        # Historical design reference assets & specs
-├── src/                        # Main application source code
-│   ├── components/             # Reusable & page-level UI components
-│   │   ├── CartDrawer.tsx      # Slide-out interactive shopping basket
-│   │   ├── CategoryPage.tsx    # Catalog view with filters & product grid
-│   │   ├── Footer.tsx          # 4 commitments, legal info, CSKH hotline
-│   │   ├── Header.tsx          # Responsive navigation, search & quick delivery
-│   │   ├── HomePage.tsx        # Hero banner, deals countdown, store locator
-│   │   ├── LocationModal.tsx   # Fast 2-hour delivery district selector
-│   │   ├── MembershipModal.tsx # Satra Rewards member card & 2% point tracker
-│   │   ├── MobileBottomNav.tsx # 5-tab fixed bottom navigation for mobile
-│   │   ├── MobileFilterDrawer.tsx # Sliding bottom-sheet filter for mobile/tablet
-│   │   └── TraceabilityModal.tsx  # QR code provenance record popup
-│   ├── data/                   # In-memory mock data
-│   │   └── mockData.ts         # 12 VietGAP products, 3 deals, 18 categories, 6 stores
-│   ├── types/                  # TypeScript interface contracts
-│   │   └── index.ts            # Product, CartItem, FilterOptions, StoreLocation, etc.
-│   ├── utils/                  # Pure utility functions & unit tests
-│   │   ├── cart.ts             # Currency formatter, pricing, filtering, sorting
-│   │   └── cart.test.ts        # Unit test suite for cart & filtering logic
-│   ├── AGENTS.md               # Frontend module-specific agent instructions
-│   ├── App.tsx                 # Root application coordinator
-│   ├── main.tsx                # React DOM entry point
-│   └── index.css               # Tailwind v4 theme tokens & typography classes
-├── AGENTS.md                   # Central agent instructions (Codex / Universal)
-├── CLAUDE.md                   # Claude Code CLI instructions
-├── GEMINI.md                   # Gemini CLI instructions
-├── index.html                  # HTML entry point with meta tags & fonts
+├── be/                         # Backend module anchor
+│   └── AGENTS.md
+├── fe/                         # Active Frontend Workspace (Vite + React 19 + TypeScript)
+│   ├── public/                 # Static assets (favicon.ico, favicon.svg, images/)
+│   ├── src/                    # Source code
+│   │   ├── components/         # Shared global components (Header, Footer, MobileBottomNav)
+│   │   ├── data/               # Single Source of Truth (*.json)
+│   │   ├── features/           # Feature-based business modules (home, catalog, cart, etc.)
+│   │   ├── stores/             # Reactive state management hooks (cart.store.ts)
+│   │   ├── types/              # Domain TypeScript types (*.types.ts)
+│   │   ├── utils/              # Calculation & currency utilities and tests
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── index.css
+│   ├── index.html
+│   ├── package.json            # Frontend workspace dependencies & scripts
+│   ├── tsconfig.json
+│   └── vite.config.ts
+├── package.json                # Root orchestration workspace scripts
+├── AGENTS.md                   # Central instruction entry point
+└── README.md
+```
+
 ├── metadata.json               # AI Studio project metadata
 ├── package.json                # Project dependencies and script declarations
 ├── tsconfig.json               # TypeScript compiler configuration
