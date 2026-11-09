@@ -9,7 +9,8 @@ import { HomeScreen } from './features/home/HomeScreen';
 import { LocationModal } from './features/location/LocationModal';
 import { MembershipModal } from './features/membership/MembershipModal';
 import { TraceabilityModal } from './features/traceability/TraceabilityModal';
-import { CartItem, Product } from './types';
+import { useCart } from './stores';
+import { Product } from './types';
 
 export default function App() {
   const [currentView, setCurrentView] = useState<'home' | 'category'>('home');
@@ -18,8 +19,14 @@ export default function App() {
   const [selectedCity, setSelectedCity] = useState('TP. Hồ Chí Minh');
   const [userPhone, setUserPhone] = useState('0908123456');
 
-  // Pre-seed 3 items matching Screen 2's header badge ("3 món")
-  const [cartItems, setCartItems] = useState<CartItem[]>([
+  // Pre-seed 3 items matching Screen 2's header badge ("3 món") via reactive store hook
+  const {
+    cartItems,
+    addToCart: handleAddToCart,
+    updateQuantity: handleUpdateQuantity,
+    removeItem: handleRemoveItem,
+    clearCart: handleClearCart,
+  } = useCart([
     { product: SATRA_PRODUCTS[0], quantity: 1 }, // Ba rọi heo
     { product: SATRA_PRODUCTS[1], quantity: 1 }, // Cải thìa thủy canh
     { product: SATRA_PRODUCTS[2], quantity: 1 }, // Cá hồi phi lê
@@ -43,41 +50,6 @@ export default function App() {
     setCurrentView(view);
     setTargetSubCategory(subCategory);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handleAddToCart = (product: Product) => {
-    setCartItems((prev) => {
-      const existing = prev.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prev.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
-      }
-      return [...prev, { product, quantity: 1 }];
-    });
-  };
-
-  const handleUpdateQuantity = (productId: string, quantity: number) => {
-    if (quantity <= 0) {
-      handleRemoveItem(productId);
-      return;
-    }
-    setCartItems((prev) =>
-      prev.map((item) =>
-        item.product.id === productId ? { ...item, quantity } : item
-      )
-    );
-  };
-
-  const handleRemoveItem = (productId: string) => {
-    setCartItems((prev) => prev.filter((item) => item.product.id !== productId));
-    showToast('Đã xóa sản phẩm khỏi giỏ hàng');
-  };
-
-  const handleClearCart = () => {
-    setCartItems([]);
   };
 
   return (
@@ -164,7 +136,10 @@ export default function App() {
         onClose={() => setIsCartOpen(false)}
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
-        onRemoveItem={handleRemoveItem}
+        onRemoveItem={(id) => {
+          handleRemoveItem(id);
+          showToast('Đã xóa sản phẩm khỏi giỏ hàng');
+        }}
         onClearCart={handleClearCart}
         deliveryCity={selectedCity}
       />
