@@ -1,0 +1,122 @@
+import React from 'react';
+import { CartItem } from '../types';
+
+interface MobileBottomNavProps {
+  currentView: 'home' | 'category';
+  onNavigate: (view: 'home' | 'category', subCategory?: string) => void;
+  cartItems: CartItem[];
+  onOpenCart: () => void;
+  onOpenMembership: () => void;
+  onOpenLocation: () => void;
+}
+
+export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
+  currentView,
+  onNavigate,
+  cartItems,
+  onOpenCart,
+  onOpenMembership,
+  onOpenLocation,
+}) => {
+  const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  return (
+    <nav
+      className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-[#E3E8E1] shadow-[0_-4px_16px_rgba(17,17,17,0.06)] pb-[env(safe-area-inset-bottom,0px)]"
+      aria-label="Điều hướng chính di động"
+    >
+      <div className="grid grid-cols-5 h-15 items-center px-1">
+        {/* 1. Trang chủ */}
+        <button
+          onClick={() => onNavigate('home')}
+          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 ${
+            currentView === 'home'
+              ? 'text-[#01B341] font-bold'
+              : 'text-[#555E57] hover:text-[#111111]'
+          }`}
+          type="button"
+          aria-label="Trang chủ"
+        >
+          <span className="material-symbols-outlined text-[22px]">
+            {currentView === 'home' ? 'home' : 'home'}
+          </span>
+          <span className="text-[10px] tracking-tight mt-0.5 leading-none">Trang chủ</span>
+        </button>
+
+        {/* 2. Danh mục */}
+        <button
+          onClick={() => onNavigate('category')}
+          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 ${
+            currentView === 'category'
+              ? 'text-[#01B341] font-bold'
+              : 'text-[#555E57] hover:text-[#111111]'
+          }`}
+          type="button"
+          aria-label="Danh mục sản phẩm"
+        >
+          <span className="material-symbols-outlined text-[22px]">category</span>
+          <span className="text-[10px] tracking-tight mt-0.5 leading-none">Danh mục</span>
+        </button>
+
+        {/* 3. Khuyến mãi Hot */}
+        <button
+          onClick={() => {
+            onNavigate('category');
+            setTimeout(() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 100);
+          }}
+          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#555E57] hover:text-[#111111]"
+          type="button"
+          aria-label="Khuyến mãi"
+        >
+          <div className="relative">
+            <span className="material-symbols-outlined text-[22px] text-[#FF161F]">local_fire_department</span>
+            <span className="absolute -top-1 -right-2 px-1 py-0.2 bg-[#DAFF01] text-[#111111] text-[8px] font-black rounded-full leading-tight">
+              HOT
+            </span>
+          </div>
+          <span className="text-[10px] tracking-tight mt-0.5 leading-none text-[#111111] font-semibold">Ưu đãi</span>
+        </button>
+
+        {/* 4. Cửa hàng */}
+        <button
+          onClick={() => {
+            if (currentView !== 'home') {
+              onNavigate('home');
+              setTimeout(() => {
+                document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
+              }, 150);
+            } else {
+              document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#555E57] hover:text-[#111111]"
+          type="button"
+          aria-label="Cửa hàng"
+        >
+          <span className="material-symbols-outlined text-[22px]">storefront</span>
+          <span className="text-[10px] tracking-tight mt-0.5 leading-none">Cửa hàng</span>
+        </button>
+
+        {/* 5. Giỏ hàng */}
+        <button
+          onClick={onOpenCart}
+          className="relative flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#006e24] hover:text-[#01B341]"
+          type="button"
+          aria-label="Giỏ hàng"
+        >
+          <div className="relative">
+            <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+            {totalCount > 0 && (
+              <span className="absolute -top-1 -right-2 min-w-4 h-4 px-1 bg-[#DAFF01] text-[#111111] text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-xs">
+                {totalCount}
+              </span>
+            )}
+          </div>
+          <span className="text-[10px] tracking-tight mt-0.5 leading-none font-bold">Giỏ hàng</span>
+        </button>
+      </div>
+    </nav>
+  );
+};

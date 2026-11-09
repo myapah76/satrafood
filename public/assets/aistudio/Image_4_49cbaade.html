@@ -1,0 +1,825 @@
+<!DOCTYPE html><html lang="vi" class=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_standard" name="shell-type"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px;}::-webkit-scrollbar-track{background:transparent;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode: "class", theme: {extend: {colors: {"error-container": "#ffdad6", "inverse-surface": "#313030", "on-secondary-fixed-variant": "#3f4c00", "on-surface": "#1c1b1b", "secondary-container": "#d5e97d", "outline-variant": "#bccbb7", "text-primary": "#111111", error: "#ba1a1a", primary: "#006e24", "surface-dim": "#ddd9d8", "surface-border": "#E3E8E1", "on-secondary": "#ffffff", "accent-orange": "#FF9500", "secondary-fixed": "#d8ec80", background: "#fdf8f8", "surface-canvas": "#FFFFFF", "surface-variant": "#e6e1e1", "inverse-on-surface": "#f4f0ef", "inverse-primary": "#7edb82", tertiary: "#933799", "on-primary-fixed": "#002106", "surface-container-highest": "#e6e1e1", "brand-lime": "#DAFF01", "surface-tint": "#006e24", "on-tertiary": "#ffffff", "on-tertiary-fixed": "#37003c", "surface-container-lowest": "#ffffff", "on-primary": "#ffffff", "on-tertiary-fixed-variant": "#771b7f", "accent-pink": "#FC95FD", "surface-subtle": "#F6F8F5", secondary: "#556500", "secondary-fixed-dim": "#bcd067", "on-background": "#1c1b1b", outline: "#6d7b6a", "brand-green": "#01B341", "surface-container-high": "#ece7e7", "on-secondary-container": "#596905", "on-error-container": "#93000a", surface: "#fdf8f8", "primary-fixed-dim": "#7edb82", "tertiary-fixed-dim": "#ffa9fe", "on-error": "#ffffff", "accent-red": "#FF161F", "on-primary-container": "#003c10", "primary-fixed": "#99f89c", "primary-container": "#52ad5b", "surface-container-low": "#f7f2f2", "on-surface-variant": "#3d4a3b", "on-secondary-fixed": "#181e00", "surface-container": "#f1edec", "text-muted": "#555E57", "surface-bright": "#fdf8f8", "on-primary-fixed-variant": "#005319", "on-tertiary-container": "#5c0065", "tertiary-fixed": "#ffd6fa", "tertiary-container": "#d875db"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {gutter: "2rem", margin: "2.5rem", "space-lg": "1.5rem", "space-xl": "2.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-xs": "0.25rem"}, fontFamily: {"body-sm": ["Familjen Grotesk", "sans-serif"], "headline-lg": ["Familjen Grotesk", "sans-serif"], "headline-md": ["Familjen Grotesk", "sans-serif"], "body-lg": ["Familjen Grotesk", "sans-serif"], "body-md": ["Familjen Grotesk", "sans-serif"], "headline-sm": ["Familjen Grotesk", "sans-serif"], "headline-xl": ["Familjen Grotesk", "sans-serif"], "title-md": ["Familjen Grotesk", "sans-serif"], "label-lg": ["Familjen Grotesk", "sans-serif"], "title-lg": ["Familjen Grotesk", "sans-serif"], "label-md": ["Familjen Grotesk", "sans-serif"], "label-sm": ["Familjen Grotesk", "sans-serif"]}, fontSize: {"body-sm": ["12px", {lineHeight: "18px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "700"}], "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700"}], "body-lg": ["16px", {lineHeight: "26px", fontWeight: "400"}], "body-md": ["14px", {lineHeight: "22px", fontWeight: "400"}], "headline-sm": ["20px", {lineHeight: "28px", fontWeight: "700"}], "headline-xl": ["44px", {lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "800"}], "title-md": ["16px", {lineHeight: "24px", fontWeight: "600"}], "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "700"}], "title-lg": ["18px", {lineHeight: "26px", fontWeight: "600"}], "label-md": ["12px", {lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "700"}], "label-sm": ["11px", {lineHeight: "14px", letterSpacing: "0.05em", fontWeight: "600"}]}}}}</script></head><body class="bg-[#F8FAF7] font-body-md text-text-primary antialiased min-h-screen w-full">
+<!-- HEADER SATRAFOODS -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface-canvas shadow-[0_4px_16px_rgba(17,17,17,0.06)] border-b border-surface-border">
+<div class="h-20 bg-surface-canvas">
+<div class="max-w-[1240px] mx-auto px-margin h-full flex items-center justify-between gap-space-md">
+<!-- Logo -->
+<a class="flex items-center gap-space-md shrink-0 cursor-pointer" href="#">
+<img alt="SATRAFOODS" class="h-9 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuAhoc3zbjsEd-C-AQhaQhRxxhWmuac4G216oKm25-uyUlszk6N7lilaB9f6ALJwtgYZWLC1cr86Vlqtk0df9at9qSCI7YpqS8qvwaDuQMam4AJ2kCknCWbiNlaVD52aHRzfS9cU4gduxbNdCSEyuR0XPkFOXQICt5leFEdRvK0pQsGREMzMk1K7lppWSqzE_1vYkTBRbGxuf9UJbOMLcVwbsIh62enn5g3nj6Qp8b-zIMK73mQiR5KQ">
+</a>
+<!-- Quick Delivery Pin -->
+<button class="flex items-center gap-space-xs bg-surface-subtle border border-surface-border rounded-lg px-space-md py-space-xs shrink-0 text-left hover:bg-surface-container transition-colors" type="button">
+<span class="material-symbols-outlined text-brand-green text-[22px]">local_shipping</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-brand-green uppercase font-bold">Giao nhanh 2h</span>
+<span class="font-body-sm text-[13px] text-text-primary font-semibold">TP. Hồ Chí Minh</span>
+</div>
+<span class="material-symbols-outlined text-text-muted text-[18px]">expand_more</span>
+</button>
+<!-- Search Bar -->
+<div class="flex-1 max-w-xl">
+<div class="relative flex items-center">
+<div class="absolute left-space-md pointer-events-none flex items-center">
+<span class="material-symbols-outlined text-outline text-[20px]">search</span>
+</div>
+<input class="w-full h-11 pl-11 pr-24 bg-surface-subtle border border-surface-border rounded-lg font-body-md text-body-md text-text-primary placeholder:text-text-muted focus:outline-none focus:border-brand-green focus:bg-surface-canvas transition-all" placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..." type="text">
+
+</div>
+</div>
+<!-- Action Items: Hotline, Member, Cart, Profile -->
+<div class="flex items-center gap-space-md shrink-0">
+
+<a class="flex items-center gap-space-xs px-space-md py-space-xs rounded-lg hover:bg-surface-subtle transition-colors text-text-primary" data-path="membership" href="#">
+<div class="w-8 h-8 rounded-full bg-surface-subtle border border-surface-border flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[18px]">card_membership</span>
+</div>
+<div class="flex flex-col text-left">
+<span class="font-label-sm text-[10px] text-text-muted">Tích điểm 2%</span>
+<span class="font-label-md text-label-md text-text-primary font-bold">Thành viên</span>
+</div>
+</a>
+<a class="relative flex items-center gap-space-xs bg-surface-subtle border border-surface-border px-space-md py-space-xs rounded-lg hover:bg-surface-container transition-colors" data-path="cart" href="#">
+<span class="material-symbols-outlined text-brand-green text-[22px]">shopping_bag</span>
+<div class="flex flex-col">
+<span class="font-label-sm text-[10px] text-text-muted">Giỏ hàng</span>
+<span class="font-label-md text-label-md text-text-primary font-bold">3 món</span>
+</div>
+<span class="absolute -top-1.5 -right-1.5 w-5 h-5 bg-brand-lime text-text-primary font-label-sm text-[11px] rounded-full flex items-center justify-center font-bold border border-surface-canvas shadow-sm">3</span>
+</a>
+<div class="w-8 h-8 rounded-full bg-brand-green flex items-center justify-center shrink-0 cursor-pointer text-white">
+<span class="material-symbols-outlined text-[18px]">person</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Navigation Bar -->
+<div class="bg-surface-canvas border-t border-surface-border">
+<div class="max-w-[1240px] mx-auto px-margin flex items-center justify-between"><div class="flex items-center gap-space-md py-1.5"><button class="flex items-center gap-2 px-4 py-2 bg-brand-green text-surface-canvas rounded-lg font-label-md text-sm font-bold shadow-sm hover:bg-primary transition-colors cursor-pointer shrink-0" type="button"><span class="material-symbols-outlined text-[20px]">menu</span><span class="">Danh mục sản phẩm</span><span class="material-symbols-outlined text-[18px]">expand_more</span></button><nav class="hidden md:flex items-center gap-space-lg"><a class="text-body-md font-body-md text-text-primary hover:text-brand-green whitespace-nowrap py-2 transition-colors flex items-center gap-1.5" data-path="promotions" href="#"><span class="inline-block px-1.5 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[10px] font-bold uppercase tracking-wider">HOT</span>Khuyến mãi hot</a></nav></div><a class="flex items-center gap-1 text-label-md font-label-md text-brand-green hover:text-primary shrink-0 pl-space-md py-2 font-bold" data-path="store-locator" href="#"><span class="material-symbols-outlined text-[18px]">pin_drop</span><span class="">Hệ thống 180+ Cửa hàng</span></a></div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="w-full pt-36 max-w-[1240px] mx-auto px-margin min-h-[calc(100vh-144px)] pb-12">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-body-sm text-text-muted my-3">
+<a class="hover:text-brand-green transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">home</span>Trang chủ
+    </a>
+<span class="text-surface-border font-bold">/</span>
+<a class="hover:text-brand-green transition-colors" href="#">Danh mục sản phẩm</a>
+<span class="text-surface-border font-bold">/</span>
+<span class="text-text-primary font-semibold">Thực phẩm tươi sống mỗi ngày</span>
+</nav>
+<!-- Category Title & Mini Banner -->
+<div class="mb-6">
+
+<!-- Mini Banner Category Assurance -->
+<div class="w-full rounded-2xl text-white p-5 shadow-sm border border-brand-green/20 flex flex-col md:flex-row items-center justify-between gap-4 bg-brand-green">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-xl bg-brand-lime text-text-primary flex items-center justify-center shrink-0 shadow">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div>
+<div class="flex items-center gap-2">
+<span class="px-2 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[11px] font-black uppercase">Cam kết Satra</span>
+<span class="font-label-lg text-white font-bold">100% Thịt mát, Rau quả VietGAP tươi mới trong ngày</span>
+</div>
+<p class="text-white/85 font-body-sm text-body-sm mt-0.5">Truy xuất nguồn gốc bằng mã QR. Đổi trả ngay trong 24h nếu sản phẩm không đảm bảo chất lượng.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<div class="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3.5 py-2 rounded-lg border border-white/15 text-white text-xs font-semibold">
+<span class="material-symbols-outlined text-brand-lime text-[18px]">verified_user</span> Chuẩn chuỗi TP.HCM
+        </div>
+<div class="flex items-center gap-1.5 bg-white/10 backdrop-blur-sm px-3.5 py-2 rounded-lg border border-white/15 text-white text-xs font-semibold">
+<span class="material-symbols-outlined text-brand-lime text-[18px]">bolt</span> Giao nhanh 2h
+        </div>
+</div>
+</div>
+</div>
+<!-- 2-COLUMN LAYOUT -->
+<div class="grid grid-cols-12 gap-6 items-start">
+<!-- LEFT COLUMN: FILTER SIDEBAR (~280px) -->
+<aside class="col-span-12 lg:col-span-3 space-y-4">
+<div class="bg-surface-canvas rounded-2xl border border-surface-border p-5 shadow-sm">
+<div class="flex items-center justify-between pb-3 border-b border-surface-border mb-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-brand-green text-[20px]">tune</span>
+<h3 class="font-title-md text-title-md text-text-primary font-bold">Bộ Lọc Sản Phẩm</h3>
+</div>
+<button class="font-label-sm text-text-muted hover:text-brand-green text-[12px] underline cursor-pointer" type="button">Đặt lại</button>
+</div>
+<!-- 1. Sub-categories -->
+<div class="mb-5">
+<h4 class="font-label-md text-label-md text-text-primary font-bold uppercase tracking-wider mb-2.5 flex items-center justify-between">
+<span class="">Danh mục con</span>
+<span class="material-symbols-outlined text-[16px] text-text-muted">expand_less</span>
+</h4>
+<ul class="space-y-1 text-body-sm">
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-surface-subtle font-bold text-brand-green border-l-4 border-brand-green" href="#">
+<span class="">Thịt heo thảo mộc &amp; VietGAP</span>
+<span class="text-xs px-1.5 py-0.5 rounded-full bg-brand-lime text-text-primary">42</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Bò Úc &amp; Bò ta nhập khẩu</span>
+<span class="text-xs text-text-muted">18</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Gia cầm tươi chuẩn CP</span>
+<span class="text-xs text-text-muted">24</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Cá &amp; Hải sản tươi sống</span>
+<span class="text-xs text-text-muted">28</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Rau ăn lá VietGAP</span>
+<span class="text-xs text-text-muted">36</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Củ quả sạch Đà Lạt</span>
+<span class="text-xs text-text-muted">19</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Trái cây nhiệt đới Nam Bộ</span>
+<span class="text-xs text-text-muted">15</span>
+</a>
+</li>
+<li class="">
+<a class="flex items-center justify-between px-2.5 py-1.5 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-subtle transition-colors" href="#">
+<span class="">Món sơ chế nấu ngay</span>
+<span class="text-xs text-text-muted">22</span>
+</a>
+</li>
+</ul>
+</div>
+<!-- 2. Quality & Standards Filters -->
+<div class="mb-5 pt-4 border-t border-surface-border">
+<h4 class="font-label-md text-label-md text-text-primary font-bold uppercase tracking-wider mb-2.5">
+            Tiêu Chuẩn An Toàn
+          </h4>
+<div class="space-y-2 text-body-sm">
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input checked="" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Chuẩn VietGAP</span>
+<span class="text-xs text-text-muted">(84)</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Chứng nhận GlobalGAP</span>
+<span class="text-xs text-text-muted">(26)</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input checked="" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Nông sản OCOP 4-5 sao</span>
+<span class="text-xs text-text-muted">(31)</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Hữu cơ Organic</span>
+<span class="text-xs text-text-muted">(14)</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input checked="" class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Chuỗi ATTP TP.HCM</span>
+<span class="text-xs text-text-muted">(92)</span>
+</label>
+</div>
+</div>
+<!-- 3. Price Filter -->
+<div class="mb-5 pt-4 border-t border-surface-border">
+<h4 class="font-label-md text-label-md text-text-primary font-bold uppercase tracking-wider mb-2.5">
+            Mức Giá
+          </h4>
+<div class="space-y-2 text-body-sm">
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 text-brand-green focus:ring-brand-green border-surface-border" name="price_range" type="radio">
+<span class="flex-1">Dưới 50.000 đ</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input checked="" class="w-4 h-4 text-brand-green focus:ring-brand-green border-surface-border" name="price_range" type="radio">
+<span class="flex-1">50.000 đ - 100.000 đ</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 text-brand-green focus:ring-brand-green border-surface-border" name="price_range" type="radio">
+<span class="flex-1">100.000 đ - 200.000 đ</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 text-brand-green focus:ring-brand-green border-surface-border" name="price_range" type="radio">
+<span class="flex-1">Trên 200.000 đ</span>
+</label>
+</div>
+</div>
+<!-- 4. Packaging Specification -->
+<div class="mb-5 pt-4 border-t border-surface-border">
+<h4 class="font-label-md text-label-md text-text-primary font-bold uppercase tracking-wider mb-2.5">
+            Quy Cách Đóng Gói
+          </h4>
+<div class="space-y-2 text-body-sm">
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Gói sơ chế sẵn nấu ngay</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Khay hút chân không kháng khuẩn</span>
+</label>
+<label class="flex items-center gap-2.5 cursor-pointer text-text-primary">
+<input class="w-4 h-4 rounded text-brand-green focus:ring-brand-green border-surface-border" type="checkbox">
+<span class="flex-1">Hộp / Túi sinh học tiện lợi</span>
+</label>
+</div>
+</div>
+<!-- 5. Status / Tags -->
+<div class="pt-4 border-t border-surface-border">
+<h4 class="font-label-md text-label-md text-text-primary font-bold uppercase tracking-wider mb-2.5">
+            Trạng Thái Sản Phẩm
+          </h4>
+<div class="flex flex-wrap gap-1.5">
+<button class="px-2.5 py-1 rounded-md text-xs font-semibold bg-brand-lime text-text-primary border border-brand-green/30" type="button">
+              Đang giảm giá
+            </button>
+<button class="px-2.5 py-1 rounded-md text-xs font-semibold bg-surface-subtle text-text-muted hover:text-text-primary border border-surface-border" type="button">
+              Hàng mới về
+            </button>
+<button class="px-2.5 py-1 rounded-md text-xs font-semibold bg-surface-subtle text-text-muted hover:text-text-primary border border-surface-border" type="button">
+              Bán chạy nhất
+            </button>
+<button class="px-2.5 py-1 rounded-md text-xs font-semibold bg-surface-subtle text-text-muted hover:text-text-primary border border-surface-border" type="button">
+              Giao 2H
+            </button>
+</div>
+</div>
+</div>
+<!-- Quick Promotion Box in Sidebar -->
+<div class="bg-gradient-to-br from-brand-lime/20 to-brand-green/10 border border-brand-green/30 rounded-2xl p-4 text-center">
+<span class="material-symbols-outlined text-brand-green text-[32px] mb-1">redeem</span>
+<h5 class="font-label-lg font-bold text-text-primary">Voucher Giảm 30K</h5>
+<p class="font-body-sm text-text-muted text-xs mt-1">Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên.</p>
+<button class="mt-3 w-full py-1.5 bg-brand-green text-white font-label-sm font-bold rounded-lg hover:bg-primary transition-colors text-xs">
+          LƯU MÃ: SATRAFRESHT3
+        </button>
+</div>
+</aside>
+<!-- RIGHT COLUMN: PRODUCT CATALOG GRID (~920px) -->
+<section class="col-span-12 lg:col-span-9 space-y-4">
+<!-- Sort Bar & View Mode -->
+<div class="bg-surface-canvas rounded-xl border border-surface-border p-3 flex flex-wrap items-center justify-between gap-3 shadow-sm">
+<div class="flex items-center gap-2 overflow-x-auto">
+<span class="font-label-md text-text-muted text-xs font-bold uppercase shrink-0">Sắp xếp theo:</span>
+<button class="px-3 py-1.5 rounded-lg bg-brand-green text-white font-label-sm text-xs font-bold shrink-0 transition-colors">
+            Phổ biến nhất
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-surface-container text-text-muted hover:text-text-primary font-label-sm text-xs shrink-0 transition-colors">
+            Bán chạy
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-surface-container text-text-muted hover:text-text-primary font-label-sm text-xs shrink-0 transition-colors">
+            Giá tăng dần
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-surface-container text-text-muted hover:text-text-primary font-label-sm text-xs shrink-0 transition-colors">
+            Giá giảm dần
+          </button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-subtle hover:bg-surface-container text-text-muted hover:text-text-primary font-label-sm text-xs shrink-0 transition-colors">
+            Ưu đãi tốt nhất
+          </button>
+</div>
+<div class="flex items-center gap-1 shrink-0 ml-auto">
+<span class="text-xs text-text-muted mr-1 hidden sm:inline">Chế độ xem:</span>
+<button class="p-1.5 rounded-lg bg-brand-lime text-text-primary shadow-sm" title="Dạng lưới">
+<span class="material-symbols-outlined text-[18px] block">grid_view</span>
+</button>
+<button class="p-1.5 rounded-lg bg-surface-subtle text-text-muted hover:text-text-primary" title="Dạng danh sách">
+<span class="material-symbols-outlined text-[18px] block">view_list</span>
+</button>
+</div>
+</div>
+<!-- PRODUCT GRID (4 columns on lg, 2 on mobile) -->
+<div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5">
+<!-- Product Card 1 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Thịt ba rọi heo VietGAP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6PhgeP7PVQ64_PVobQ_cdng6uR1UijjqxWS_v1GP8vyqRFjwm0MeH34oUd-koDZeWIhoqxfafM9iJG_E9-4whf6OrPoKJ69iWqozD-dtIcg_SFceKER9jmlWrBmfOcWhiJbVNZ_TmnFvNnsAjK1ejK-KtOPpm7WD6ToT2wot_YSEobwx1LnfzQyi7sk5zEnpdFGLadA9z9n7gesK9bQSOH3bl8UOOV54pvp7GhV3y">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">VietGAP</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Thịt heo sạch</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Thịt Ba Rọi Heo VietGAP Kháng Khuẩn
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 500g hút chân không</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-accent-red font-black">76.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">95.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-20%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Cải thìa thủy canh Đà Lạt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAA2Wvm2fxFAlwW8jpV7moMOT17Qum_4jDGt6io_Oaw8p9TnV0QtT7P34fzh9Zf8Xy-JOYqbCSP-EwUIBk20pZo2fPr5x24jpqX6fmnK09isTL7_ZosRvSJaxvGxFjF5kv2jRue_hKRHmqtFF0_Hkg8O_in7EnaHxaJPCsbrDITRBFypzO_kewrGdArDdZZa-ZRh8sNDAWVyzn9OvXT_P366OgAy9bscUFP0BPlDKRu">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[10px] font-bold shadow-sm">Thủy Canh</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Rau củ Đà Lạt</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Cải Thìa Thủy Canh Chuẩn VietGAP
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Túi 450g bảo quản mát</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">16.500 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">20.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-18%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Cá hồi tươi phi lê Na Uy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwICALm5GuEwUTq_EOuT9LR5WOTnfevwrgCkOG2LNf66Cmk-rRJzwIzPuh7tU6xKxaCX7WARyZSHkSc8CvwLrlGfl7LLhRRQXPtI8a5jG28E4rnVJUz_hi2DFEm9jkWBL07g8m0htDTi_LNSq8KAe7icp7CqllBaNP0LfNigNKcyYjaJwU7W55XqS4PADXaR8gnSLXJSzFs0Feu7dz20vdSc7tvIfsFjmex1wrZOSS">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">Nhập Khẩu</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Hải sản tươi</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Cá Hồi Tươi Phi Lê Không Xương Na Uy
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 300g tươi sống trên đá</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">142.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">165.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-14%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Set canh chua cá lóc" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJooeEGLxCQH52zhtc5fGrNYtgQtFsKoYSLThJoKIFPhp5VvMeKwdD6eHi7nZGacoUUN27zEansHAyW7Q3V10kQXFXZR5mMn2iUBYcOh36uJJMU7gyRsvlssIGGmk8EL-SF7lUSKnzZGpS9hNjKgx1rkti5k93F0yl2X1U0K3c-AEpRlqFGMEyfHIai96GSTLFo2LPFWtu-I7ft9m5p9zLYyTmc2YVsru1PQZE6_Hu">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-accent-orange text-white font-label-sm text-[10px] font-bold shadow-sm">Sơ Chế Sẵn</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Món nấu ngay</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Set Canh Chua Cá Lóc Nam Bộ Tiện Lợi
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 600g đủ khẩu phần 3-4 người</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">65.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">75.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-13%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Bò Úc lẩu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB02SxyNJiyBOV8zhQZuGJOKp68eG-GskJ8LjMfbjR0LO3qYmv5ALd42zMQwBzp3vGl0HW-SWn2UURA-rjy1xaoY1gPqLxLZcbyyWPcCZSSjt1dq_X8ZkbB1VL3JLJpo6G6MMmkANc0Pq1qYnJGns1FUAj8qCEY2YUkJZt5zwHgr6KVG0R1PLkPZ8GKGVe9yTEB5oghiaeO29BjNUTvxT_yXobr9229MphmP5Gcy_uS">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">Bò Úc Nhập</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Thịt bò tươi</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Thịt Bò Úc Tươi Cắt Lát Lẩu &amp; Nướng
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 300g đóng khay vệ sinh</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">115.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">135.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-15%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Tôm thẻ chân trắng" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY25sUjNiO-D5tRafNBYv7tiXE5Z9gMkei0vTNhtbaazvBXcJqUhCORf2fN9OzPzBv01xvOpMsItGARlSE1DvQI0fY8HQLmPIMZJ4tz8KMJp01ufy7tlSgG4Z0hnveFreXumhwDLQnF9pFKczTxg3s-VR6V6mOfDTd87bBWNgBRBCEDqRJK-G-43XyHgvNWirEOELefB8dzqs_7oo5aBzMOtSuc55_XjTRMehPJSY-">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[10px] font-bold shadow-sm">Tươi Sống</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Thủy hải sản</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Tôm Thẻ Chân Trắng Tươi Bạc Liêu
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Hộp 500g 30-35 con/kg</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">98.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">120.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-18%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 7 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Cà chua beef Đà Lạt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC60PqLjEe7_K5NtfiIvJwBb74PF1MClRy6cVJalqOpEHf_dn5xR5fge_C5fT71qtHfsw6H0mb7iZtYS-Vu-_VXO7kMllY8OXbR08rlfbU3HTflLjfBrOBjNfGAgw13oJvOqJ8zJHq7Wpj4NBbhDTAoqXdljQSJcnfj-HKgcmWJrv8u0w2A1WZdSZdCTg2SNJICHoIh31iLOFjPRUTMSLqbyoR-svP-XvwQFKSD_O7L">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">VietGAP</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Nông sản sạch</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Cà Chua Beef Đà Lạt Dày Cơm Mọng Nước
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Túi 500g tiêu chuẩn an toàn</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">22.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">26.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-15%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 8 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Trứng gà ta thảo mộc" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDwAQZV4Ti2Pw_BX35CZLbgQ3zZPl0fSBlNIikcRGiduM1ie_0vD2Md-Yb6sfwRbPSFPHgjfjoN7auJX4NrJrI4ihB8ASvjGI_ASKsyUiKo29Bow1Eu7rRlXiu89i_TMZjFB4rCaeFNRGHWuOuaqAh5C1br3pbTWlLZ0NNwVKOVjqkZmyIZUfvbY8behpFSZDFBJC3tlneXeO8fONA1cEzPhgCy_pUGHSoIfioWNd2">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[10px] font-bold shadow-sm">Thảo Mộc</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Trứng gia cầm</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Trứng Gà Ta Thảo Mộc Ba Huân OCOP
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Hộp 10 quả tiệt trùng UV</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">34.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">40.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-15%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 9 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Bắp cải tím Đà Lạt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuANby-EfTX213YProwxqF3JUk_49DNtA_vJGEt-5Vh12JyW1qRJLPfo4FndwP73sYlks1faspvhbm9-EPxFh9HJSsvfgwR9I-BBrBWJ6SZYr5gc8uwrQSPlpQ4W0adMFYfxRtDFQeruXR-vYOj6benFzDndql4p-5ZZtmgDTQd0EanBcU8XJqyU51Lg3hc-RZfKhkMrO9jlPkp-orSVxmDZkGCdc_HMlWxm-9YfTCXI">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">VietGAP</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Rau củ sạch</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Bắp Cải Tím Đà Lạt Tươi Giòn Ngọt
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Bắp 600g chọn lọc</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">19.500 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">24.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-19%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 10 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Đùi gà góc tư CP" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Oz9XZTQFrbjeFbVYigOt0aY4AsUnLtMSfq7hC5hmvG4glsne0jJUqo747Wf_3kdAqCRhCkWcI6XKQPBsPh0LOaeNRadkKrDtKcoHwILF8zyGlMIJ-qr_YCZpcNEy6geAwhW_uwHfeqJ_BfOY6fTJFEn5iORyR4d-b46SMp0iWJGTnO2c8z_b62PUP0cDx_NDZSCPLAVJXTcLr3gdax4YyzR9em4EZwZbwmPXKLiM">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-green text-white font-label-sm text-[10px] font-bold shadow-sm">Chuẩn CP</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Gia cầm tươi</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Đùi Gà Góc Tư CP Tươi Sạch Mỗi Ngày
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 500g kiểm định thú y</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">48.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">58.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-17%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 11 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Canh khổ qua dồn thịt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmUvF98vtnS92chNzrfkB-uLc41OZFF1fka7XcDDbxVte0ea6d-A9XheQP575b09Mdzz5wD2kRClyFmESxqb4L0DIuj_2pPQDJ0IYaDLldtp4bSK4F6ySGHlwKxqrc6XYSdH9azQrKPXr8j3g8m5oHvUFiXhBbFeatpEkWKNiXPGNKADT78JQ0_IkOUW7Oj5xw2Qe3oqm3Gssf4P6Yly9DKrwJKitdE34pGbeYHBd_">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-accent-orange text-white font-label-sm text-[10px] font-bold shadow-sm">Sơ Chế Sẵn</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Món nấu ngay</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Khổ Qua Rừng Nhồi Thịt Sơ Chế Nấu Canh
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Khay 450g nêm gia vị vừa ăn</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">45.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">52.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-13%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+<!-- Product Card 12 -->
+<div class="bg-surface-canvas rounded-xl shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-surface-border">
+<div>
+<div class="relative w-full aspect-square rounded-lg overflow-hidden bg-surface-subtle mb-2.5">
+<img alt="Cam sành Vĩnh Long" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2JjVIGz6gjWg2MpRbVUC8ctwKP0pC5zyZXMke9EKsdDoa25PrjIUqqCngGN0mouJtmXFyd1IhbQgJAI0wVb0c_OxiNUmLKD_MWAI_1oFMinto7wRauxb8PvTz7SmiPGXgkPeW9madt-17jlRLc2wH8KxN5YQJYMu7KfF-KFCHs9-m4Ixemx0Txl_VwixXggvgulE5CaysL2OH68drsBoek1VmJx68YrrJ-1cE0hzf">
+<span class="absolute top-2 left-2 px-2 py-0.5 rounded bg-brand-lime text-text-primary font-label-sm text-[10px] font-bold shadow-sm">Đặc Sản Nam Bộ</span>
+<span class="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur flex items-center justify-center text-primary shadow-sm hover:bg-brand-lime transition-colors cursor-pointer" title="Truy xuất nguồn gốc QR">
+<span class="material-symbols-outlined text-[15px]">qr_code_2</span>
+</span>
+</div>
+<span class="text-[11px] font-label-sm text-brand-green font-bold uppercase tracking-wider block">Trái cây vườn</span>
+<h3 class="font-title-md text-[14px] leading-tight text-text-primary font-bold group-hover:text-brand-green transition-colors line-clamp-2 mt-0.5">
+              Cam Sành Vĩnh Long Mọng Nước Ngọt Thanh
+            </h3>
+<p class="font-body-sm text-[12px] text-text-muted mt-1">Túi lưới 1kg chọn lọc quả to</p>
+</div>
+<div class="mt-3 pt-2.5 border-t border-surface-border">
+<div class="flex items-baseline justify-between mb-2">
+<div>
+<span class="font-title-lg text-[16px] text-text-primary font-black">28.000 đ</span>
+<span class="font-body-sm text-[11px] text-text-muted line-through ml-1">35.000 đ</span>
+</div>
+<span class="text-[10px] font-label-sm text-accent-red bg-accent-red/10 px-1 py-0.5 rounded font-bold">-20%</span>
+</div>
+<button class="w-full py-2 bg-brand-green text-white font-label-md text-xs rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-1 font-bold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+<span class="">+ Thêm vào giỏ</span>
+</button>
+</div>
+</div>
+</div>
+<!-- PAGINATION -->
+<div class="bg-surface-canvas rounded-xl border border-surface-border p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-sm mt-6">
+<p class="font-body-sm text-xs text-text-muted">
+          Đang xem 1 - 12 trên tổng số 156 mặt hàng tươi sống
+        </p>
+<div class="flex items-center gap-1.5">
+<button class="px-3 py-1.5 rounded-lg border border-surface-border text-text-muted hover:text-text-primary hover:bg-surface-subtle font-label-sm text-xs flex items-center gap-1 disabled:opacity-40" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span> Trước
+          </button>
+<button class="w-8 h-8 rounded-lg bg-brand-green text-white font-label-md text-xs font-bold shadow-sm">1</button>
+<button class="w-8 h-8 rounded-lg border border-surface-border hover:bg-surface-subtle font-label-md text-xs font-semibold text-text-primary">2</button>
+<button class="w-8 h-8 rounded-lg border border-surface-border hover:bg-surface-subtle font-label-md text-xs font-semibold text-text-primary">3</button>
+<span class="px-1 text-text-muted text-xs">...</span>
+<button class="w-8 h-8 rounded-lg border border-surface-border hover:bg-surface-subtle font-label-md text-xs font-semibold text-text-primary">10</button>
+<button class="px-3 py-1.5 rounded-lg border border-surface-border text-brand-green hover:bg-surface-subtle font-label-sm text-xs font-bold flex items-center gap-1">
+            Sau <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- SERVICE COMMITMENT SECTION -->
+
+</main>
+<!-- FOOTER SATRAFOODS -->
+<footer class="w-full bg-surface-subtle border-t border-surface-border mt-space-xl">
+<div class="bg-surface-canvas border-b border-surface-border py-space-lg">
+<div class="max-w-[1240px] mx-auto px-margin grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle border border-surface-border flex items-center justify-center text-brand-green shrink-0">
+<span class="material-symbols-outlined text-[28px]">schedule</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary">Giao nhanh 2 Giờ</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Nhanh chóng &amp; trọn vị tươi sống</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle border border-surface-border flex items-center justify-center text-brand-green shrink-0">
+<span class="material-symbols-outlined text-[28px]">verified_user</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary">Chuẩn VietGAP &amp; OCOP</h4>
+<p class="font-body-sm text-body-sm text-text-muted">100% truy xuất nguồn gốc an toàn</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle border border-surface-border flex items-center justify-center text-brand-green shrink-0">
+<span class="material-symbols-outlined text-[28px]">loyalty</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary">Giá Luôn Bình Ổn</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Đồng hành trợ giá cho mọi gia đình</p>
+</div>
+</div>
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-subtle border border-surface-border flex items-center justify-center text-brand-green shrink-0">
+<span class="material-symbols-outlined text-[28px]">storefront</span>
+</div>
+<div>
+<h4 class="font-label-lg text-label-lg text-text-primary">180+ Cửa Hàng Phủ Rộng</h4>
+<p class="font-body-sm text-body-sm text-text-muted">Phục vụ khắp TP.HCM &amp; Cần Thơ</p>
+</div>
+</div>
+</div>
+</div>
+<div class="max-w-[1240px] mx-auto px-margin py-space-xl">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<!-- Col 1 -->
+<div class="space-y-space-md">
+<div class="flex items-center gap-space-sm">
+<img alt="SATRAFOODS" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1EIPeNWj1ebw_JMjAD0sxqqzQWnqbsY4KEv9LR4fRnBkql6dCYY3g_ojNO_dl6Z34pqL2dxeczJe3qr-9fENLEC8-dCGFwY6tgL9zPX4OqWpnBVaJ1qPEqzN1MAkgjlvEe1yL4CifGNYS3BXDXRiU2ZK5wFY3iLrgqftMYoIVcFQF-9HSU5LvnLBSPZ0RPUSgUM-3R_3fMfIVy3pyIk9lrKjWHsN8PgvIufBjh8ZLDgwoDaqyCDuzAw">
+</div>
+<p class="font-body-sm text-body-sm text-text-muted leading-relaxed">
+          Hệ thống chuỗi cửa hàng thực phẩm tiện lợi Satrafoods mang đến giải pháp bữa ăn dinh dưỡng, an toàn và tươi ngon mỗi ngày cho mọi gia đình Việt.
+        </p>
+<div class="pt-space-xs">
+<p class="font-label-md text-label-md text-text-primary">Đơn vị chủ quản:</p>
+<p class="font-body-sm text-body-sm text-text-muted">Tổng Công ty Thương mại Sài Gòn - TNHH Một Thành Viên (SATRA)</p>
+</div>
+<div class="flex items-center gap-space-sm pt-space-xs">
+<span class="px-2 py-1 rounded bg-brand-green text-white font-label-sm text-xs font-bold">Bình ổn thị trường</span>
+<span class="px-2 py-1 rounded bg-brand-lime text-text-primary font-label-sm text-xs font-bold">VietGAP Food</span>
+</div>
+</div>
+<!-- Col 2 -->
+<div>
+<h4 class="font-title-md text-title-md text-text-primary mb-space-md font-bold">Chăm Sóc Khách Hàng</h4>
+<ul class="space-y-space-sm font-body-md text-body-md text-text-muted text-sm">
+<li class="">Hotline CSKH: <strong class="text-brand-green font-label-lg">1800 1199</strong> (Miễn phí)</li>
+<li class="">Email: <a class="text-text-primary hover:text-brand-green transition-colors" href="#">cskh@satrafoods.com.vn</a></li>
+<li class="">Thời gian phục vụ: 07:00 - 21:30 mỗi ngày</li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="faq" href="#">Câu hỏi thường gặp (FAQ)</a></li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="membership-terms" href="#">Quy chế Điểm thưởng Thành viên</a></li>
+</ul>
+</div>
+<!-- Col 3 -->
+<div>
+<h4 class="font-title-md text-title-md text-text-primary mb-space-md font-bold">Chính Sách &amp; Hỗ Trợ</h4>
+<ul class="space-y-space-sm font-body-md text-body-md text-text-muted text-sm">
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="shipping-policy" href="#">Chính sách giao hàng siêu tốc 2h</a></li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="return-policy" href="#">Chính sách đổi trả &amp; hoàn tiền trong ngày</a></li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="quality-commitment" href="#">Cam kết chất lượng thực phẩm VietGAP</a></li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="privacy-policy" href="#">Chính sách bảo mật thông tin khách hàng</a></li>
+<li class=""><a class="hover:text-brand-green transition-colors" data-path="terms-of-service" href="#">Điều khoản sử dụng dịch vụ mua hàng</a></li>
+</ul>
+</div>
+<!-- Col 4 -->
+<div>
+<h4 class="font-title-md text-title-md text-text-primary mb-space-md font-bold">Mạng Lưới Phục Vụ</h4>
+<div class="p-space-md bg-surface-canvas border border-surface-border rounded-lg space-y-space-sm shadow-sm">
+<div class="flex items-center gap-space-xs text-brand-green font-label-md text-label-md font-bold">
+<span class="material-symbols-outlined text-[18px]">store</span>
+<span class="">180+ Cửa hàng tại TP.HCM &amp; Cần Thơ</span>
+</div>
+<p class="font-body-sm text-body-sm text-text-muted text-xs">Tìm ngay cửa hàng Satrafoods gần nhà bạn nhất để mua sắm thuận tiện.</p>
+<a class="inline-flex items-center justify-center w-full py-2 bg-brand-green text-white font-label-md text-xs font-bold rounded-lg hover:bg-primary transition-colors" data-path="store-locator" href="#">
+            Tra cứu hệ thống điểm bán
+          </a>
+</div>
+<div class="mt-space-md">
+<p class="font-label-sm text-[11px] text-text-muted mb-space-xs uppercase font-bold">Chứng nhận an toàn thực phẩm</p>
+<div class="flex items-center gap-space-sm">
+<div class="px-2.5 py-1 bg-surface-canvas border border-surface-border rounded text-xs text-brand-green font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">shield</span>Đã Đăng Ký BCT
+            </div>
+<div class="px-2.5 py-1 bg-surface-canvas border border-surface-border rounded text-xs text-text-primary font-semibold flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-brand-green">eco</span>ATVSTP TP.HCM
+            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Copyright -->
+<div class="border-t border-surface-border mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between text-body-sm font-body-sm text-text-muted text-xs gap-3">
+<div class="">© 2025 SATRAFOODS - Chuỗi cửa hàng tiện lợi trực thuộc Tổng Công ty Thương mại Sài Gòn (SATRA). Bảo lưu mọi quyền.</div>
+<div class="flex items-center gap-space-md">
+<a class="hover:text-brand-green transition-colors" data-path="privacy-policy" href="#">Bảo mật</a>
+<a class="hover:text-brand-green transition-colors" data-path="terms-of-service" href="#">Điều khoản</a>
+<a class="hover:text-brand-green transition-colors" data-path="store-locator" href="#">Hệ thống cửa hàng</a>
+</div>
+</div>
+</div>
+</footer>
+
+
+
+
+
+
+
+
+</body></html>

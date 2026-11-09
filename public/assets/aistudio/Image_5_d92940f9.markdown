@@ -1,0 +1,217 @@
+---
+name: Gói Retail System
+colors:
+  surface: '#fdf8f8'
+  surface-dim: '#ddd9d8'
+  surface-bright: '#fdf8f8'
+  surface-container-lowest: '#ffffff'
+  surface-container-low: '#f7f2f2'
+  surface-container: '#f1edec'
+  surface-container-high: '#ece7e7'
+  surface-container-highest: '#e6e1e1'
+  on-surface: '#1c1b1b'
+  on-surface-variant: '#3d4a3b'
+  inverse-surface: '#313030'
+  inverse-on-surface: '#f4f0ef'
+  outline: '#6d7b6a'
+  outline-variant: '#bccbb7'
+  surface-tint: '#006e24'
+  primary: '#006e24'
+  on-primary: '#ffffff'
+  primary-container: '#01b341'
+  on-primary-container: '#003c10'
+  inverse-primary: '#50e168'
+  secondary: '#556500'
+  on-secondary: '#ffffff'
+  secondary-container: '#ccee00'
+  on-secondary-container: '#596900'
+  tertiary: '#933799'
+  on-tertiary: '#ffffff'
+  tertiary-container: '#d976db'
+  on-tertiary-container: '#5d0065'
+  error: '#ba1a1a'
+  on-error: '#ffffff'
+  error-container: '#ffdad6'
+  on-error-container: '#93000a'
+  primary-fixed: '#6fff82'
+  primary-fixed-dim: '#50e168'
+  on-primary-fixed: '#002106'
+  on-primary-fixed-variant: '#005319'
+  secondary-fixed: '#cef100'
+  secondary-fixed-dim: '#b5d400'
+  on-secondary-fixed: '#181e00'
+  on-secondary-fixed-variant: '#404c00'
+  tertiary-fixed: '#ffd6fa'
+  tertiary-fixed-dim: '#ffa9fd'
+  on-tertiary-fixed: '#37003c'
+  on-tertiary-fixed-variant: '#771b7f'
+  background: '#fdf8f8'
+  on-background: '#1c1b1b'
+  surface-variant: '#e6e1e1'
+typography:
+  headline-xl:
+    fontFamily: Familjen Grotesk
+    fontSize: 44px
+    fontWeight: '800'
+    lineHeight: 52px
+    letterSpacing: -0.02em
+  headline-lg:
+    fontFamily: Familjen Grotesk
+    fontSize: 32px
+    fontWeight: '700'
+    lineHeight: 40px
+    letterSpacing: -0.015em
+  headline-md:
+    fontFamily: Familjen Grotesk
+    fontSize: 24px
+    fontWeight: '700'
+    lineHeight: 32px
+    letterSpacing: -0.01em
+  headline-sm:
+    fontFamily: Familjen Grotesk
+    fontSize: 20px
+    fontWeight: '700'
+    lineHeight: 28px
+  title-lg:
+    fontFamily: Familjen Grotesk
+    fontSize: 18px
+    fontWeight: '600'
+    lineHeight: 26px
+  title-md:
+    fontFamily: Familjen Grotesk
+    fontSize: 16px
+    fontWeight: '600'
+    lineHeight: 24px
+  body-lg:
+    fontFamily: Familjen Grotesk
+    fontSize: 16px
+    fontWeight: '400'
+    lineHeight: 26px
+  body-md:
+    fontFamily: Familjen Grotesk
+    fontSize: 14px
+    fontWeight: '400'
+    lineHeight: 22px
+  body-sm:
+    fontFamily: Familjen Grotesk
+    fontSize: 12px
+    fontWeight: '400'
+    lineHeight: 18px
+  label-lg:
+    fontFamily: Familjen Grotesk
+    fontSize: 14px
+    fontWeight: '700'
+    lineHeight: 20px
+    letterSpacing: 0.02em
+  label-md:
+    fontFamily: Familjen Grotesk
+    fontSize: 12px
+    fontWeight: '700'
+    lineHeight: 16px
+    letterSpacing: 0.04em
+  label-sm:
+    fontFamily: Familjen Grotesk
+    fontSize: 11px
+    fontWeight: '600'
+    lineHeight: 14px
+    letterSpacing: 0.05em
+spacing:
+  gutter: 2rem
+  margin: 2.5rem
+  space-xs: 0.25rem
+  space-sm: 0.5rem
+  space-md: 1rem
+  space-lg: 1.5rem
+  space-xl: 2.5rem
+---
+
+## Brand & Style
+
+This design system translates the daily Vietnamese retail and grocery experience into an energetic, highly structured, and dependable desktop web application. Grounded in the central brand metaphor of **"Gói"** (the art of wrapping, bundling, safeguarding, and delivering fresh produce with meticulous care), the interface avoids visual clutter in favor of crisp graphic containment.
+
+The design movement combines **Graphic Minimalism** with **Constructed Retail Packaging**:
+- Clean white negative space anchors clear scanability across thousands of fast-moving SKUs.
+- Expressive color blocks and structural framing motifs (the price tag notch, the carton box edge, the sheltering roof, and the diagonal fold) organize promotional messages, category clusters, and dietary certifications.
+- High-contrast accessibility governs every surface: bright vitality without sacrificing legible, WCAG AA-compliant information hierarchy.
+
+## Colors
+
+The palette establishes an immediate sense of market freshness, quality inspection, and lively promotional cadence:
+
+- **Primary (`#01B341` Brand Green):** The core anchor representing safe harvests and authenticated origin. Used for major brand framing, persistent category anchors, primary calls to action, and header trims.
+- **Secondary (`#DAFF01` Brand Lime):** High-voltage promotional highlight color. Reserved for deal flashers, seasonal discounts, cart counters, and dynamic tag accents.
+- **Tertiary (`#FC95FD` Accent Pink):** Vibrant supporting accent used for limited seasonal campaigns, festival celebrations, and sweet/bakery categories.
+- **Neutral (`#1c1b1b` Near Black):** The critical contrast guarantor. Because `#01B341` yields a sub-accessible contrast against pure white for small text, and `#DAFF01` is ultra-luminous, `#1c1b1b` serves as the mandatory typography tone on top of both Brand Lime (16.3:1) and Brand Green (6.7:1), satisfying WCAG AA compliance effortlessly.
+- **Named Accents:**
+  - `accent-pink` (`#FC95FD`): Limited seasonal campaigns, festival celebrations, and sweet/bakery categories.
+  - `accent-orange` (`#FF9500`): Flash-sale countdowns, fresh import notices, and loyalty point rewards.
+  - `accent-red` (`#FF161F`): Clearance tags, strike-through price chips, and urgent delivery thresholds.
+- **System Surfaces:** White (`#FFFFFF`) forms the clean grocery aisle canvas, paired with `#F6F8F5` for alternating shelf bands and `#E3E8E1` for structured shelf separators.
+
+## Typography
+
+The typography strategy leverages **Familjen Grotesk** as the comprehensive web engine (serving the geometric precision of the custom brand display guidelines while ensuring perfect digital cross-platform performance):
+
+- **Display & Headings:** Set in heavy weights (700 Bold / 800 ExtraBold) with subtle negative tracking. This replicates the solid, sculpted architectural feel of physical market banners and packaged product crates.
+- **Retail Data & Pricing:** Prices, weights, origins, and package volume indicators rely on `label-lg` and `title-lg`, utilizing distinct numeric tabular alignment to facilitate rapid price comparisons across adjacent cards.
+- **Editorial & Body Text:** Regular (400) and SemiBold (600) weights maintain high legibility across dense ingredient listings, supplier provenance notes, and fulfillment timelines.
+
+## Layout & Spacing
+
+The layout is built upon an 8px spatial grid engineered for high-density desktop grocery browsing:
+
+- **Desktop Framework:** Standard 1440px viewport canvas with a centered maximum content container of 1200px. 
+- **12-Column Grid:** A strict 12-column layout with 32px (`2rem`) gutters and 40px (`2.5rem`) outer canvas margins.
+  - Standard product grid spans 3 columns (4 cards per shelf row) or 2 columns in compact accessory modules (6 cards per row).
+  - Categorical filters and express checkout sidebars span 3 columns, leaving 9 columns for main inventory feeds.
+- **Rhythm & Density:**
+  - `space-xs` (4px) and `space-sm` (8px): Micro-spacing inside product chips, badges, and price tag notches.
+  - `space-md` (16px): Internal padding for standard grocery cards, input rows, and dropdown lists.
+  - `space-lg` (24px): Padding between card content groupings, promo banner interiors, and cart line items.
+  - `space-xl` (40px): Section-to-section shelf breathing room.
+
+## Elevation & Depth
+
+In alignment with the "Gói" concept, visual depth is achieved via **structural planar layering** rather than realistic blurry drop shadows:
+
+- **Flat Graphic Planes:** Surfaces use crisp `#E3E8E1` hairline borders and solid color fills (`#FFFFFF`, `#F6F8F5`, `#DAFF01`, `#01B341`).
+- **Surface Elevation via Tone:** Base canvas is pure white; secondary product bins and carousel tracks sit on `#F6F8F5` surface trays.
+- **Hover Transitions:** Interactive cards lift using an ultra-subtle directional offset: `0 4px 0 0 #01B341` (a crisp 4px green brand shelf lip) instead of diffused fuzzy blurs.
+- **Floating Overlays & Modals:** Pinned navigation bars and sticky grocery carts use a crisp `0 4px 16px rgba(17, 17, 17, 0.08)` shadow combined with a solid 1px `#E3E8E1` border to preserve sharp boundary definition.
+
+## Shapes
+
+The shape hierarchy is rooted in geometric cuts that directly reference grocery wrapping and container architecture:
+
+- **Base Corner Radius:** Standard components utilize tighter 2px corner reinforcing a crisp, precise, and highly structured industrial retail aesthetic.
+- **The "Gói" Architectural Motifs:**
+  - **Price Tag Motif:** Features an asymmetric 45-degree corner notch on the upper-right corner of price badges and discount callouts.
+  - **Closed Carton Motif:** Heavy rectangular enclosing frames with 8px corners and 2px `#01B341` stroke lines, grouping multi-buy bundles and weekly ration packs.
+  - **House Roof Motif:** Subtle gabled top edges (angled header bands) applied to trust seals, community programs, and local farm co-op spotlights.
+  - **Folded Package Accent:** Angled graphic cutaways (left-tilted, vertical, and right-tilted variants) used as graphic backplates for seasonal banner imagery.
+- **Functional Form Elements:** Input fields, filter pills, and stepper buttons adhere strictly to smooth 4px radii, balancing retail friendliness with operational speed.
+
+## Components
+
+### Buttons
+- **Primary Action ("Add to Basket" / "Checkout"):** Solid `#01B341` fill with `#1c1b1b` text, 4px border radius, font `label-lg`. On hover, the background deepens to `#019235` with immediate tactile state response.
+- **Promotional / Deal Action:** Solid `#DAFF01` fill with `#1c1b1b` text. Reserved for high-conversion flash checkout moments.
+- **Secondary / Ghost:** Transparent background with a 1.5px `#01B341` stroke, `#1c1b1b` text, switching to `#F6F8F5` on hover.
+
+### Product Cards
+- **Structure:** Clean white surface wrapped in a 1px `#E3E8E1` boundary.
+- **Header:** Houses origin stamps, organic cert badges, and the asymmetrical "Price Tag" notch discount badge in `#FF161F` or `#DAFF01`.
+- **Media Area:** Standardized 1:1 fresh produce photography framed against a subtle `#F6F8F5` circular vignette.
+- **Footer Section:** High-contrast current price in `#1c1b1b` (`title-lg`), strikethrough original price in `#555E57` (`body-sm`), alongside an inline quantity stepper (+/-) with quick-add functionality.
+
+### Badges & Chips
+- **Category Filter Chips:** Rounded 24px pill shapes with 1px `#E3E8E1` borders. Active state transitions to `#01B341` background with `#FFFFFF` or `#1c1b1b` text depending on badge hierarchy.
+- **Promo Tags:** Notched corner price tags filled with `#DAFF01` and `#1c1b1b` type for rapid visual scanning across dense grids.
+
+### Input Fields & Search Bar
+- **Global Produce Search:** Prominent 48px height with 4px radius, `#F6F8F5` interior fill, and a clear 1px `#E3E8E1` border that transitions to a 2px `#01B341` stroke upon focus. Includes an integrated category selector pill at the leading edge.
+- **Quantity Steppers:** Compact segmented controls with `#1c1b1b` icons and a reinforced numeric field to prevent accidental basket edits.
+
+### Grocery-Specific Elements
+- **"Gói" Bundle Crates:** Promotional category showcases enclosed within a visible structural carton frame, featuring a decorative tape/ribbon anchor modeled after the brand's logo motif.
+- **Freshness Gauge:** A 3-tier visual freshness and harvest timeline indicator embedded into meat, fish, and green vegetable PDP summaries.
