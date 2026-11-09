@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { CartItem } from '../types';
-import { calculateCartTotals, formatVND } from '../utils/cart';
+import { CartItem } from '../../types';
+import { calculateCartTotals, formatVND } from '../../utils/cart';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -46,7 +46,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
       setAppliedCoupon({ code: 'SATRA50K', discount: 50000 });
       setCouponCode('');
     } else {
-      setCouponError('Mã ưu đãi không hợp lệ. Hãy thử: SATRAFRESHT3');
+      setCouponError('Mã ưu đãi không hợp lệ. Hãy thử: SATRAFRESHT3 hoặc SATRA50K');
     }
   };
 
@@ -134,7 +134,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 setOrderSuccess(null);
                 onClose();
               }}
-              className="w-full py-2.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer"
+              className="w-full py-2.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer border-0"
             >
               Tiếp tục mua sắm
             </button>
@@ -151,7 +151,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             </p>
             <button
               onClick={onClose}
-              className="mt-2 px-5 py-2.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] cursor-pointer"
+              className="mt-2 px-5 py-2.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] cursor-pointer border-0"
             >
               Khám phá thực phẩm ngay
             </button>
@@ -188,7 +188,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 <div className="flex items-center gap-1.5 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg p-1 shrink-0">
                   <button
                     onClick={() => onUpdateQuantity(product.id, quantity - 1)}
-                    className="w-5 h-5 rounded hover:bg-white text-xs font-bold text-[#111111] flex items-center justify-center cursor-pointer"
+                    className="w-5 h-5 rounded hover:bg-white text-xs font-bold text-[#111111] flex items-center justify-center cursor-pointer border-0"
                     aria-label="Giảm"
                   >
                     -
@@ -196,7 +196,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                   <span className="text-xs font-bold w-4 text-center">{quantity}</span>
                   <button
                     onClick={() => onUpdateQuantity(product.id, quantity + 1)}
-                    className="w-5 h-5 rounded hover:bg-white text-xs font-bold text-[#111111] flex items-center justify-center cursor-pointer"
+                    className="w-5 h-5 rounded hover:bg-white text-xs font-bold text-[#111111] flex items-center justify-center cursor-pointer border-0"
                     aria-label="Tăng"
                   >
                     +
@@ -206,7 +206,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
                 {/* Delete button */}
                 <button
                   onClick={() => onRemoveItem(product.id)}
-                  className="text-gray-400 hover:text-[#FF161F] transition-colors p-1"
+                  className="text-gray-400 hover:text-[#FF161F] transition-colors p-1 bg-transparent border-0 cursor-pointer"
                   aria-label="Xóa"
                 >
                   <span className="material-symbols-outlined text-[18px]">delete</span>
@@ -230,7 +230,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               />
               <button
                 type="submit"
-                className="px-3.5 h-9 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] cursor-pointer"
+                className="px-3.5 h-9 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] cursor-pointer border-0"
               >
                 Áp dụng
               </button>
@@ -279,7 +279,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             <button
               onClick={handleCompleteOrder}
               disabled={isCheckingOut}
-              className="w-full py-3 bg-[#01B341] hover:bg-[#006e24] text-white font-bold text-sm rounded-xl transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2"
+              className="w-full py-3 bg-[#01B341] hover:bg-[#006e24] text-white font-bold text-sm rounded-xl transition-colors cursor-pointer shadow-md flex items-center justify-center gap-2 border-0"
             >
               {isCheckingOut ? (
                 <>

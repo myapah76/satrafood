@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { CartDrawer } from './components/CartDrawer';
-import { CategoryPage } from './components/CategoryPage';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
-import { HomePage } from './components/HomePage';
-import { LocationModal } from './components/LocationModal';
-import { MembershipModal } from './components/MembershipModal';
 import { MobileBottomNav } from './components/MobileBottomNav';
-import { TraceabilityModal } from './components/TraceabilityModal';
 import { SATRA_PRODUCTS } from './data/mockData';
+import { CartDrawer } from './features/cart/CartDrawer';
+import { CatalogScreen } from './features/catalog/CatalogScreen';
+import { HomeScreen } from './features/home/HomeScreen';
+import { LocationModal } from './features/location/LocationModal';
+import { MembershipModal } from './features/membership/MembershipModal';
+import { TraceabilityModal } from './features/traceability/TraceabilityModal';
 import { CartItem, Product } from './types';
 
 export default function App() {
@@ -90,6 +90,7 @@ export default function App() {
           <button
             onClick={() => setToastMessage(null)}
             className="text-gray-400 hover:text-white ml-2 bg-transparent border-0 cursor-pointer p-0"
+            aria-label="Đóng thông báo"
           >
             <span className="material-symbols-outlined text-[16px]">close</span>
           </button>
@@ -112,14 +113,14 @@ export default function App() {
       {/* Main Page Content */}
       <main className="flex-1">
         {currentView === 'home' ? (
-          <HomePage
+          <HomeScreen
             onNavigateToCategory={(subCategory) => handleNavigate('category', subCategory)}
             onAddToCart={handleAddToCart}
             onShowTraceability={setTraceabilityProduct}
             onShowToast={showToast}
           />
         ) : (
-          <CategoryPage
+          <CatalogScreen
             initialSubCategory={targetSubCategory}
             onNavigateHome={() => handleNavigate('home')}
             onAddToCart={handleAddToCart}
@@ -181,6 +182,7 @@ export default function App() {
         onClose={() => setIsMembershipOpen(false)}
         userPhone={userPhone}
         onSavePhone={setUserPhone}
+        onShowToast={showToast}
       />
 
       {/* Delivery Location Modal */}

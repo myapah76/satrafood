@@ -5,6 +5,7 @@ interface MembershipModalProps {
   onClose: () => void;
   userPhone: string;
   onSavePhone: (phone: string) => void;
+  onShowToast?: (msg: string) => void;
 }
 
 export const MembershipModal: React.FC<MembershipModalProps> = ({
@@ -12,10 +13,12 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
   onClose,
   userPhone,
   onSavePhone,
+  onShowToast,
 }) => {
   const [phoneInput, setPhoneInput] = useState(userPhone || '0908123456');
   const [points] = useState(420); // 420 points = 42,000 VND
   const [copiedCode, setCopiedCode] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   if (!isOpen) return null;
 
@@ -23,6 +26,15 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
     navigator.clipboard.writeText(code);
     setCopiedCode(true);
     setTimeout(() => setCopiedCode(false), 2000);
+  };
+
+  const handleSave = () => {
+    onSavePhone(phoneInput);
+    setUpdateSuccess(true);
+    if (onShowToast) {
+      onShowToast('Đã cập nhật số điện thoại thành viên thành công!');
+    }
+    setTimeout(() => setUpdateSuccess(false), 2500);
   };
 
   return (
@@ -88,13 +100,10 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
                 className="flex-1 h-10 px-3 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg text-xs font-semibold focus:outline-none focus:border-[#01B341]"
               />
               <button
-                onClick={() => {
-                  onSavePhone(phoneInput);
-                  alert('Đã cập nhật số điện thoại thành viên thành công!');
-                }}
-                className="px-4 h-10 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer"
+                onClick={handleSave}
+                className="px-4 h-10 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer border-0"
               >
-                Cập nhật
+                {updateSuccess ? 'Đã lưu' : 'Cập nhật'}
               </button>
             </div>
           </div>
@@ -128,7 +137,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
             </div>
             <button
               onClick={() => handleCopy('SATRAFRESHT3')}
-              className="px-3 py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer whitespace-nowrap"
+              className="px-3 py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer whitespace-nowrap border-0"
             >
               {copiedCode ? 'Đã sao chép!' : 'Sao chép'}
             </button>

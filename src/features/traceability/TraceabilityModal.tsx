@@ -1,6 +1,6 @@
 import React from 'react';
-import { Product } from '../types';
-import { formatVND } from '../utils/cart';
+import { Product } from '../../types';
+import { formatVND } from '../../utils/cart';
 
 interface TraceabilityModalProps {
   product: Product | null;
@@ -158,7 +158,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
               onAddToCart(product);
               onClose();
             }}
-            className="px-5 py-2 bg-[#01B341] hover:bg-[#006e24] text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm"
+            className="px-5 py-2 bg-[#01B341] hover:bg-[#006e24] text-white rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm border-0"
           >
             <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>
             Thêm vào giỏ ({formatVND(product.price)})

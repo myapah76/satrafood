@@ -108,32 +108,29 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
             </div>
           </div>
 
-          {/* Safety Standards */}
-          <div className="pt-4 border-t border-[#E3E8E1]">
+          {/* Safety standards */}
+          <div>
             <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
               Tiêu Chuẩn An Toàn
             </h4>
-            <div className="space-y-2.5">
+            <div className="space-y-2">
               {safetyStandards.map((std) => (
-                <label
-                  key={std.id}
-                  className="flex items-center gap-2.5 cursor-pointer text-[#111111]"
-                >
+                <label key={std.id} className="flex items-center gap-2.5 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={selectedStandards.includes(std.id)}
                     onChange={() => onToggleStandard(std.id)}
                     className="w-4 h-4 rounded text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
                   />
-                  <span className="flex-1 font-medium">{std.label}</span>
-                  <span className="text-[11px] text-[#555E57]">({std.count})</span>
+                  <span className="flex-1 text-[#111111] font-medium">{std.label}</span>
+                  <span className="text-[#555E57] font-normal">({std.count})</span>
                 </label>
               ))}
             </div>
           </div>
 
-          {/* Price Range */}
-          <div className="pt-4 border-t border-[#E3E8E1]">
+          {/* Price range */}
+          <div>
             <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
               Mức Giá
             </h4>
@@ -145,44 +142,36 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
                 { id: '100to200', label: '100.000 đ - 200.000 đ' },
                 { id: 'above200', label: 'Trên 200.000 đ' },
               ].map((p) => (
-                <label
-                  key={p.id}
-                  className="flex items-center gap-2.5 cursor-pointer text-[#111111]"
-                >
+                <label key={p.id} className="flex items-center gap-2.5 cursor-pointer">
                   <input
                     type="radio"
-                    name="mobile_price_range"
+                    name="price_range_mobile"
                     checked={selectedPriceRange === p.id}
-                    onChange={() => onSelectPriceRange(p.id as any)}
+                    onChange={() =>
+                      onSelectPriceRange(p.id as 'all' | 'under50' | '50to100' | '100to200' | 'above200')
+                    }
                     className="w-4 h-4 text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
                   />
-                  <span className="flex-1 font-medium">{p.label}</span>
+                  <span className="text-[#111111] font-medium">{p.label}</span>
                 </label>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Footer Actions */}
-        <div className="p-4 bg-[#F6F8F5] border-t border-[#E3E8E1] flex gap-3">
-          <button
-            onClick={onResetFilters}
-            className="flex-1 py-3 bg-white border border-[#E3E8E1] text-[#111111] font-bold text-xs rounded-xl hover:bg-gray-50 cursor-pointer"
-            type="button"
-          >
-            Thiết lập lại
-          </button>
+        {/* Footer actions */}
+        <div className="p-4 bg-white border-t border-[#E3E8E1] space-y-2">
           <button
             onClick={onClose}
-            className="flex-2 py-3 bg-[#01B341] text-white font-bold text-xs rounded-xl hover:bg-[#006e24] transition-colors cursor-pointer shadow-sm flex items-center justify-center gap-1.5"
-            type="button"
+            className="w-full py-3 bg-[#01B341] text-white font-bold rounded-xl shadow-md hover:bg-[#006e24] transition-colors cursor-pointer flex items-center justify-center gap-2 border-0"
           >
-            <span>Xem {totalProductsCount} sản phẩm</span>
-            <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+            <span>Áp dụng bộ lọc</span>
+            <span className="px-2 py-0.5 rounded-full bg-[#DAFF01] text-[#111111] text-[11px] font-black">
+              {totalProductsCount} sản phẩm
+            </span>
           </button>
         </div>
       </div>
     </div>
   );
 };
-

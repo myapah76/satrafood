@@ -94,7 +94,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
         <div className="p-4 bg-[#F6F8F5] border-t border-[#E3E8E1] flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] cursor-pointer"
+            className="px-4 py-2 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] cursor-pointer border-0"
           >
             Xác nhận
           </button>
