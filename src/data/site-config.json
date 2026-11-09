@@ -1,0 +1,42 @@
+{
+  "brand": {
+    "name": "Satrafoods",
+    "slogan": "Chuỗi Cửa Hàng Tiện Lợi & Thực Phẩm Tươi Sống",
+    "owner": "Tổng Công ty Thương mại Sài Gòn - TNHH Một Thành Viên (SATRA)",
+    "description": "Hệ thống mua sắm thực phẩm tươi sống an toàn VietGAP, giao nhanh 2 giờ với hơn 180 cửa hàng tại TP.HCM và Cần Thơ.",
+    "logoUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
+  },
+  "contact": {
+    "hotline": "1800 1199",
+    "hotlineNote": "Miễn cước toàn quốc",
+    "email": "cskh@satrafoods.com.vn",
+    "operatingHours": "07:00 - 21:30 hàng ngày"
+  },
+  "commitments": [
+    {
+      "icon": "schedule",
+      "title": "Giao nhanh 2 Giờ",
+      "description": "Nhanh chóng & giữ trọn độ tươi sống"
+    },
+    {
+      "icon": "verified_user",
+      "title": "Chuẩn VietGAP & OCOP",
+      "description": "100% truy xuất nguồn gốc an toàn"
+    },
+    {
+      "icon": "loyalty",
+      "title": "Giá Luôn Bình Ổn",
+      "description": "Đồng hành trợ giá cho mọi gia đình"
+    },
+    {
+      "icon": "storefront",
+      "title": "180+ Cửa Hàng Phủ Rộng",
+      "description": "Phục vụ khắp TP.HCM & Cần Thơ"
+    }
+  ],
+  "delivery": {
+    "thresholdForFreeShipping": 200000,
+    "defaultShippingFee": 20000,
+    "memberCashbackPercent": 0.02
+  }
+}

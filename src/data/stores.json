@@ -1,0 +1,72 @@
+[
+  {
+    "id": "store-1",
+    "name": "Satrafoods Phan Xích Long",
+    "address": "124 Phan Xích Long, Phường 2, Q. Phú Nhuận, TP.HCM",
+    "district": "Phú Nhuận",
+    "city": "TP.HCM",
+    "hours": "06:30 - 22:00",
+    "distance": "Cách bạn 450m",
+    "phone": "1800 1199 (Máy lẻ 101)"
+  },
+  {
+    "id": "store-2",
+    "name": "Satrafoods Nguyễn Đình Chiểu",
+    "address": "215 Nguyễn Đình Chiểu, Phường 5, Quận 3, TP.HCM",
+    "district": "Quận 3",
+    "city": "TP.HCM",
+    "hours": "06:30 - 22:00",
+    "distance": "Cách bạn 1.2km",
+    "phone": "1800 1199 (Máy lẻ 102)"
+  },
+  {
+    "id": "store-3",
+    "name": "Satrafoods Lê Văn Duyệt",
+    "address": "88 Lê Văn Duyệt, Phường 1, Q. Bình Thạnh, TP.HCM",
+    "district": "Bình Thạnh",
+    "city": "TP.HCM",
+    "hours": "06:00 - 22:30",
+    "distance": "Cách bạn 1.8km",
+    "phone": "1800 1199 (Máy lẻ 103)"
+  },
+  {
+    "id": "store-4",
+    "name": "Satrafoods Trần Khắc Chân",
+    "address": "42 Trần Khắc Chân, Phường Tân Định, Quận 1, TP.HCM",
+    "district": "Quận 1",
+    "city": "TP.HCM",
+    "hours": "06:30 - 22:00",
+    "distance": "Cách bạn 850m",
+    "phone": "1800 1199 (Máy lẻ 104)"
+  },
+  {
+    "id": "store-5",
+    "name": "Satrafoods Thảo Điền",
+    "address": "38 Quốc Hương, Phường Thảo Điền, TP. Thủ Đức, TP.HCM",
+    "district": "TP. Thủ Đức",
+    "city": "TP.HCM",
+    "hours": "06:30 - 22:00",
+    "distance": "Cách bạn 3.5km",
+    "phone": "1800 1199 (Máy lẻ 105)"
+  },
+  {
+    "id": "store-6",
+    "name": "Satrafoods Quang Trung",
+    "address": "540 Quang Trung, Phường 11, Q. Gò Vấp, TP.HCM",
+    "district": "Gò Vấp",
+    "city": "TP.HCM",
+    "hours": "06:00 - 22:00",
+    "distance": "Cách bạn 4.2km",
+    "phone": "1800 1199 (Máy lẻ 106)"
+  },
+  {
+    "id": "store-7",
+    "name": "Satrafoods Nguyễn Thị Thập",
+    "address": "320 Nguyễn Thị Thập, Phường Tân Quy, Quận 7, TP.HCM",
+    "district": "Quận 7",
+    "city": "TP.HCM",
+    "hours": "06:30 - 22:00",
+    "distance": "Cách bạn 5.1km",
+    "phone": "1800 1199 (Máy lẻ 107)"
+  }
+]

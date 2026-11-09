@@ -1,0 +1,62 @@
+{
+  "campaign": {
+    "title": "GÓI TRỌN ƯU ĐÃI TUẦN NÀY",
+    "subtitle": "Áp dụng từ thứ Hai đến Chủ Nhật trên toàn chuỗi Satrafoods",
+    "countdownHours": "02:14:48",
+    "bannerUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAd6DgUy3G0ro6Xj-nzFbGUkXeIhalpkCiNwgZm3HioxueCJz8wGoir07zgt7gMgDEyrZjRZEng306OU69AImu1xXOdsgfndxmGSERaKsf302Y_OobfteB-MAQFb-2U6PBS76Qi-qF0tEGAIo8YWW1JDWVbRIt0t-YFKYWMCOajENP2irUdDYxwPeLkfSkEx6BI4MQuOiXloeWHi7IihJTr6WOOanc4qmSjfdoLf83ACFc546mz4TaeSg"
+  },
+  "featuredDeals": [
+    {
+      "id": "deal-1",
+      "tag": "-20% GIẢM",
+      "tagType": "discount",
+      "category": "Thịt Sạch Thảo Mộc",
+      "title": "Thịt Ba Rọi Heo VietGAP",
+      "spec": "Đóng gói kháng khuẩn khay 500g",
+      "price": 76000,
+      "originalPrice": 95000,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD6PhgeP7PVQ64_PVobQ_cdng6uR1UijjqxWS_v1GP8vyqRFjwm0MeH34oUd-koDZeWIhoqxfafM9iJG_E9-4whf6OrPoKJ69iWqozD-dtIcg_SFceKER9jmlWrBmfOcWhiJbVNZ_TmnFvNnsAjK1ejK-KtOPpm7WD6ToT2wot_YSEobwx1LnfzQyi7sk5zEnpdFGLadA9z9n7gesK9bQSOH3bl8UOOV54pvp7GhV3y",
+      "targetProductId": "p1"
+    },
+    {
+      "id": "deal-2",
+      "tag": "ĐỒNG GIÁ",
+      "tagType": "same_price",
+      "category": "Nông Sản Đà Lạt",
+      "title": "Rau Củ Quả Canh Tác Sạch",
+      "spec": "Đồng loạt chọn túi 400g - 500g",
+      "price": 15000,
+      "originalPrice": 22000,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCHqaeUICmJVnk9xJPaA5Fq56XWvoFYDFNmdui5bRDSm_UvglD8RCapXarty8YK9UgX4wabR5T-6FIKW8LCaXU1MoYKzKHpadUIRhTGP7wNADU7TKlZmh2NKMAzUwCDRFqnRZnhAGgizYQtu85hBMHTzJIw68zOW0xbFCLzombPyAG3jBaFicz52s-YucdgRmamccXdB6C9CNAFf_54Xhpq_L5qECLC4wkdlKiPSuty",
+      "targetProductId": "p2"
+    },
+    {
+      "id": "deal-3",
+      "tag": "COMBO TIẾT KIỆM",
+      "tagType": "combo",
+      "category": "Gói Trọn Tiết Kiệm",
+      "title": "Giỏ Dinh Dưỡng Gia Đình 3-4 Người",
+      "spec": "Thịt + Cá + 3 Loại Rau Xanh",
+      "price": 189000,
+      "originalPrice": 245000,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBBggmFL0rF83gPrVwMLWYHhBWQqkzlN-Rm-s4VrKZ56fD1IhWejKSTJwTa5KGjlmeyW4HwbqOMCUbj4wusQhBAK5uapfv1osl-nkvDqt4e0bPQ44o-j7VD2wJYvvhHkX88w9Sow7axKzID_sS44Nw2g_LoAXGEz09hZnWFYpjoTPEps1-QrzMCSTu0Dya9LeQul42YUz1wBlHvIE7VHi6LP89x8fCdEbAmdTVM_qEe",
+      "targetProductId": "p4"
+    }
+  ],
+  "vouchers": [
+    {
+      "code": "SATRAFRESHT3",
+      "discountAmount": 30000,
+      "minOrderAmount": 250000,
+      "title": "Voucher Giảm 30K",
+      "description": "Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên."
+    },
+    {
+      "code": "SATRA50K",
+      "discountAmount": 50000,
+      "minOrderAmount": 0,
+      "title": "Voucher Chào Mừng 50K",
+      "description": "Dành cho khách hàng đăng ký thành viên Satra Rewards đầu tiên."
+    }
+  ]
+}

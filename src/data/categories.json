@@ -1,0 +1,114 @@
+[
+  {
+    "id": "cat-1",
+    "title": "Trái Cây & Rau Củ",
+    "image": "https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Rau ăn lá VietGAP"
+  },
+  {
+    "id": "cat-2",
+    "title": "Thịt & Hải Sản Tươi",
+    "image": "https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Thịt heo thảo mộc & VietGAP"
+  },
+  {
+    "id": "cat-3",
+    "title": "Trứng & Sữa Tươi",
+    "image": "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Gia cầm tươi chuẩn CP"
+  },
+  {
+    "id": "cat-4",
+    "title": "Món Nấu Sơ Chế",
+    "image": "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Món sơ chế nấu ngay"
+  },
+  {
+    "id": "cat-5",
+    "title": "Bánh Mì & Tiệm Bánh",
+    "image": "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Bánh mì & đồ khô"
+  },
+  {
+    "id": "cat-6",
+    "title": "Thực Phẩm Đông Lạnh",
+    "image": "https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Cá & Hải sản tươi sống"
+  },
+  {
+    "id": "cat-7",
+    "title": "Đồ Uống & Giải Khát",
+    "image": "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Đồ uống & giải khát"
+  },
+  {
+    "id": "cat-8",
+    "title": "Gia Vị & Gạo Khô",
+    "image": "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Gia vị & Gạo"
+  },
+  {
+    "id": "cat-9",
+    "title": "Bánh Kẹo & Ăn Vặt",
+    "image": "https://images.unsplash.com/photo-1582293041079-7814c2f12063?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Bánh kẹo"
+  },
+  {
+    "id": "cat-10",
+    "title": "Sức Khỏe & Sắc Đẹp",
+    "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Sức khỏe"
+  },
+  {
+    "id": "cat-11",
+    "title": "Sản Phẩm Mẹ & Bé",
+    "image": "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Mẹ & bé"
+  },
+  {
+    "id": "cat-12",
+    "title": "Chăm Sóc Nhà Cửa",
+    "image": "https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Gia dụng"
+  },
+  {
+    "id": "cat-13",
+    "title": "Ưu Đãi Đặc Biệt",
+    "isSpecialBadge": true,
+    "badgeText": "SUPER SAVERS",
+    "badgeColor": "bg-accent-red text-white",
+    "subCategory": "all"
+  },
+  {
+    "id": "cat-14",
+    "title": "Hàng Mới Giá Tốt",
+    "isSpecialBadge": true,
+    "badgeText": "NEW LOW PRICE",
+    "badgeColor": "bg-primary text-white",
+    "subCategory": "all"
+  },
+  {
+    "id": "cat-15",
+    "title": "OCOP & Đặc Sản",
+    "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Trái cây nhiệt đới Nam Bộ"
+  },
+  {
+    "id": "cat-16",
+    "title": "Chăm Sóc Thú Cưng",
+    "image": "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Thú cưng"
+  },
+  {
+    "id": "cat-17",
+    "title": "Thực Dưỡng & Protein",
+    "image": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "Bò Úc & Bò ta nhập khẩu"
+  },
+  {
+    "id": "cat-18",
+    "title": "Mùa Vụ & Quà Tặng",
+    "image": "https://images.unsplash.com/photo-1513519245088-0e12902e5a38?auto=format&fit=crop&w=160&q=80",
+    "subCategory": "all"
+  }
+]
