@@ -39,230 +39,152 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'Món sơ chế nấu ngay', id: 'Món sơ chế nấu ngay' },
   ];
 
+  const handleSearchSubmit = () => {
+    if (searchQuery.trim() !== '') {
+      onNavigate('category');
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FFFFFF] shadow-[0_4px_16px_rgba(17,17,17,0.08)] border-b border-[#E3E8E1]">
-      {/* Top Bar - Desktop */}
+      {/* Top Bar - Desktop (Unified Search Header across entire website) */}
       <div className="hidden md:block h-20 bg-[#FFFFFF]">
-        <div className="max-w-[1200px] mx-auto px-6 lg:px-10 h-full flex items-center justify-between gap-4">
-          {currentView === 'home' ? (
-            <>
-              {/* Left: Delivery + Search */}
-              <div className="flex items-center gap-3 flex-1 max-w-[380px]">
-                <button
-                  onClick={onOpenLocation}
-                  className="flex items-center gap-1.5 bg-[#F6F8F5] border border-[#E3E8E1] rounded-full px-3 py-1.5 shrink-0 text-left hover:bg-[#f1edec] transition-colors cursor-pointer"
-                  type="button"
-                  aria-label="Chọn khu vực giao hàng"
-                >
-                  <span className="material-symbols-outlined text-[#006e24] text-[18px]">
-                    local_shipping
-                  </span>
-                  <div className="flex flex-col leading-none">
-                    <span className="font-label-sm text-[10px] text-[#006e24] uppercase font-bold">
-                      &nbsp;Giao nhanh 2h
-                    </span>
-                    <span className="font-body-sm text-[12px] text-[#111111] font-semibold">
-                      {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
-                    </span>
-                  </div>
-                  <span className="material-symbols-outlined text-[#555E57] text-[16px]">
-                    expand_more
-                  </span>
-                </button>
+        <div className="max-w-[1240px] mx-auto px-6 lg:px-10 h-full flex items-center justify-between gap-4">
+          {/* 1. Left: SATRAFOODS Brand Logo */}
+          <button
+            onClick={() => onNavigate('home')}
+            className="flex items-center gap-4 shrink-0 cursor-pointer bg-transparent border-0 p-0 hover:opacity-95 transition-opacity"
+            aria-label="Satrafoods Trang Chủ"
+          >
+            <img
+              alt="SATRAFOODS"
+              className="h-9 w-auto object-contain"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
+            />
+          </button>
 
-                <div className="flex-1 relative">
-                  <div className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none flex items-center">
-                    <span className="material-symbols-outlined text-[#6d7b6a] text-[18px]">
-                      search
-                    </span>
-                  </div>
-                  <input
-                    className="w-full h-9 pl-9 pr-3 bg-[#F6F8F5] border border-[#E3E8E1] rounded-full font-body-sm text-[13px] text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] focus:bg-[#FFFFFF] transition-all"
-                    placeholder="Tìm rau củ, thịt tươi..."
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => {
-                      onSearchChange(e.target.value);
-                      if (e.target.value.trim() !== '') {
-                        onNavigate('category');
-                      }
-                    }}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        onNavigate('category');
-                      }
-                    }}
-                  />
-                </div>
+          {/* 2. Delivery Location Selector Button */}
+          <button
+            onClick={onOpenLocation}
+            className="flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg px-3 py-1.5 shrink-0 text-left hover:bg-[#f1edec] transition-colors cursor-pointer"
+            type="button"
+            aria-label="Chọn khu vực giao hàng"
+          >
+            <span className="material-symbols-outlined text-[#01B341] text-[22px]">
+              local_shipping
+            </span>
+            <div className="flex flex-col">
+              <span className="font-label-sm text-[10px] text-[#01B341] uppercase font-bold">
+                Giao nhanh 2h
+              </span>
+              <span className="font-body-sm text-[13px] text-[#111111] font-semibold">
+                {selectedCity}
+              </span>
+            </div>
+            <span className="material-symbols-outlined text-[#555E57] text-[18px]">
+              expand_more
+            </span>
+          </button>
+
+          {/* 3. Center: Prominent Full Search Bar */}
+          <div className="flex-1 max-w-xl">
+            <div className="relative flex items-center">
+              <div className="absolute left-3.5 pointer-events-none flex items-center">
+                <span className="material-symbols-outlined text-[#6d7b6a] text-[20px]">
+                  search
+                </span>
               </div>
-
-              {/* Center: SATRAFOODS Brand Logo */}
-              <div className="shrink-0 px-6 flex items-center justify-center">
+              <input
+                className="w-full h-11 pl-11 pr-24 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg font-body-md text-sm text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] focus:bg-[#FFFFFF] transition-all"
+                placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..."
+                type="text"
+                value={searchQuery}
+                onChange={(e) => {
+                  onSearchChange(e.target.value);
+                  if (e.target.value.trim() !== '' && currentView !== 'category') {
+                    onNavigate('category');
+                  }
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    handleSearchSubmit();
+                  }
+                }}
+                aria-label="Tìm kiếm thực phẩm"
+              />
+              {searchQuery && (
                 <button
-                  onClick={() => onNavigate('home')}
-                  className="inline-flex items-center justify-center hover:opacity-95 transition-opacity bg-transparent border-0 cursor-pointer p-0"
-                  aria-label="Trang chủ Satrafoods"
-                >
-                  <img
-                    alt="SATRAFOODS"
-                    className="h-9 w-auto object-contain"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
-                  />
-                </button>
-              </div>
-
-              {/* Right: Member + Cart + Avatar */}
-              <div className="flex items-center justify-end gap-2.5 flex-1 max-w-[380px]">
-                <button
-                  onClick={onOpenMembership}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#F6F8F5] border border-[#E3E8E1] hover:bg-[#f1edec] transition-colors text-[#111111] cursor-pointer"
+                  onClick={() => onSearchChange('')}
+                  className="absolute right-14 text-[#555E57] hover:text-[#111111] cursor-pointer bg-transparent border-0 p-1 flex items-center justify-center"
+                  title="Xóa tìm kiếm"
                   type="button"
-                  aria-label="Tích điểm thành viên"
+                  aria-label="Xóa nội dung tìm kiếm"
                 >
-                  <div className="w-6 h-6 rounded-full bg-[#DAFF01]/30 flex items-center justify-center text-[#006e24] shrink-0">
-                    <span className="material-symbols-outlined text-[15px]">card_membership</span>
-                  </div>
-                  <div className="flex flex-col text-left leading-none">
-                    <span className="font-label-sm text-[10px] text-[#555E57]">Tích điểm 2%</span>
-                    <span className="font-label-md text-[12px] text-[#111111] font-semibold">
-                      Thành viên
-                    </span>
-                  </div>
+                  <span className="material-symbols-outlined text-[18px]">close</span>
                 </button>
-
-                <button
-                  onClick={onOpenCart}
-                  className="relative flex items-center gap-1.5 bg-[#F6F8F5] border border-[#E3E8E1] px-3 py-1.5 rounded-full hover:bg-[#f1edec] transition-colors cursor-pointer"
-                  type="button"
-                  aria-label="Giỏ hàng Satrafoods"
-                >
-                  <span className="material-symbols-outlined text-[#006e24] text-[18px]">
-                    shopping_bag
-                  </span>
-                  <div className="flex flex-col leading-none text-left">
-                    <span className="font-label-sm text-[10px] text-[#555E57]">Giỏ hàng</span>
-                    <span className="font-label-md text-[12px] text-[#111111] font-bold">
-                      {totalCount > 0 ? `${totalCount} món` : '0đ'}
-                    </span>
-                  </div>
-                  <span className="w-4 h-4 bg-[#DAFF01] text-[#111111] font-label-sm text-[10px] rounded-full flex items-center justify-center font-bold border border-[#FFFFFF] ml-0.5">
-                    {totalCount}
-                  </span>
-                </button>
-
-                <button
-                  onClick={onOpenMembership}
-                  className="w-8 h-8 rounded-full bg-[#006e24] flex items-center justify-center shrink-0 cursor-pointer hover:bg-[#01B341] transition-colors border-0 text-white"
-                  type="button"
-                  aria-label="Tài khoản"
-                >
-                  <span className="material-symbols-outlined text-white text-[18px]">person</span>
-                </button>
-              </div>
-            </>
-          ) : (
-            <>
-              {/* Category screen top bar */}
+              )}
               <button
-                onClick={() => onNavigate('home')}
-                className="flex items-center gap-4 shrink-0 cursor-pointer bg-transparent border-0 p-0 hover:opacity-95 transition-opacity"
-                aria-label="Satrafoods Trang Chủ"
-              >
-                <img
-                  alt="SATRAFOODS"
-                  className="h-9 w-auto object-contain"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
-                />
-              </button>
-
-              <button
-                onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg px-3 py-1.5 shrink-0 text-left hover:bg-[#f1edec] transition-colors cursor-pointer"
+                onClick={handleSearchSubmit}
+                className="absolute right-1.5 px-3.5 h-8 bg-[#01B341] text-white rounded-md font-bold text-xs hover:bg-[#006e24] transition-colors cursor-pointer border-0 flex items-center justify-center shadow-xs"
                 type="button"
-                aria-label="Chọn khu vực giao hàng"
+                aria-label="Tìm kiếm"
               >
-                <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-                  local_shipping
-                </span>
-                <div className="flex flex-col">
-                  <span className="font-label-sm text-[10px] text-[#01B341] uppercase font-bold">
-                    Giao nhanh 2h
-                  </span>
-                  <span className="font-body-sm text-[13px] text-[#111111] font-semibold">
-                    {selectedCity}
-                  </span>
-                </div>
-                <span className="material-symbols-outlined text-[#555E57] text-[18px]">
-                  expand_more
-                </span>
+                Tìm
               </button>
+            </div>
+          </div>
 
-              <div className="flex-1 max-w-xl">
-                <div className="relative flex items-center">
-                  <div className="absolute left-3.5 pointer-events-none flex items-center">
-                    <span className="material-symbols-outlined text-[#6d7b6a] text-[20px]">
-                      search
-                    </span>
-                  </div>
-                  <input
-                    className="w-full h-11 pl-11 pr-24 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg font-body-md text-sm text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] focus:bg-[#FFFFFF] transition-all"
-                    placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..."
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => onSearchChange(e.target.value)}
-                  />
-                </div>
+          {/* 4. Right: Membership + Cart + Account Avatar */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Satra Rewards Button */}
+            <button
+              onClick={onOpenMembership}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F6F8F5] transition-colors text-[#111111] cursor-pointer bg-transparent border-0"
+              type="button"
+              aria-label="Tích điểm thành viên Satra Rewards"
+            >
+              <div className="w-8 h-8 rounded-full bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24]">
+                <span className="material-symbols-outlined text-[18px]">card_membership</span>
               </div>
-
-              <div className="flex items-center gap-3 shrink-0">
-                <button
-                  onClick={onOpenMembership}
-                  className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F6F8F5] transition-colors text-[#111111] cursor-pointer bg-transparent border-0"
-                  type="button"
-                  aria-label="Tích điểm thành viên"
-                >
-                  <div className="w-8 h-8 rounded-full bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24]">
-                    <span className="material-symbols-outlined text-[18px]">card_membership</span>
-                  </div>
-                  <div className="flex flex-col text-left">
-                    <span className="font-label-sm text-[10px] text-[#555E57]">Tích điểm 2%</span>
-                    <span className="font-label-md text-xs text-[#111111] font-bold">Thành viên</span>
-                  </div>
-                </button>
-
-                <button
-                  onClick={onOpenCart}
-                  className="relative flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] px-3 py-1.5 rounded-lg hover:bg-[#f1edec] transition-colors cursor-pointer"
-                  type="button"
-                  aria-label="Giỏ hàng Satrafoods"
-                >
-                  <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-                    shopping_bag
-                  </span>
-                  <div className="flex flex-col text-left">
-                    <span className="font-label-sm text-[10px] text-[#555E57]">Giỏ hàng</span>
-                    <span className="font-label-md text-xs text-[#111111] font-bold">
-                      {totalCount > 0 ? `${totalCount} món` : '0đ'}
-                    </span>
-                  </div>
-                  {totalCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#DAFF01] text-[#111111] font-label-sm text-[11px] rounded-full flex items-center justify-center font-bold border border-[#FFFFFF] shadow-xs">
-                      {totalCount}
-                    </span>
-                  )}
-                </button>
-
-                <button
-                  onClick={onOpenMembership}
-                  className="w-8 h-8 rounded-full bg-[#01B341] flex items-center justify-center shrink-0 cursor-pointer text-white border-0 hover:bg-[#006e24] transition-colors"
-                  type="button"
-                  aria-label="Tài khoản"
-                >
-                  <span className="material-symbols-outlined text-[18px]">person</span>
-                </button>
+              <div className="flex flex-col text-left">
+                <span className="font-label-sm text-[10px] text-[#555E57]">Tích điểm 2%</span>
+                <span className="font-label-md text-xs text-[#111111] font-bold">Thành viên</span>
               </div>
-            </>
-          )}
+            </button>
+
+            {/* Cart Button with Count Badge */}
+            <button
+              onClick={onOpenCart}
+              className="relative flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] px-3 py-1.5 rounded-lg hover:bg-[#f1edec] transition-colors cursor-pointer"
+              type="button"
+              aria-label="Giỏ hàng Satrafoods"
+            >
+              <span className="material-symbols-outlined text-[#01B341] text-[22px]">
+                shopping_bag
+              </span>
+              <div className="flex flex-col text-left">
+                <span className="font-label-sm text-[10px] text-[#555E57]">Giỏ hàng</span>
+                <span className="font-label-md text-xs text-[#111111] font-bold">
+                  {totalCount > 0 ? `${totalCount} món` : '0đ'}
+                </span>
+              </div>
+              {totalCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#DAFF01] text-[#111111] font-label-sm text-[11px] rounded-full flex items-center justify-center font-bold border border-[#FFFFFF] shadow-xs">
+                  {totalCount}
+                </span>
+              )}
+            </button>
+
+            {/* User Account / Avatar Button */}
+            <button
+              onClick={onOpenMembership}
+              className="w-8 h-8 rounded-full bg-[#01B341] flex items-center justify-center shrink-0 cursor-pointer text-white border-0 hover:bg-[#006e24] transition-colors"
+              type="button"
+              aria-label="Tài khoản khách hàng"
+            >
+              <span className="material-symbols-outlined text-[18px]">person</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -331,13 +253,13 @@ export const Header: React.FC<HeaderProps> = ({
               value={searchQuery}
               onChange={(e) => {
                 onSearchChange(e.target.value);
-                if (e.target.value.trim() !== '') {
+                if (e.target.value.trim() !== '' && currentView !== 'category') {
                   onNavigate('category');
                 }
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
-                  onNavigate('category');
+                  handleSearchSubmit();
                 }
               }}
             />
@@ -396,7 +318,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       {/* Main Navigation Sub-Bar - Desktop Only */}
       <div className="hidden md:block bg-[#FFFFFF] border-t border-[#E3E8E1]">
-        <div className="max-w-[1200px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between text-xs font-medium overflow-x-auto">
+        <div className="max-w-[1240px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between text-xs font-medium overflow-x-auto">
           <div className="flex items-center gap-4 lg:gap-6 shrink-0">
             {/* Category Dropdown */}
             <div className="relative">
