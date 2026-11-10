@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { SortOption } from '../../../types';
-import { DownIcon, UpIcon, RightIcon } from '../../../components/icons';
+import { RightIcon } from '../../../components/icons';
 
 interface SortToolbarProps {
   sortBy: SortOption;
@@ -102,9 +102,9 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
               <span className="material-symbols-outlined text-[17px]">menu</span>
               <span className="max-w-[170px] sm:max-w-xs truncate">{categoryBtnLabel}</span>
               {isCategoryMenuOpen ? (
-                <UpIcon className="w-3.5 h-3.5 text-white" />
+                <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_less</span>
               ) : (
-                <DownIcon className="w-3.5 h-3.5 text-white" />
+                <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_more</span>
               )}
             </button>
 

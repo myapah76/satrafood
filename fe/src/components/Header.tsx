@@ -4,12 +4,10 @@ import { getSlugByCategory } from '../utils/slug';
 import {
   BoltIcon,
   CartIcon,
-  DownIcon,
   GiftIcon,
   LocationIcon,
   RightIcon,
   SearchIcon,
-  UpIcon,
   UserIcon,
 } from './icons';
 
@@ -98,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({
                     {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
                   </span>
                 </div>
-                <DownIcon className="w-3.5 h-3.5 text-[#555E57] ml-0.5" />
+                <span className="material-symbols-outlined text-[16px] text-[#555E57] ml-0.5 leading-none">expand_more</span>
               </button>
 
               {/* Search Bar Box */}
@@ -228,9 +226,9 @@ export const Header: React.FC<HeaderProps> = ({
                   <span className="material-symbols-outlined text-[18px]">menu</span>
                   <span className="whitespace-nowrap font-bold">Danh mục sản phẩm</span>
                   {isCategoryMenuOpen ? (
-                    <UpIcon className="w-3.5 h-3.5 text-white transition-transform duration-200" />
+                    <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_less</span>
                   ) : (
-                    <DownIcon className="w-3.5 h-3.5 text-white transition-transform duration-200" />
+                    <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_more</span>
                   )}
                 </button>
 
@@ -319,7 +317,7 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="truncate max-w-[70px]">
               {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
             </span>
-            <DownIcon className="w-3.5 h-3.5 text-[#555E57]" />
+            <span className="material-symbols-outlined text-[16px] text-[#555E57] leading-none">expand_more</span>
           </button>
 
           {/* Mobile Center Logo */}
