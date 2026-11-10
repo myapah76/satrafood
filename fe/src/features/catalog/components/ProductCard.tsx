@@ -1,7 +1,6 @@
 import React from 'react';
 import { Product } from '../../../types';
 import { formatVND } from '../../../utils/cart';
-import { CartIcon } from '../../../components/icons';
 
 interface ProductCardProps {
   product: Product;
@@ -18,68 +17,68 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onShowTraceability,
   onShowToast,
 }) => {
-  // Màu sắc ban đầu của tiêu chuẩn / huy hiệu sản phẩm (VietGAP, Thủy canh, Chuẩn CP...)
-  const badgeStyle =
+  const handleAdd = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onAddToCart(product);
+    onShowToast(`Đã thêm "${product.name}" vào giỏ`);
+  };
+
+  const standardBadgeStyle =
     product.badgeColor === 'lime'
       ? 'bg-[#DAFF01] text-[#111111]'
       : product.badgeColor === 'orange'
       ? 'bg-[#FF9400] text-white'
       : product.badgeColor === 'pink'
-      ? 'bg-[#FC95FD] text-[#111111]'
-      : 'bg-[#01B341] text-white';
-
-  const handleAdd = () => {
-    onAddToCart(product);
-    onShowToast(`Đã thêm "${product.name}" vào giỏ`);
-  };
+      ? 'bg-[#FC95FD] text-white'
+      : 'bg-white/95 text-[#01B341] border border-[#E3E8E1]';
 
   if (viewMode === 'list') {
     return (
       <div className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] transition-all">
-        <div className="flex items-center gap-3">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-20 h-20 object-cover rounded-[4px] shrink-0 border border-[#E3E8E1]"
-          />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="text-[11px] font-bold text-[#01B341] uppercase">
-                {product.subCategory}
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="relative w-20 h-20 shrink-0 rounded-[4px] overflow-hidden bg-[#F6F8F5] border border-[#E3E8E1]">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-full object-cover"
+            />
+            {product.discountPercent && (
+              <span className="absolute top-1 left-1 px-1.5 py-0.2 bg-[#FC95FD] text-white rounded-[4px] text-[9.5px] font-extrabold shadow-2xs">
+                -{product.discountPercent}%
               </span>
-              {/* Huy hiệu -20% dùng màu hồng (#FC95FD) */}
-              {product.discountPercent && (
-                <span className="px-1.5 py-0.5 bg-[#FC95FD] text-[#111111] rounded-[4px] text-[10px] font-extrabold shadow-2xs">
-                  -{product.discountPercent}%
-                </span>
-              )}
+            )}
+          </div>
+          <div className="min-w-0">
+            <div className="flex items-center gap-2 mb-0.5">
               {product.badge && (
-                <span className={`px-1.5 py-0.5 rounded-[4px] text-[10px] font-bold ${badgeStyle}`}>
+                <span className={`px-1.5 py-0.2 rounded-[4px] text-[10px] font-bold ${standardBadgeStyle}`}>
                   {product.badge}
                 </span>
               )}
+              <span className="text-[11px] text-[#555E57] truncate">
+                {product.specMeta || product.unit}
+              </span>
             </div>
-            <h4 className="font-bold text-sm text-[#111111]">{product.name}</h4>
-            <p className="text-xs text-[#555E57]">{product.unit}</p>
+            <h4 className="font-bold text-sm text-[#111111] truncate">{product.name}</h4>
             <button
               onClick={() => onShowTraceability(product)}
-              className="text-[11px] text-[#006e24] hover:underline flex items-center gap-1 mt-1 bg-transparent border-0 p-0 cursor-pointer rounded-[4px]"
+              className="text-[11px] text-[#01B341] hover:underline flex items-center gap-1 mt-1 bg-transparent border-0 p-0 cursor-pointer rounded-[4px]"
             >
               <span className="material-symbols-outlined text-[14px]">qr_code_2</span>
-              Xem truy xuất nguồn gốc nông trại
+              {product.overlayLeft || 'Xem truy xuất nguồn gốc'}
             </button>
           </div>
         </div>
 
         <div className="text-right shrink-0">
-          <div className="text-base font-black text-[#FF161F]">{formatVND(product.price)}</div>
-          <div className="text-xs text-[#555E57] line-through">{formatVND(product.originalPrice)}</div>
+          <div className="text-base font-black text-[#01B341]">{formatVND(product.price)}</div>
+          <div className="text-xs text-[#888888] line-through">{formatVND(product.originalPrice)}</div>
           <button
             onClick={handleAdd}
-            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer flex items-center gap-1.5 border-0"
+            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#009636] transition-colors cursor-pointer flex items-center justify-center gap-1 border-0 shadow-xs"
+            type="button"
           >
-            <CartIcon className="w-4 h-4 text-white" />
-            Thêm vào giỏ
+            + Thêm
           </button>
         </div>
       </div>
@@ -89,69 +88,95 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   return (
     <div className="bg-white rounded-[4px] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-[#E3E8E1]">
       <div>
-        {/* Product Image Box */}
-        <div className="relative w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2.5">
+        {/* Product Image Box matching Picture 2 */}
+        <div className="relative w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2">
           <img
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             src={product.image}
           />
-          {product.badge && (
-            <span
-              className={`absolute top-2 left-2 px-2 py-0.5 rounded-[4px] font-label-sm text-[10px] font-bold shadow-xs ${badgeStyle}`}
-            >
-              {product.badge}
-            </span>
-          )}
-          {/* QR Code Traceability Button */}
-          <button
-            onClick={() => onShowTraceability(product)}
-            className="absolute top-2 right-2 w-6 h-6 rounded-[4px] bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#006e24] shadow-xs hover:bg-[#DAFF01] transition-colors cursor-pointer border-0"
-            title="Truy xuất nguồn gốc QR"
-            type="button"
-            aria-label={`Truy xuất nguồn gốc cho ${product.name}`}
-          >
-            <span className="material-symbols-outlined text-[15px]">qr_code_2</span>
-          </button>
-        </div>
 
-        <span className="text-[11px] font-label-sm text-[#01B341] font-bold uppercase tracking-wider block">
-          {product.subCategory}
-        </span>
-        <h3 className="font-title-md text-[14px] leading-tight text-[#111111] font-bold group-hover:text-[#01B341] transition-colors line-clamp-2 mt-0.5">
-          {product.name}
-        </h3>
-        <p className="font-body-sm text-[12px] text-[#555E57] mt-1">{product.unit}</p>
-      </div>
-
-      {/* Price and Add button */}
-      <div className="mt-3 pt-2.5 border-t border-[#E3E8E1]">
-        <div className="flex items-baseline justify-between mb-2">
-          <div className="flex items-baseline gap-1">
-            <span className="font-title-lg text-[16px] text-[#FF161F] font-black">
-              {formatVND(product.price)}
-            </span>
-            <span className="font-body-sm text-[11px] text-[#555E57] line-through ml-1">
-              {formatVND(product.originalPrice)}
-            </span>
-          </div>
-          {/* Huy hiệu -20% dùng màu hồng (#FC95FD) */}
+          {/* Top-left: Pink discount pill (-20%, -18%, etc.) */}
           {product.discountPercent && (
-            <span className="text-[10px] font-label-sm text-[#111111] bg-[#FC95FD] px-1.5 py-0.5 rounded-[4px] font-extrabold shadow-2xs">
+            <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#FC95FD] text-white rounded-[4px] text-[10.5px] font-bold shadow-2xs z-10">
               -{product.discountPercent}%
             </span>
           )}
+
+          {/* Top-right: Standard/certification badge (VietGAP, Rau, Nhập Khẩu, Nấu Ngay, Bò Úc, Tươi Sống, OCOP, Chuẩn CP) */}
+          {product.badge && (
+            <span
+              className={`absolute top-2 right-2 px-2 py-0.5 rounded-[4px] text-[10px] font-bold shadow-xs z-10 flex items-center gap-1 ${standardBadgeStyle}`}
+            >
+              {product.badge === 'VietGAP' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341]">verified</span>
+              )}
+              {product.badge === 'Rau' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341]">eco</span>
+              )}
+              {product.badge === 'Nhập Khẩu' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341]">flight</span>
+              )}
+              {product.badge === 'Nấu Ngay' && (
+                <span className="material-symbols-outlined text-[13px] text-[#111111]">restaurant</span>
+              )}
+              {product.badge === 'Tươi Sống' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341]">set_meal</span>
+              )}
+              {product.badge === 'OCOP' && (
+                <span className="material-symbols-outlined text-[13px] text-[#111111]">workspace_premium</span>
+              )}
+              <span>{product.badge}</span>
+            </span>
+          )}
+
+          {/* Bottom image overlay strip: dark semi-transparent bar with left tag and right yellow/gold tag */}
+          {(product.overlayLeft || product.overlayRight) && (
+            <div
+              onClick={() => onShowTraceability(product)}
+              className="absolute bottom-0 inset-x-0 bg-black/75 backdrop-blur-xs px-2 py-1 flex items-center justify-between text-[10px] cursor-pointer hover:bg-black/85 transition-colors z-10"
+              title="Bấm để xem truy xuất nguồn gốc"
+            >
+              <span className="text-white font-medium truncate pr-1">
+                {product.overlayLeft}
+              </span>
+              <span className="text-[#DAFF01] font-bold shrink-0">
+                {product.overlayRight}
+              </span>
+            </div>
+          )}
         </div>
 
-        <button
-          onClick={handleAdd}
-          className="w-full py-2 bg-[#01B341] text-white font-label-md text-xs rounded-[4px] hover:bg-[#006e24] transition-colors flex items-center justify-center gap-1.5 font-bold shadow-xs cursor-pointer border-0"
-          type="button"
-        >
-          <CartIcon className="w-4 h-4 text-white" />
-          <span>+ Thêm vào giỏ</span>
-        </button>
+        {/* Packaging Specification Meta e.g. "Khay 500g • Hút chân không" */}
+        <p className="text-[11px] text-[#555E57] line-clamp-1">
+          {product.specMeta || product.unit}
+        </p>
+
+        {/* Product Title (2 lines max, bold, black) */}
+        <h3 className="font-bold text-[13px] sm:text-[14px] text-[#111111] leading-snug line-clamp-2 mt-0.5 group-hover:text-[#01B341] transition-colors">
+          {product.name}
+        </h3>
+
+        {/* Price Row: Green Sale Price + Gray Strikethrough Original Price */}
+        <div className="flex items-baseline gap-1.5 mt-1.5">
+          <span className="text-[15px] sm:text-[16px] font-black text-[#01B341]">
+            {formatVND(product.price)}
+          </span>
+          <span className="text-[11px] text-[#888888] line-through">
+            {formatVND(product.originalPrice)}
+          </span>
+        </div>
       </div>
+
+      {/* Full-width + Thêm button */}
+      <button
+        onClick={handleAdd}
+        className="w-full mt-2.5 py-1.5 sm:py-2 bg-[#01B341] hover:bg-[#009636] text-white font-bold text-xs rounded-[4px] flex items-center justify-center gap-1 transition-colors cursor-pointer border-0 shadow-xs"
+        type="button"
+        aria-label={`Thêm ${product.name} vào giỏ hàng`}
+      >
+        + Thêm
+      </button>
     </div>
   );
 };

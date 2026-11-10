@@ -20,6 +20,9 @@ export interface Product {
   freshnessScore?: number;
   description?: string;
   tags?: string[];
+  overlayLeft?: string;
+  overlayRight?: string;
+  specMeta?: string;
 }
 
 export interface CategoryGridItem {
