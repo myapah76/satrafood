@@ -33,6 +33,20 @@ Every AI coding agent must respect and preserve these verified technology choice
 | **Testing** | Node.js Test Runner via `tsx` | `tsx: ^4.21.0` | Fast zero-config testing using native `node:test` & `node:assert` |
 | **Package Manager** | `npm` | `10.x+` (Node 18+) | Primary package manager; `package-lock.json` is authoritative |
 
+### 2.1. Verified Brand & Print/Digital Color Palette
+All agents must adhere to the official color specifications:
+
+| Color Name | RGB | CMYK | Hex | Usage |
+|---|---|---|---|---|
+| **Primary Green** | `1 179 65` | `99 0 64 30` | `#01B341` | Main brand identity, buttons, badges, active states |
+| **Brand Lime** | `218 255 110` | `15 0 100 0` | `#DAFF01` | High-voltage badges, active cart counter |
+| **Promo Pink (HOT)** | `252 149 253` | `0 41 0 1` | `#FC95FD` | HOT khuyến mãi deals, promotional buttons & chips |
+| **White Canvas** | `255 255 255` | `0 0 0 0` | `#FFFFFF` | Backgrounds, surface cards, negative space |
+| **Accent Orange** | `255 148 0` | `0 42 100 0` | `#FF9400` | Combo tags, special bundles, secondary highlights |
+| **Alert Red** | `255 22 31` | `0 91 88 0` | `#FF161F` | Flash sales, discount percentages, urgent notifications |
+
+> **Strict Corner Radius Standard:** All interactive elements, cards, inputs, and badges must use a **4px corner radius** (`rounded-[4px]`). Emojis must never be used as primary UI icons; use Material Symbols Outlined vector icons.
+
 ---
 
 ## 3. Directory Layout

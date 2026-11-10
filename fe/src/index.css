@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-green: #01B341;
-  --color-brand-lime: #DAFF01;
+  /* Primary & Brand Accents with Verified Print/Digital Color Values */
+  --color-brand-green: #01B341;       /* RGB: 1 179 65 | CMYK: 99 0 64 30 */
+  --color-brand-lime: #DAFF01;        /* RGB: 218 255 110 | CMYK: 15 0 100 0 */
+  --color-promo-pink: #FC95FD;        /* RGB: 252 149 253 | CMYK: 0 41 0 1 (HOT Khuyến Mãi) */
+  --color-accent-pink: #FC95FD;       /* Alias for promo-pink */
+  --color-promo-orange: #FF9400;      /* RGB: 255 148 0 | CMYK: 0 42 100 0 */
+  --color-accent-orange: #FF9400;     /* Alias for promo-orange */
+  --color-promo-red: #FF161F;         /* RGB: 255 22 31 | CMYK: 0 91 88 0 */
+  --color-accent-red: #FF161F;        /* Alias for promo-red */
+  --color-white: #FFFFFF;             /* RGB: 255 255 255 | CMYK: 0 0 0 0 */
+
   --color-primary: #006e24;
   --color-primary-container: #52ad5b;
   --color-on-primary: #ffffff;
@@ -10,9 +19,6 @@
   --color-secondary: #556500;
   --color-secondary-container: #d5e97d;
   --color-on-secondary: #ffffff;
-  --color-accent-pink: #FC95FD;
-  --color-accent-orange: #FF9500;
-  --color-accent-red: #FF161F;
   --color-text-primary: #111111;
   --color-text-muted: #555E57;
   --color-surface-border: #E3E8E1;
