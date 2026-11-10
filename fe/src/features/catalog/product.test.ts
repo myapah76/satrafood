@@ -85,5 +85,15 @@ describe('Product Data and Mobile Specs Integrity', () => {
       }
     });
   });
+
+  it('verifies safety standards count matches products data', () => {
+    const products = productsData as Product[];
+    const vietgapCount = products.filter((p) => p.standards.includes('VietGAP')).length;
+    const ocopCount = products.filter((p) => p.standards.includes('OCOP')).length;
+    const globalgapCount = products.filter((p) => p.standards.includes('GlobalGAP')).length;
+    assert.ok(vietgapCount > 0, 'Should have VietGAP products');
+    assert.ok(ocopCount > 0, 'Should have OCOP products');
+    assert.ok(globalgapCount > 0, 'Should have GlobalGAP products');
+  });
 });
 

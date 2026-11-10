@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface MobileFilterDrawerProps {
   isOpen: boolean;
@@ -26,6 +26,18 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
   onResetFilters,
   totalProductsCount,
 }) => {
+  const [openSections, setOpenSections] = useState({
+    safetyStandards: true,
+    priceRange: true,
+  });
+
+  const toggleSection = (key: keyof typeof openSections) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -55,65 +67,91 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
           </div>
         </div>
 
-        {/* Filter Body: Focus strictly on Tiêu Chuẩn An Toàn and Mức Giá */}
+        {/* Filter Body: Focus strictly on Tiêu Chuẩn An Toàn and Mức Giá with collapsible toggles */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
           {/* 1. Safety standards */}
           <div>
-            <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
-              Tiêu Chuẩn An Toàn
-            </h4>
-            <div className="flex flex-wrap gap-2">
-              {safetyStandards.map((std) => {
-                const isSelected = selectedStandards.includes(std.id);
-                return (
-                  <button
-                    key={std.id}
-                    type="button"
-                    onClick={() => onToggleStandard(std.id)}
-                    className={`px-3 py-2 rounded-[4px] text-xs font-semibold cursor-pointer border transition-all flex items-center gap-1.5 ${
-                      isSelected
-                        ? 'bg-[#01B341] text-white border-[#01B341] shadow-2xs font-bold'
-                        : 'bg-[#F6F8F5] text-[#111111] border-[#E3E8E1] hover:border-[#01B341]'
-                    }`}
-                  >
-                    <span>{std.label}</span>
-                    {isSelected && <span className="font-bold">✓</span>}
-                    <span className={`text-[10.5px] ${isSelected ? 'text-white/80' : 'text-[#555E57]'}`}>
-                      ({std.count})
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
+            <button
+              type="button"
+              onClick={() => toggleSection('safetyStandards')}
+              className="w-full flex items-center justify-between font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5 bg-transparent border-0 p-0 cursor-pointer hover:text-[#01B341] transition-colors group select-none"
+              aria-expanded={openSections.safetyStandards}
+            >
+              <span>Tiêu Chuẩn An Toàn</span>
+              <span
+                className="material-symbols-outlined text-[18px] text-[#555E57] group-hover:text-[#01B341] shrink-0 leading-none transition-transform"
+                aria-hidden="true"
+              >
+                {openSections.safetyStandards ? 'expand_less' : 'expand_more'}
+              </span>
+            </button>
+            {openSections.safetyStandards && (
+              <div className="flex flex-wrap gap-2">
+                {safetyStandards.map((std) => {
+                  const isSelected = selectedStandards.includes(std.id);
+                  return (
+                    <button
+                      key={std.id}
+                      type="button"
+                      onClick={() => onToggleStandard(std.id)}
+                      className={`px-3 py-2 rounded-[4px] text-xs font-semibold cursor-pointer border transition-all flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-[#01B341] text-white border-[#01B341] shadow-2xs font-bold'
+                          : 'bg-[#F6F8F5] text-[#111111] border-[#E3E8E1] hover:border-[#01B341]'
+                      }`}
+                    >
+                      <span>{std.label}</span>
+                      {isSelected && <span className="font-bold">✓</span>}
+                      <span className={`text-[10.5px] ${isSelected ? 'text-white/80' : 'text-[#555E57]'}`}>
+                        ({std.count})
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Price range */}
-          <div>
-            <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
-              Mức Giá
-            </h4>
-            <div className="space-y-2">
-              {[
-                { id: 'all', label: 'Tất cả mức giá' },
-                { id: 'under50', label: 'Dưới 50.000 đ' },
-                { id: '50to100', label: '50.000 đ - 100.000 đ' },
-                { id: '100to200', label: '100.000 đ - 200.000 đ' },
-                { id: 'above200', label: 'Trên 200.000 đ' },
-              ].map((p) => (
-                <label key={p.id} className="flex items-center gap-2.5 cursor-pointer">
-                  <input
-                    type="radio"
-                    name="price_range_mobile"
-                    checked={selectedPriceRange === p.id}
-                    onChange={() =>
-                      onSelectPriceRange(p.id as 'all' | 'under50' | '50to100' | '100to200' | 'above200')
-                    }
-                    className="w-4 h-4 text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
-                  />
-                  <span className="text-[#111111] font-medium">{p.label}</span>
-                </label>
-              ))}
-            </div>
+          <div className="pt-4 border-t border-[#E3E8E1]">
+            <button
+              type="button"
+              onClick={() => toggleSection('priceRange')}
+              className="w-full flex items-center justify-between font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5 bg-transparent border-0 p-0 cursor-pointer hover:text-[#01B341] transition-colors group select-none"
+              aria-expanded={openSections.priceRange}
+            >
+              <span>Mức Giá</span>
+              <span
+                className="material-symbols-outlined text-[18px] text-[#555E57] group-hover:text-[#01B341] shrink-0 leading-none transition-transform"
+                aria-hidden="true"
+              >
+                {openSections.priceRange ? 'expand_less' : 'expand_more'}
+              </span>
+            </button>
+            {openSections.priceRange && (
+              <div className="space-y-2">
+                {[
+                  { id: 'all', label: 'Tất cả mức giá' },
+                  { id: 'under50', label: 'Dưới 50.000 đ' },
+                  { id: '50to100', label: '50.000 đ - 100.000 đ' },
+                  { id: '100to200', label: '100.000 đ - 200.000 đ' },
+                  { id: 'above200', label: 'Trên 200.000 đ' },
+                ].map((p) => (
+                  <label key={p.id} className="flex items-center gap-2.5 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="price_range_mobile"
+                      checked={selectedPriceRange === p.id}
+                      onChange={() =>
+                        onSelectPriceRange(p.id as 'all' | 'under50' | '50to100' | '100to200' | 'above200')
+                      }
+                      className="w-4 h-4 text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
+                    />
+                    <span className="text-[#111111] font-medium">{p.label}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
