@@ -6,6 +6,7 @@ import { FirstOrderVoucher } from './components/FirstOrderVoucher';
 import { HeroBanner } from './components/HeroBanner';
 import { StoreLocatorSection } from './components/StoreLocatorSection';
 import { WeeklyDeals } from './components/WeeklyDeals';
+import { CommitmentBanner } from '../catalog/components/CommitmentBanner';
 
 interface HomeScreenProps {
   onNavigateToCategory: (subCategory?: string) => void;
@@ -42,7 +43,10 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
         {/* 1. Hero Promotional Visual Banner */}
         <HeroBanner onExplore={() => onNavigateToCategory()} />
 
-        {/* 2. "Gói Trọn Ưu Đãi" Weekly Deals & Countdown */}
+        {/* 2. Value Proposition Commitments Grid */}
+        <CommitmentBanner />
+
+        {/* 3. "Gói Trọn Ưu Đãi" Weekly Deals & Countdown */}
         <WeeklyDeals onAddDealToCart={handleAddDealToCart} />
 
         {/* 3. New Member 50.000đ Voucher Form */}
