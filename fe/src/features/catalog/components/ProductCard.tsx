@@ -10,6 +10,8 @@ interface ProductCardProps {
   onShowToast: (msg: string) => void;
 }
 
+const VALID_SAFETY_STANDARDS = ['VietGAP', 'GlobalGAP', 'OCOP', 'Organic', 'ATTP'];
+
 export const ProductCard: React.FC<ProductCardProps> = ({
   product,
   viewMode,
@@ -23,13 +25,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     onShowToast(`Đã thêm "${product.name}" vào giỏ`);
   };
 
+  const isSafetyBadge = product.badge && VALID_SAFETY_STANDARDS.includes(product.badge);
+
   const standardBadgeStyle =
-    product.badgeColor === 'lime'
+    product.badge === 'OCOP' || product.badgeColor === 'lime'
       ? 'bg-[#DAFF01] text-[#111111]'
-      : product.badgeColor === 'orange'
-      ? 'bg-[#FF9400] text-white'
-      : product.badgeColor === 'pink'
-      ? 'bg-[#FC95FD] text-white'
       : 'bg-white/95 text-[#01B341] border border-[#E3E8E1]';
 
   if (viewMode === 'list') {
@@ -50,7 +50,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           </div>
           <div className="min-w-0">
             <div className="flex items-center gap-2 mb-0.5">
-              {product.badge && (
+              {isSafetyBadge && (
                 <span className={`px-1.5 py-0.2 rounded-[4px] text-[10px] font-bold ${standardBadgeStyle}`}>
                   {product.badge}
                 </span>
@@ -103,34 +103,22 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </span>
           )}
 
-          {/* Top-right: Standard/certification badge (VietGAP, Rau, Nhập Khẩu, Nấu Ngay, Bò Úc, Tươi Sống, OCOP, Chuẩn CP) */}
-          {product.badge && (
+          {/* Top-right: Standard/certification badge strictly for Tiêu chuẩn an toàn */}
+          {isSafetyBadge && (
             <span
               className={`absolute top-2 right-2 px-2 py-0.5 rounded-[4px] text-[10px] font-bold shadow-xs z-10 flex items-center gap-1 max-w-[55%] truncate ${standardBadgeStyle}`}
             >
-              {product.badge === 'VietGAP' && (
+              {(product.badge === 'VietGAP' || product.badge === 'GlobalGAP') && (
                 <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">verified</span>
-              )}
-              {product.badge === 'Rau' && (
-                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">eco</span>
-              )}
-              {product.badge === 'Nhập Khẩu' && (
-                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">flight</span>
-              )}
-              {product.badge === 'Nấu Ngay' && (
-                <span className="material-symbols-outlined text-[13px] text-[#111111] shrink-0">restaurant</span>
-              )}
-              {product.badge === 'Tươi Sống' && (
-                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">set_meal</span>
               )}
               {product.badge === 'OCOP' && (
                 <span className="material-symbols-outlined text-[13px] text-[#111111] shrink-0">workspace_premium</span>
               )}
-              {product.badge === 'Chuẩn CP' && (
-                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">verified_user</span>
+              {product.badge === 'Organic' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">eco</span>
               )}
-              {product.badge === 'Bò Úc' && (
-                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">agriculture</span>
+              {product.badge === 'ATTP' && (
+                <span className="material-symbols-outlined text-[13px] text-[#01B341] shrink-0">verified_user</span>
               )}
               <span className="truncate">{product.badge}</span>
             </span>

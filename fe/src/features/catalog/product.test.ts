@@ -71,5 +71,19 @@ describe('Product Data and Mobile Specs Integrity', () => {
     const all = filterProducts(products, { subCategory: 'all' });
     assert.equal(all.length, 12, 'all category filter must return 12 products');
   });
+
+  it('all product badges strictly belong to official Safety Standards', () => {
+    const products = productsData as Product[];
+    const validSafetyStandards = ['VietGAP', 'GlobalGAP', 'OCOP', 'Organic', 'ATTP'];
+
+    products.forEach((product) => {
+      if (product.badge) {
+        assert.ok(
+          validSafetyStandards.includes(product.badge),
+          `Product "${product.name}" has invalid badge "${product.badge}". Badge must be a Safety Standard.`
+        );
+      }
+    });
+  });
 });
 
