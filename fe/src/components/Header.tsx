@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CartItem } from '../types';
+import { getSlugByCategory } from '../utils/slug';
 
 interface HeaderProps {
   currentView: 'home' | 'category';
@@ -47,56 +48,143 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FFFFFF] shadow-[0_4px_16px_rgba(17,17,17,0.08)] border-b border-[#E3E8E1]">
-      {/* Top Bar - Desktop (Unified Search Header across entire website) */}
+      {/* Top Bar - Desktop: Left (Categories & Quick Links) | Center (Logo) | Right (Delivery & Search & Actions) */}
       <div className="hidden md:block h-20 bg-[#FFFFFF]">
-        <div className="max-w-[1240px] mx-auto px-6 lg:px-10 h-full flex items-center justify-between gap-4">
-          {/* 1. Left: SATRAFOODS Brand Logo */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center gap-4 shrink-0 cursor-pointer bg-transparent border-0 p-0 hover:opacity-95 transition-opacity"
-            aria-label="Satrafoods Trang Chủ"
-          >
-            <img
-              alt="SATRAFOODS"
-              className="h-9 w-auto object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
-            />
-          </button>
+        <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-full flex items-center justify-between gap-4">
+          
+          {/* 1. LEFT: Product Categories Navigation Dropdown & Quick Links */}
+          <div className="flex items-center gap-2 lg:gap-3 shrink-0">
+            {/* Category Dropdown Button */}
+            <div className="relative">
+              <button
+                onClick={() => setIsCategoryMenuOpen(!isCategoryMenuOpen)}
+                className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
+                type="button"
+                aria-expanded={isCategoryMenuOpen}
+                aria-label="Danh mục sản phẩm"
+              >
+                <span className="material-symbols-outlined text-[18px]">menu</span>
+                <span className="whitespace-nowrap font-bold">Danh mục sản phẩm</span>
+                <span className="material-symbols-outlined text-[16px]">
+                  {isCategoryMenuOpen ? 'expand_less' : 'expand_more'}
+                </span>
+              </button>
 
-          {/* 2. Delivery Location Selector Button */}
-          <button
-            onClick={onOpenLocation}
-            className="flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg px-3 py-1.5 shrink-0 text-left hover:bg-[#f1edec] transition-colors cursor-pointer"
-            type="button"
-            aria-label="Chọn khu vực giao hàng"
-          >
-            <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-              local_shipping
-            </span>
-            <div className="flex flex-col">
-              <span className="font-label-sm text-[10px] text-[#01B341] uppercase font-bold">
-                Giao nhanh 2h
-              </span>
-              <span className="font-body-sm text-[13px] text-[#111111] font-semibold">
-                {selectedCity}
-              </span>
+              {isCategoryMenuOpen && (
+                <div
+                  className="absolute left-0 top-full mt-1.5 w-64 bg-white border border-[#E3E8E1] rounded-[4px] shadow-xl py-2 z-50 text-left animate-in fade-in slide-in-from-top-1 duration-150"
+                  onMouseLeave={() => setIsCategoryMenuOpen(false)}
+                >
+                  <div className="px-3 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1">
+                    Phân ngành hàng tươi sống
+                  </div>
+                  {subCategories.map((cat) => (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        setIsCategoryMenuOpen(false);
+                        onNavigate('category', cat.id === 'all' ? undefined : cat.id);
+                      }}
+                      data-slug={getSlugByCategory(cat.id === 'all' ? undefined : cat.id)}
+                      className="w-full px-3.5 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px]"
+                    >
+                      <span>{cat.label}</span>
+                      <span className="material-symbols-outlined text-[16px] text-[#555E57]">
+                        chevron_right
+                      </span>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
-            <span className="material-symbols-outlined text-[#555E57] text-[18px]">
-              expand_more
-            </span>
-          </button>
 
-          {/* 3. Center: Prominent Full Search Bar */}
-          <div className="flex-1 max-w-xl">
-            <div className="relative flex items-center">
-              <div className="absolute left-3.5 pointer-events-none flex items-center">
-                <span className="material-symbols-outlined text-[#6d7b6a] text-[20px]">
+            {/* Quick Link: Home */}
+            <button
+              onClick={() => onNavigate('home')}
+              className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 whitespace-nowrap ${
+                currentView === 'home'
+                  ? 'text-[#01B341] bg-[#F6F8F5] font-bold'
+                  : 'text-[#111111] hover:text-[#01B341]'
+              }`}
+            >
+              Trang chủ
+            </button>
+
+            {/* Quick Link: Category */}
+            <button
+              onClick={() => onNavigate('category')}
+              className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 whitespace-nowrap ${
+                currentView === 'category'
+                  ? 'text-[#01B341] bg-[#F6F8F5] font-bold'
+                  : 'text-[#111111] hover:text-[#01B341]'
+              }`}
+            >
+              Thực phẩm tươi sống
+            </button>
+
+            {/* HOT Promo Badge / Button (RGB: 252 149 253 | CMYK: 0 41 0 1 | Hex: #FC95FD) */}
+            <button
+              onClick={() => onNavigate('category', 'Khuyến mãi hot')}
+              className="flex items-center gap-1 bg-[#FC95FD] text-[#111111] hover:opacity-90 px-2.5 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 whitespace-nowrap shadow-xs"
+              aria-label="Khuyến mãi hot"
+            >
+              <span className="material-symbols-outlined text-[15px] text-[#111111]">
+                local_fire_department
+              </span>
+              <span>HOT khuyến mãi</span>
+            </button>
+          </div>
+
+          {/* 2. CENTER: SATRAFOODS Brand Name / Logo (Centered prominently) */}
+          <div className="flex items-center justify-center shrink-0 px-2">
+            <button
+              onClick={() => onNavigate('home')}
+              className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-1 rounded-[4px] hover:opacity-95 transition-opacity"
+              aria-label="Satrafoods Trang Chủ - Logo thương hiệu"
+            >
+              <img
+                alt="SATRAFOODS"
+                className="h-10 w-auto object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
+              />
+            </button>
+          </div>
+
+          {/* 3. RIGHT: Delivery Location Selector + Search Bar + Satra Rewards + Cart + Avatar */}
+          <div className="flex items-center justify-end gap-2.5 lg:gap-3 flex-1 max-w-xl">
+            {/* Delivery Location Selector Button */}
+            <button
+              onClick={onOpenLocation}
+              className="flex items-center gap-1.5 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 shrink-0 text-left hover:bg-[#f1edec] transition-colors cursor-pointer"
+              type="button"
+              aria-label="Chọn khu vực giao hàng"
+            >
+              <span className="material-symbols-outlined text-[#01B341] text-[20px]">
+                local_shipping
+              </span>
+              <div className="flex flex-col">
+                <span className="font-label-sm text-[10px] text-[#01B341] uppercase font-bold leading-tight">
+                  Giao nhanh 2h
+                </span>
+                <span className="font-body-sm text-[12px] text-[#111111] font-semibold leading-tight truncate max-w-[100px]">
+                  {selectedCity}
+                </span>
+              </div>
+              <span className="material-symbols-outlined text-[#555E57] text-[16px]">
+                expand_more
+              </span>
+            </button>
+
+            {/* Prominent Search Bar on Right */}
+            <div className="relative flex-1 min-w-[180px] max-w-[280px] lg:max-w-xs flex items-center">
+              <div className="absolute left-2.5 pointer-events-none flex items-center">
+                <span className="material-symbols-outlined text-[#6d7b6a] text-[18px]">
                   search
                 </span>
               </div>
               <input
-                className="w-full h-11 pl-11 pr-24 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg font-body-md text-sm text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] focus:bg-[#FFFFFF] transition-all"
-                placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..."
+                className="w-full h-9 pl-8 pr-16 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] font-body-md text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] focus:bg-[#FFFFFF] transition-all"
+                placeholder="Tìm thịt heo, rau củ..."
                 type="text"
                 value={searchQuery}
                 onChange={(e) => {
@@ -115,61 +203,58 @@ export const Header: React.FC<HeaderProps> = ({
               {searchQuery && (
                 <button
                   onClick={() => onSearchChange('')}
-                  className="absolute right-14 text-[#555E57] hover:text-[#111111] cursor-pointer bg-transparent border-0 p-1 flex items-center justify-center"
+                  className="absolute right-12 text-[#555E57] hover:text-[#111111] cursor-pointer bg-transparent border-0 p-1 flex items-center justify-center rounded-[4px]"
                   title="Xóa tìm kiếm"
                   type="button"
                   aria-label="Xóa nội dung tìm kiếm"
                 >
-                  <span className="material-symbols-outlined text-[18px]">close</span>
+                  <span className="material-symbols-outlined text-[16px]">close</span>
                 </button>
               )}
               <button
                 onClick={handleSearchSubmit}
-                className="absolute right-1.5 px-3.5 h-8 bg-[#01B341] text-white rounded-md font-bold text-xs hover:bg-[#006e24] transition-colors cursor-pointer border-0 flex items-center justify-center shadow-xs"
+                className="absolute right-1 px-2.5 h-7 bg-[#01B341] text-white rounded-[4px] font-bold text-xs hover:bg-[#006e24] transition-colors cursor-pointer border-0 flex items-center justify-center shadow-xs"
                 type="button"
                 aria-label="Tìm kiếm"
               >
                 Tìm
               </button>
             </div>
-          </div>
 
-          {/* 4. Right: Membership + Cart + Account Avatar */}
-          <div className="flex items-center gap-3 shrink-0">
             {/* Satra Rewards Button */}
             <button
               onClick={onOpenMembership}
-              className="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-[#F6F8F5] transition-colors text-[#111111] cursor-pointer bg-transparent border-0"
+              className="hidden xl:flex items-center gap-1.5 px-2 py-1.5 rounded-[4px] hover:bg-[#F6F8F5] transition-colors text-[#111111] cursor-pointer bg-transparent border-0"
               type="button"
               aria-label="Tích điểm thành viên Satra Rewards"
             >
-              <div className="w-8 h-8 rounded-full bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24]">
-                <span className="material-symbols-outlined text-[18px]">card_membership</span>
+              <div className="w-7 h-7 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24]">
+                <span className="material-symbols-outlined text-[16px]">card_membership</span>
               </div>
               <div className="flex flex-col text-left">
-                <span className="font-label-sm text-[10px] text-[#555E57]">Tích điểm 2%</span>
-                <span className="font-label-md text-xs text-[#111111] font-bold">Thành viên</span>
+                <span className="font-label-sm text-[10px] text-[#555E57] leading-tight">Tích điểm 2%</span>
+                <span className="font-label-md text-xs text-[#111111] font-bold leading-tight">Thành viên</span>
               </div>
             </button>
 
             {/* Cart Button with Count Badge */}
             <button
               onClick={onOpenCart}
-              className="relative flex items-center gap-2 bg-[#F6F8F5] border border-[#E3E8E1] px-3 py-1.5 rounded-lg hover:bg-[#f1edec] transition-colors cursor-pointer"
+              className="relative flex items-center gap-1.5 bg-[#F6F8F5] border border-[#E3E8E1] px-2.5 py-1.5 rounded-[4px] hover:bg-[#f1edec] transition-colors cursor-pointer"
               type="button"
               aria-label="Giỏ hàng Satrafoods"
             >
-              <span className="material-symbols-outlined text-[#01B341] text-[22px]">
+              <span className="material-symbols-outlined text-[#01B341] text-[20px]">
                 shopping_bag
               </span>
               <div className="flex flex-col text-left">
-                <span className="font-label-sm text-[10px] text-[#555E57]">Giỏ hàng</span>
-                <span className="font-label-md text-xs text-[#111111] font-bold">
+                <span className="font-label-sm text-[10px] text-[#555E57] leading-tight">Giỏ hàng</span>
+                <span className="font-label-md text-xs text-[#111111] font-bold leading-tight">
                   {totalCount > 0 ? `${totalCount} món` : '0đ'}
                 </span>
               </div>
               {totalCount > 0 && (
-                <span className="absolute -top-1.5 -right-1.5 w-5 h-5 bg-[#DAFF01] text-[#111111] font-label-sm text-[11px] rounded-full flex items-center justify-center font-bold border border-[#FFFFFF] shadow-xs">
+                <span className="absolute -top-1.5 -right-1.5 min-w-[18px] h-[18px] px-1 bg-[#DAFF01] text-[#111111] font-label-sm text-[10px] rounded-[4px] flex items-center justify-center font-bold border border-[#FFFFFF] shadow-xs">
                   {totalCount}
                 </span>
               )}
@@ -178,7 +263,7 @@ export const Header: React.FC<HeaderProps> = ({
             {/* User Account / Avatar Button */}
             <button
               onClick={onOpenMembership}
-              className="w-8 h-8 rounded-full bg-[#01B341] flex items-center justify-center shrink-0 cursor-pointer text-white border-0 hover:bg-[#006e24] transition-colors"
+              className="w-8 h-8 rounded-[4px] bg-[#01B341] flex items-center justify-center shrink-0 cursor-pointer text-white border-0 hover:bg-[#006e24] transition-colors shadow-xs"
               type="button"
               aria-label="Tài khoản khách hàng"
             >
@@ -188,13 +273,64 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
+      {/* Sub-Bar - Desktop: Category Sub-links & Store Locator */}
+      <div className="hidden md:block bg-[#FFFFFF] border-t border-[#E3E8E1]">
+        <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-10 flex items-center justify-between text-xs font-medium overflow-x-auto">
+          <div className="flex items-center gap-1.5 lg:gap-2 shrink-0">
+            {subCategories.slice(1, 8).map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => onNavigate('category', cat.id)}
+                className="px-2.5 py-1 rounded-[4px] text-xs font-medium shrink-0 cursor-pointer border-0 bg-[#F6F8F5] text-[#555E57] hover:text-[#01B341] hover:bg-[#f1edec] transition-colors"
+                data-slug={getSlugByCategory(cat.id)}
+              >
+                {cat.label.replace(' & VietGAP', '').replace(' tươi sống', '')}
+              </button>
+            ))}
+          </div>
+
+          {/* Store Network Link */}
+          <button
+            onClick={() => {
+              if (currentView !== 'home') {
+                onNavigate('home');
+                setTimeout(() => {
+                  document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+              } else {
+                document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
+            className="hidden lg:flex items-center gap-1.5 text-[#555E57] hover:text-[#01B341] cursor-pointer transition-colors bg-transparent border-0 text-xs font-medium shrink-0 ml-4 rounded-[4px] px-2 py-1"
+            type="button"
+          >
+            <span className="material-symbols-outlined text-[16px] text-[#01B341]">pin_drop</span>
+            <span>Hệ thống 180+ Cửa hàng Satrafoods</span>
+          </button>
+        </div>
+      </div>
+
       {/* MOBILE HEADER (md:hidden) */}
       <div className="flex md:hidden flex-col bg-white">
-        {/* Row 1: Logo + Delivery Location + Member + Cart */}
-        <div className="px-3 py-2.5 flex items-center justify-between gap-2 border-b border-[#E3E8E1]">
+        {/* Row 1: Logo (Centered) + Delivery Location + Member + Cart */}
+        <div className="px-3 py-2 flex items-center justify-between gap-2 border-b border-[#E3E8E1]">
+          {/* Mobile Delivery Location */}
+          <button
+            onClick={onOpenLocation}
+            className="flex items-center gap-1 px-2 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
+            aria-label="Chọn khu vực giao hàng"
+          >
+            <span className="material-symbols-outlined text-[15px]">local_shipping</span>
+            <span className="truncate max-w-[70px]">
+              {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
+            </span>
+            <span className="material-symbols-outlined text-[14px] text-[#555E57]">expand_more</span>
+          </button>
+
+          {/* Mobile Center Logo */}
           <button
             onClick={() => onNavigate('home')}
-            className="flex items-center shrink-0 cursor-pointer bg-transparent border-0 p-0"
+            className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-0"
             aria-label="Satrafoods Trang Chủ"
           >
             <img
@@ -204,35 +340,24 @@ export const Header: React.FC<HeaderProps> = ({
             />
           </button>
 
+          {/* Right Mobile Actions */}
           <div className="flex items-center gap-1.5">
             <button
-              onClick={onOpenLocation}
-              className="flex items-center gap-1 px-2.5 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-full text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
-              aria-label="Chọn khu vực giao hàng"
-            >
-              <span className="material-symbols-outlined text-[15px]">local_shipping</span>
-              <span className="truncate max-w-[80px]">
-                {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
-              </span>
-              <span className="material-symbols-outlined text-[14px] text-[#555E57]">expand_more</span>
-            </button>
-
-            <button
               onClick={onOpenMembership}
-              className="w-8 h-8 rounded-full bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
+              className="w-7 h-7 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
               aria-label="Tài khoản Satra Rewards"
             >
-              <span className="material-symbols-outlined text-[18px]">card_membership</span>
+              <span className="material-symbols-outlined text-[16px]">card_membership</span>
             </button>
 
             <button
               onClick={onOpenCart}
-              className="relative w-8 h-8 rounded-full bg-[#01B341] text-white flex items-center justify-center cursor-pointer hover:bg-[#006e24]"
+              className="relative w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center cursor-pointer hover:bg-[#006e24]"
               aria-label="Giỏ hàng"
             >
-              <span className="material-symbols-outlined text-[18px]">shopping_bag</span>
+              <span className="material-symbols-outlined text-[16px]">shopping_bag</span>
               {totalCount > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-4 h-4 px-1 bg-[#DAFF01] text-[#111111] text-[10px] rounded-full flex items-center justify-center font-bold border border-white">
+                <span className="absolute -top-1 -right-1 min-w-[16px] h-4 px-0.5 bg-[#DAFF01] text-[#111111] text-[9px] rounded-[4px] flex items-center justify-center font-bold border border-white">
                   {totalCount}
                 </span>
               )}
@@ -240,14 +365,14 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Row 2: Mobile Search input */}
+        {/* Row 2: Mobile Search input with 4px corner radius */}
         <div className="px-3 py-2 bg-[#F6F8F5] border-b border-[#E3E8E1]">
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-3 text-[#6d7b6a] text-[18px] pointer-events-none">
+            <span className="material-symbols-outlined absolute left-2.5 text-[#6d7b6a] text-[18px] pointer-events-none">
               search
             </span>
             <input
-              className="w-full h-9 pl-9 pr-8 bg-white border border-[#E3E8E1] rounded-full text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] transition-all"
+              className="w-full h-8 pl-8 pr-8 bg-white border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] transition-all"
               placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..."
               type="text"
               value={searchQuery}
@@ -266,7 +391,7 @@ export const Header: React.FC<HeaderProps> = ({
             {searchQuery && (
               <button
                 onClick={() => onSearchChange('')}
-                className="absolute right-2.5 w-5 h-5 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:text-black border-0 cursor-pointer p-0"
+                className="absolute right-2 w-5 h-5 rounded-[4px] bg-gray-200 flex items-center justify-center text-gray-600 hover:text-black border-0 cursor-pointer p-0"
                 aria-label="Xóa tìm kiếm"
               >
                 <span className="material-symbols-outlined text-[14px]">close</span>
@@ -275,11 +400,11 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* Row 3: Horizontal scrollable category links */}
+        {/* Row 3: Horizontal scrollable category links with 4px corner radius */}
         <div className="px-3 py-1.5 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap bg-white text-xs scrollbar-none">
           <button
             onClick={() => onNavigate('home')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 cursor-pointer border-0 ${
+            className={`px-2.5 py-1 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
               currentView === 'home'
                 ? 'bg-[#01B341] text-white'
                 : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'
@@ -289,7 +414,7 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
           <button
             onClick={() => onNavigate('category')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 cursor-pointer border-0 ${
+            className={`px-2.5 py-1 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
               currentView === 'category'
                 ? 'bg-[#01B341] text-white'
                 : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'
@@ -297,118 +422,27 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Thực phẩm tươi sống
           </button>
+          
+          {/* Mobile HOT Promo chip using #FC95FD and vector icon local_fire_department */}
           <button
-            onClick={() => onNavigate('category')}
-            className="px-2.5 py-1 rounded-full text-xs font-bold shrink-0 cursor-pointer border-0 bg-[#DAFF01] text-[#111111] flex items-center gap-1"
+            onClick={() => onNavigate('category', 'Khuyến mãi hot')}
+            className="px-2.5 py-1 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border-0 bg-[#FC95FD] text-[#111111] flex items-center gap-1"
           >
-            <span className="text-[12px]">🔥</span>
+            <span className="material-symbols-outlined text-[14px] text-[#111111]">
+              local_fire_department
+            </span>
             <span>Ưu đãi HOT</span>
           </button>
+
           {subCategories.slice(1, 6).map((cat) => (
             <button
               key={cat.id}
               onClick={() => onNavigate('category', cat.id)}
-              className="px-2.5 py-1 rounded-full text-xs font-medium shrink-0 cursor-pointer border-0 bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]"
+              className="px-2 py-1 rounded-[4px] text-xs font-medium shrink-0 cursor-pointer border-0 bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]"
             >
               {cat.label.replace(' & VietGAP', '').replace(' tươi sống', '')}
             </button>
           ))}
-        </div>
-      </div>
-
-      {/* Main Navigation Sub-Bar - Desktop Only */}
-      <div className="hidden md:block bg-[#FFFFFF] border-t border-[#E3E8E1]">
-        <div className="max-w-[1240px] mx-auto px-4 lg:px-10 h-11 flex items-center justify-between text-xs font-medium overflow-x-auto">
-          <div className="flex items-center gap-4 lg:gap-6 shrink-0">
-            {/* Category Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setIsCategoryMenuOpen(!isCategoryMenuOpen)}
-                className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-lg font-semibold hover:bg-opacity-90 transition-colors cursor-pointer text-xs border-0"
-                type="button"
-              >
-                <span className="material-symbols-outlined text-sm">menu</span>
-                <span className="whitespace-nowrap">Danh mục sản phẩm</span>
-                <span className="material-symbols-outlined text-sm">
-                  {isCategoryMenuOpen ? 'expand_less' : 'expand_more'}
-                </span>
-              </button>
-
-              {isCategoryMenuOpen && (
-                <div
-                  className="absolute left-0 top-full mt-1.5 w-64 bg-white border border-[#E3E8E1] rounded-xl shadow-xl py-2 z-50 text-left"
-                  onMouseLeave={() => setIsCategoryMenuOpen(false)}
-                >
-                  {subCategories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setIsCategoryMenuOpen(false);
-                        onNavigate('category', cat.id === 'all' ? undefined : cat.id);
-                      }}
-                      className="w-full px-4 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent"
-                    >
-                      <span>{cat.label}</span>
-                      <span className="material-symbols-outlined text-[16px] text-[#555E57]">
-                        chevron_right
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            <button
-              onClick={() => onNavigate('home')}
-              className={`text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 py-1 whitespace-nowrap ${
-                currentView === 'home'
-                  ? 'text-[#01B341] border-b-2 border-[#01B341]'
-                  : 'text-[#111111] hover:text-[#01B341]'
-              }`}
-            >
-              Trang chủ
-            </button>
-
-            <button
-              onClick={() => onNavigate('category')}
-              className={`text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 py-1 whitespace-nowrap ${
-                currentView === 'category'
-                  ? 'text-[#01B341] border-b-2 border-[#01B341]'
-                  : 'text-[#111111] hover:text-[#01B341]'
-              }`}
-            >
-              Thực phẩm tươi sống
-            </button>
-
-            <button
-              onClick={() => onNavigate('category')}
-              className="flex items-center gap-1.5 text-[#111111] hover:text-[#01B341] font-semibold transition-colors cursor-pointer bg-transparent border-0 py-1 whitespace-nowrap"
-            >
-              <span className="px-1.5 py-0.5 rounded bg-[#DAFF01] text-[#111111] text-[10px] font-bold">
-                HOT
-              </span>
-              <span>Khuyến mãi hot</span>
-            </button>
-          </div>
-
-          {/* Store Network */}
-          <button
-            onClick={() => {
-              if (currentView !== 'home') {
-                onNavigate('home');
-                setTimeout(() => {
-                  document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-              } else {
-                document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="hidden sm:flex items-center gap-1.5 text-[#555E57] hover:text-[#01B341] cursor-pointer transition-colors bg-transparent border-0 text-xs font-medium shrink-0 ml-4"
-            type="button"
-          >
-            <span className="material-symbols-outlined text-sm text-[#01B341]">pin_drop</span>
-            <span>Hệ thống 180+ Cửa hàng</span>
-          </button>
         </div>
       </div>
     </header>

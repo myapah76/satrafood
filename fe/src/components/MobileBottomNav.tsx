@@ -15,8 +15,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onNavigate,
   cartItems,
   onOpenCart,
-  onOpenMembership,
-  onOpenLocation,
 }) => {
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -29,7 +27,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         {/* 1. Trang chủ */}
         <button
           onClick={() => onNavigate('home')}
-          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 ${
+          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 rounded-[4px] ${
             currentView === 'home'
               ? 'text-[#01B341] font-bold'
               : 'text-[#555E57] hover:text-[#111111]'
@@ -38,7 +36,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           aria-label="Trang chủ"
         >
           <span className="material-symbols-outlined text-[22px]">
-            {currentView === 'home' ? 'home' : 'home'}
+            home
           </span>
           <span className="text-[10px] tracking-tight mt-0.5 leading-none">Trang chủ</span>
         </button>
@@ -46,7 +44,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         {/* 2. Danh mục */}
         <button
           onClick={() => onNavigate('category')}
-          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 ${
+          className={`flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 rounded-[4px] ${
             currentView === 'category'
               ? 'text-[#01B341] font-bold'
               : 'text-[#555E57] hover:text-[#111111]'
@@ -58,21 +56,21 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           <span className="text-[10px] tracking-tight mt-0.5 leading-none">Danh mục</span>
         </button>
 
-        {/* 3. Khuyến mãi Hot */}
+        {/* 3. Khuyến mãi Hot (#FC95FD) */}
         <button
           onClick={() => {
-            onNavigate('category');
+            onNavigate('category', 'Khuyến mãi hot');
             setTimeout(() => {
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }, 100);
           }}
-          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#555E57] hover:text-[#111111]"
+          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 rounded-[4px] text-[#555E57] hover:text-[#111111]"
           type="button"
           aria-label="Khuyến mãi"
         >
           <div className="relative">
             <span className="material-symbols-outlined text-[22px] text-[#FF161F]">local_fire_department</span>
-            <span className="absolute -top-1 -right-2 px-1 py-0.2 bg-[#DAFF01] text-[#111111] text-[8px] font-black rounded-full leading-tight">
+            <span className="absolute -top-1 -right-2 px-1 py-0.5 bg-[#FC95FD] text-[#111111] text-[8px] font-black rounded-[4px] leading-tight">
               HOT
             </span>
           </div>
@@ -91,7 +89,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               document.getElementById('store-locator')?.scrollIntoView({ behavior: 'smooth' });
             }
           }}
-          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#555E57] hover:text-[#111111]"
+          className="flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 rounded-[4px] text-[#555E57] hover:text-[#111111]"
           type="button"
           aria-label="Cửa hàng"
         >
@@ -102,14 +100,14 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         {/* 5. Giỏ hàng */}
         <button
           onClick={onOpenCart}
-          className="relative flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 text-[#006e24] hover:text-[#01B341]"
+          className="relative flex flex-col items-center justify-center h-full w-full py-1 text-center transition-colors cursor-pointer bg-transparent border-0 rounded-[4px] text-[#006e24] hover:text-[#01B341]"
           type="button"
           aria-label="Giỏ hàng"
         >
           <div className="relative">
             <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
             {totalCount > 0 && (
-              <span className="absolute -top-1 -right-2 min-w-4 h-4 px-1 bg-[#DAFF01] text-[#111111] text-[10px] font-bold rounded-full flex items-center justify-center border border-white shadow-xs">
+              <span className="absolute -top-1 -right-2 min-w-4 h-4 px-1 bg-[#DAFF01] text-[#111111] text-[10px] font-bold rounded-[4px] flex items-center justify-center border border-white shadow-xs">
                 {totalCount}
               </span>
             )}
@@ -120,4 +118,3 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     </nav>
   );
 };
-
