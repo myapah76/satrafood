@@ -1,66 +1,101 @@
 import React from 'react';
-import categoriesData from '../../../data/categories.json';
-import { CategoryGridItem } from '../../../types';
-import { RightIcon } from '../../../components/icons';
 
 interface CategoryExplorerProps {
   onNavigateToCategory: (subCategory?: string) => void;
 }
 
-export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateToCategory }) => {
-  const categories = categoriesData as CategoryGridItem[];
+const FEATURED_CATEGORIES = [
+  {
+    id: 'feat-1',
+    title: 'Rau Củ Tươi',
+    subCategory: 'Rau ăn lá VietGAP',
+    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-2',
+    title: 'Thịt & Cá',
+    subCategory: 'Thịt heo thảo mộc & VietGAP',
+    image: 'https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-3',
+    title: 'Trứng & Sữa',
+    subCategory: 'Gia cầm tươi chuẩn CP',
+    image: 'https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-4',
+    title: 'Món Nấu Ngay',
+    subCategory: 'Món sơ chế nấu ngay',
+    image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-5',
+    title: 'Gạo & Gia Vị',
+    subCategory: 'all',
+    image: 'https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-6',
+    title: 'Đồ Đông Lạnh',
+    subCategory: 'Cá & Hải sản tươi sống',
+    image: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-7',
+    title: 'Đồ Uống',
+    subCategory: 'Trái cây nhiệt đới Nam Bộ',
+    image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=240&q=80',
+  },
+  {
+    id: 'feat-8',
+    title: 'OCOP Đặc Sản',
+    subCategory: 'all',
+    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=240&q=80',
+  },
+];
 
+export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateToCategory }) => {
   return (
     <section
-      className="w-full bg-white rounded-[4px] p-4 sm:p-8 shadow-sm mb-6 border border-[#E3E8E1]"
+      className="w-full bg-white rounded-[4px] p-3.5 sm:p-5 shadow-xs mb-6 border border-[#E3E8E1]"
       id="explore-categories"
     >
-      <div className="flex items-center justify-between mb-6">
-        <div>
-          <h2 className="text-lg sm:text-xl font-headline-sm font-bold text-[#111111] tracking-tight">
-            Khám Phá Danh Mục Sản Phẩm
-          </h2>
-          <p className="text-xs text-[#555E57] mt-1">
-            Đa dạng nguồn thực phẩm tươi sống, hàng tiêu dùng chuẩn an toàn mỗi ngày
-          </p>
-        </div>
+      {/* Header: Title on Left + Green "Xem tất cả >" on Right */}
+      <div className="flex items-center justify-between mb-3.5 sm:mb-4">
+        <h2 className="text-base sm:text-lg font-bold text-[#111111] tracking-tight">
+          Danh Mục Nổi Bật
+        </h2>
         <button
           onClick={() => onNavigateToCategory()}
-          className="inline-flex items-center gap-1 text-[#006e24] hover:text-[#01B341] font-bold text-xs transition-colors cursor-pointer bg-transparent border-0 rounded-[4px]"
+          className="inline-flex items-center gap-0.5 text-[#01B341] hover:underline font-semibold text-xs sm:text-sm transition-colors cursor-pointer bg-transparent border-0 p-0"
+          type="button"
+          aria-label="Xem tất cả danh mục"
         >
-          <span className="hidden sm:inline">Xem tất cả ngành hàng</span>
-          <span className="sm:hidden">Tất cả</span>
-          <RightIcon className="w-4 h-4 ml-0.5" />
+          <span>Xem tất cả</span>
+          <span className="text-base font-bold leading-none">›</span>
         </button>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-y-6 sm:gap-y-8 gap-x-2.5 sm:gap-x-4">
-        {categories.map((cat) => (
+      {/* 2 Rows x 4 Columns = 8 Categories in squircle containers matching Picture 5 */}
+      <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8 gap-2.5 sm:gap-4">
+        {FEATURED_CATEGORIES.map((cat) => (
           <button
             key={cat.id}
-            onClick={() => onNavigateToCategory(cat.subCategory)}
-            className="group flex flex-col items-center text-center p-1.5 sm:p-2 rounded-[4px] hover:bg-[#F6F8F5] transition-all duration-200 cursor-pointer bg-transparent border-0"
+            onClick={() => onNavigateToCategory(cat.subCategory === 'all' ? undefined : cat.subCategory)}
+            className="group flex flex-col items-center text-center p-0 cursor-pointer bg-transparent border-0 focus:outline-none"
+            type="button"
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 flex items-center justify-center rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] group-hover:scale-105 group-hover:shadow-md transition-all duration-300 overflow-hidden">
-              {cat.isSpecialBadge ? (
-                <div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-[4px] flex items-center justify-center font-bold text-center leading-none text-[9px] sm:text-[10px] p-1 uppercase shadow-sm ${cat.badgeColor}`}
-                >
-                  {cat.badgeText}
-                </div>
-              ) : (
-                <img
-                  src={cat.image}
-                  alt={cat.title}
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-[4px] drop-shadow-xs"
-                />
-              )}
+            {/* Squircle icon container (rounded-[14px]) */}
+            <div className="w-full aspect-square rounded-[14px] bg-[#F6F8F5] border border-[#E3E8E1] p-1.5 flex items-center justify-center overflow-hidden group-hover:scale-105 group-hover:border-[#01B341] transition-all duration-200 shadow-2xs">
+              <img
+                src={cat.image}
+                alt={cat.title}
+                className="w-full h-full object-cover rounded-[10px]"
+              />
             </div>
-            <span
-              className={`font-title-md text-[11px] sm:text-xs text-[#111111] font-bold group-hover:text-[#01B341] transition-colors leading-tight ${
-                cat.isSpecialBadge && cat.id === 'cat-13' ? 'text-[#FF161F]' : ''
-              }`}
-            >
+            {/* Label below */}
+            <span className="font-semibold text-[11px] sm:text-xs text-[#111111] group-hover:text-[#01B341] transition-colors leading-tight line-clamp-1 mt-1.5 text-center">
               {cat.title}
             </span>
           </button>
