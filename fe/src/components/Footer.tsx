@@ -194,12 +194,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <p className="font-label-sm text-[11px] text-[#555E57] mb-2 uppercase font-bold tracking-wider">
                 Chứng nhận an toàn thực phẩm
               </p>
-              <div className="flex items-center gap-2">
-                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#01B341] font-semibold flex items-center gap-1 shadow-2xs">
-                  <span className="material-symbols-outlined text-[16px]">shield</span>Đã Đăng Ký BCT
+              <div className="flex flex-wrap lg:flex-nowrap items-center gap-2">
+                <div className="px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#01B341] font-bold flex items-center gap-1.5 shadow-2xs whitespace-nowrap shrink-0">
+                  <span className="material-symbols-outlined text-[16px] text-[#01B341]">shield</span>
+                  <span>Đã Đăng Ký BCT</span>
                 </div>
-                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] font-semibold flex items-center gap-1 shadow-2xs">
-                  <span className="material-symbols-outlined text-[16px] text-[#01B341]">eco</span>ATVSTP TP.HCM
+                <div className="px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] font-bold flex items-center gap-1.5 shadow-2xs whitespace-nowrap shrink-0">
+                  <span className="material-symbols-outlined text-[16px] text-[#01B341]">eco</span>
+                  <span>ATVSTP TP.HCM</span>
                 </div>
               </div>
             </div>
