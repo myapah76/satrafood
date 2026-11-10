@@ -1,17 +1,17 @@
 {
   "campaign": {
-    "title": "GÓI TRỌN ƯU ĐÃI TUẦN NÀY",
-    "subtitle": "Áp dụng từ thứ Hai đến Chủ Nhật trên toàn chuỗi Satrafoods",
+    "title": "Gói Trọn Ưu Đãi",
+    "subtitle": "Flash Sale giảm tới 20% các mặt hàng tươi sống Satra",
     "countdownHours": "02:14:48",
     "bannerUrl": "https://lh3.googleusercontent.com/aida-public/AB6AXuAd6DgUy3G0ro6Xj-nzFbGUkXeIhalpkCiNwgZm3HioxueCJz8wGoir07zgt7gMgDEyrZjRZEng306OU69AImu1xXOdsgfndxmGSERaKsf302Y_OobfteB-MAQFb-2U6PBS76Qi-qF0tEGAIo8YWW1JDWVbRIt0t-YFKYWMCOajENP2irUdDYxwPeLkfSkEx6BI4MQuOiXloeWHi7IihJTr6WOOanc4qmSjfdoLf83ACFc546mz4TaeSg"
   },
   "featuredDeals": [
     {
       "id": "deal-1",
-      "tag": "-20% GIẢM",
+      "tag": "-20%",
       "tagType": "discount",
-      "category": "Thịt Sạch Thảo Mộc",
-      "title": "Thịt Ba Rọi Heo VietGAP",
+      "category": "THỊT SẠCH THẢO MỘC",
+      "title": "Ba Rọi Heo VietGAP 500g",
       "spec": "Đóng gói kháng khuẩn khay 500g",
       "price": 76000,
       "originalPrice": 95000,
@@ -20,10 +20,10 @@
     },
     {
       "id": "deal-2",
-      "tag": "ĐỒNG GIÁ",
+      "tag": "Đồng giá",
       "tagType": "same_price",
-      "category": "Nông Sản Đà Lạt",
-      "title": "Rau Củ Quả Canh Tác Sạch",
+      "category": "NÔNG SẢN ĐÀ LẠT",
+      "title": "Rau Củ Tươi Túi 500g",
       "spec": "Đồng loạt chọn túi 400g - 500g",
       "price": 15000,
       "originalPrice": 22000,
@@ -32,15 +32,27 @@
     },
     {
       "id": "deal-3",
-      "tag": "COMBO TIẾT KIỆM",
+      "tag": "Combo",
       "tagType": "combo",
-      "category": "Gói Trọn Tiết Kiệm",
-      "title": "Giỏ Dinh Dưỡng Gia Đình 3-4 Người",
+      "category": "GIA ĐÌNH 3-4 NGƯỜI",
+      "title": "Combo Bữa Ăn Dinh Dưỡng",
       "spec": "Thịt + Cá + 3 Loại Rau Xanh",
       "price": 189000,
       "originalPrice": 245000,
       "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBBggmFL0rF83gPrVwMLWYHhBWQqkzlN-Rm-s4VrKZ56fD1IhWejKSTJwTa5KGjlmeyW4HwbqOMCUbj4wusQhBAK5uapfv1osl-nkvDqt4e0bPQ44o-j7VD2wJYvvhHkX88w9Sow7axKzID_sS44Nw2g_LoAXGEz09hZnWFYpjoTPEps1-QrzMCSTu0Dya9LeQul42YUz1wBlHvIE7VHi6LP89x8fCdEbAmdTVM_qEe",
       "targetProductId": "p4"
+    },
+    {
+      "id": "deal-4",
+      "tag": "Mới",
+      "tagType": "new",
+      "category": "CHUẨN VIETGAP",
+      "title": "Trứng Gà Tươi V.Food Hộp 10 quả",
+      "spec": "Hộp 10 quả tiệt trùng UV",
+      "price": 28000,
+      "originalPrice": 34000,
+      "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDDwAQZV4Ti2Pw_BX35CZLbgQ3zZPl0fSBlNIikcRGiduM1ie_0vD2Md-Yb6sfwRbPSFPHgjfjoN7auJX4NrJrI4ihB8ASvjGI_ASKsyUiKo29Bow1Eu7rRlXiu89i_TMZjFB4rCaeFNRGHWuOuaqAh5C1br3pbTWlLZ0NNwVKOVjqkZmyIZUfvbY8behpFSZDFBJC3tlneXeO8fONA1cEzPhgCy_pUGHSoIfioWNd2",
+      "targetProductId": "p8"
     }
   ],
   "vouchers": [

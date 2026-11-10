@@ -26,7 +26,9 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
     const targetProduct = products.find((p) => {
       if (dealId === 'deal-1') return p.id === 'p1';
       if (dealId === 'deal-2') return p.id === 'p2';
-      return p.id === 'p4';
+      if (dealId === 'deal-3') return p.id === 'p4';
+      if (dealId === 'deal-4') return p.id === 'p8';
+      return false;
     });
     if (targetProduct) {
       onAddToCart(targetProduct);

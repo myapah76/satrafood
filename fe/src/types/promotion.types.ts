@@ -1,4 +1,4 @@
-export type PromoTagType = 'discount' | 'same_price' | 'combo';
+export type PromoTagType = 'discount' | 'same_price' | 'combo' | 'new';
 
 export interface PromoDeal {
   id: string;
