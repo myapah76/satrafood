@@ -81,23 +81,25 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0 z-10">
-              {/* Delivery Location Selector Box: 173px x 44px with 6px 12px padding */}
+              {/* Delivery Location Selector Box: Same natural size & layout as Tích điểm & Giỏ hàng */}
               <button
                 onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 w-[173px] h-[44px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
+                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs shrink-0 text-left"
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
                 <BoxIcon className="w-5 h-5 text-[#01B341] shrink-0" />
-                <div className="flex flex-col min-w-0 flex-1 justify-center">
+                <div className="flex flex-col text-left">
                   <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none whitespace-nowrap">
                     GIAO NHANH 2H
                   </span>
-                  <div className="flex items-center gap-0.5">
-                    <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate whitespace-nowrap">
+                  <div className="flex items-center gap-0.5 leading-tight">
+                    <span className="font-label-md text-xs text-[#111111] font-bold leading-tight whitespace-nowrap">
                       {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
                     </span>
-                    <span className="material-symbols-outlined text-[15px] text-[#555E57] leading-none shrink-0">expand_more</span>
+                    <svg className="w-3.5 h-3.5 text-[#555E57] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                    </svg>
                   </div>
                 </div>
               </button>
