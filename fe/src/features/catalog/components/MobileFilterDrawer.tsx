@@ -3,9 +3,9 @@ import React from 'react';
 interface MobileFilterDrawerProps {
   isOpen: boolean;
   onClose: () => void;
-  subCategories: { label: string; count: number }[];
-  selectedSubCategory: string;
-  onSelectSubCategory: (subCat: string) => void;
+  subCategories?: { label: string; count: number }[];
+  selectedSubCategory?: string;
+  onSelectSubCategory?: (subCat: string) => void;
   safetyStandards: { id: string; label: string; count: number }[];
   selectedStandards: string[];
   onToggleStandard: (id: string) => void;
@@ -18,9 +18,6 @@ interface MobileFilterDrawerProps {
 export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
   isOpen,
   onClose,
-  subCategories,
-  selectedSubCategory,
-  onSelectSubCategory,
   safetyStandards,
   selectedStandards,
   onToggleStandard,
@@ -58,57 +55,9 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
           </div>
         </div>
 
-        {/* Filter Body */}
+        {/* Filter Body: Focus strictly on Tiêu Chuẩn An Toàn and Mức Giá */}
         <div className="flex-1 overflow-y-auto p-4 space-y-6 text-xs">
-          {/* Sub-categories */}
-          <div>
-            <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
-              Danh Mục Con
-            </h4>
-            <div className="space-y-1.5">
-              <button
-                onClick={() => onSelectSubCategory('all')}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
-                  selectedSubCategory === 'all'
-                    ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
-                    : 'text-[#555E57] hover:bg-[#F6F8F5]'
-                }`}
-              >
-                <span>Tất cả sản phẩm tươi sống</span>
-                <span className="text-[11px] px-1.5 py-0.5 rounded-[4px] bg-[#DAFF01] text-[#111111] font-bold">
-                  12
-                </span>
-              </button>
-
-              {subCategories.map((cat) => {
-                const isActive = selectedSubCategory === cat.label;
-                return (
-                  <button
-                    key={cat.label}
-                    onClick={() => onSelectSubCategory(cat.label)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
-                      isActive
-                        ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
-                        : 'text-[#555E57] hover:bg-[#F6F8F5]'
-                    }`}
-                  >
-                    <span className="line-clamp-1">{cat.label}</span>
-                    <span
-                      className={`text-[11px] px-1.5 py-0.5 rounded-[4px] ${
-                        isActive
-                          ? 'bg-[#DAFF01] text-[#111111] font-bold'
-                          : 'text-[#555E57] bg-gray-100'
-                      }`}
-                    >
-                      {cat.count}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Safety standards */}
+          {/* 1. Safety standards */}
           <div>
             <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
               Tiêu Chuẩn An Toàn

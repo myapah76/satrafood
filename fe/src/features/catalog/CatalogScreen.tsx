@@ -142,6 +142,12 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     onShowToast('Đã đặt lại bộ lọc. Đang hiển thị toàn bộ 12 sản phẩm.');
   };
 
+  const handleResetDrawerFilters = () => {
+    setSelectedStandards([]);
+    setSelectedPriceRange('all');
+    onShowToast('Đã đặt lại bộ lọc tiêu chuẩn và mức giá.');
+  };
+
   const handleCopyVoucher = () => {
     navigator.clipboard.writeText('SATRAFRESHT3');
     onShowToast('Đã lưu mã SATRAFRESHT3 (-30.000đ). Dán vào giỏ hàng để sử dụng!');
@@ -166,15 +172,14 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     return sortProducts(result, sortBy);
   }, [products, selectedSubCategory, selectedStandards, selectedPriceRange, selectedTags, searchQuery, sortBy]);
 
-  const activeFiltersCount =
-    (selectedSubCategory !== 'all' ? 1 : 0) +
-    selectedStandards.length +
-    (selectedPriceRange !== 'all' ? 1 : 0);
+  // Drawer filter count only counts Tiêu chuẩn an toàn and Mức giá
+  const drawerFiltersCount =
+    selectedStandards.length + (selectedPriceRange !== 'all' ? 1 : 0);
 
   return (
-    <div className="w-full pt-32 lg:pt-36 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-144px)] pb-20 md:pb-12">
-      {/* Breadcrumb Navigation: Trang chủ / Danh mục sản phẩm / [Tên phân ngành] */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#555E57] my-3">
+    <div className="w-full pt-34 lg:pt-36 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-144px)] pb-20 md:pb-12">
+      {/* Breadcrumb Navigation: Hidden on mobile (< md) */}
+      <nav aria-label="Breadcrumb" className="hidden md:flex items-center gap-1.5 text-xs text-[#555E57] my-3">
         <button
           onClick={onNavigateHome}
           className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-0 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
@@ -195,8 +200,32 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         </span>
       </nav>
 
-      {/* Mini Banner Category Assurance */}
-      <CommitmentBanner />
+      {/* Mobile Voucher Banner matching Image 2 */}
+      <div className="md:hidden mb-2.5 bg-[#01B341] text-white rounded-[4px] p-2.5 sm:p-3 flex items-center justify-between shadow-xs">
+        <div className="min-w-0 pr-2">
+          <div className="flex items-center gap-1.5">
+            <span className="font-black text-sm text-white">Giảm 30.000đ</span>
+            <span className="bg-[#DAFF01] text-[#111111] font-black text-[9.5px] px-1.5 py-0.2 rounded-[4px]">
+              HOT
+            </span>
+          </div>
+          <p className="text-[11px] text-white/95 mt-0.5 truncate">
+            Đơn đồ tươi từ 250k • Mã: <span className="font-bold underline">SATRAFRESHT3</span>
+          </p>
+        </div>
+        <button
+          onClick={handleCopyVoucher}
+          className="shrink-0 px-3 py-1.5 bg-[#008f33] hover:bg-[#007a2c] text-white text-xs font-bold rounded-[4px] border border-white/20 cursor-pointer shadow-2xs"
+          type="button"
+        >
+          Lưu mã
+        </button>
+      </div>
+
+      {/* Desktop Commitment Banner */}
+      <div className="hidden md:block">
+        <CommitmentBanner />
+      </div>
 
       {/* 2-Column Catalog Layout: 
           - Cột trái: Bộ lọc sản phẩm (FilterSidebar)
@@ -233,7 +262,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
             selectedSubCategory={selectedSubCategory}
             onSelectSubCategory={handleSelectSubCategory}
             onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
-            activeFiltersCount={activeFiltersCount}
+            activeFiltersCount={drawerFiltersCount}
             safetyStandards={SAFETY_STANDARDS}
             selectedStandards={selectedStandards}
             onToggleStandard={handleToggleStandard}
@@ -349,7 +378,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         onToggleStandard={handleToggleStandard}
         selectedPriceRange={selectedPriceRange}
         onSelectPriceRange={(range) => setSelectedPriceRange(range)}
-        onResetFilters={handleResetFilters}
+        onResetFilters={handleResetDrawerFilters}
         totalProductsCount={filteredAndSortedProducts.length}
       />
     </div>

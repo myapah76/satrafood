@@ -130,49 +130,6 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             </div>
           </div>
         </div>
-
-        {/* Row 2: Sub-category chips horizontal scroll with 4px corner radius */}
-        <div className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 text-xs">
-          <button
-            onClick={() => onSelectSubCategory('all')}
-            className={`px-3 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
-              selectedSubCategory === 'all'
-                ? 'bg-[#01B341] text-white shadow-xs font-bold'
-                : 'bg-white border border-[#E3E8E1] text-[#555E57] hover:text-[#111111]'
-            }`}
-          >
-            Tất cả (12)
-          </button>
-
-          {/* HOT Promo chip: HOT là màu hồng, Khuyến mãi hot là không có màu nền */}
-          <button
-            onClick={() => onSelectSubCategory('Khuyến mãi hot')}
-            className={`px-2.5 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border flex items-center gap-1.5 transition-colors bg-transparent ${
-              selectedSubCategory === 'Khuyến mãi hot'
-                ? 'border-[#01B341] shadow-2xs'
-                : 'border-[#E3E8E1] hover:border-[#01B341]'
-            }`}
-          >
-            <span className="bg-[#FC95FD] text-[#111111] font-black text-[10px] px-1.5 py-0.5 rounded-[4px]">
-              HOT
-            </span>
-            <span className="text-[#111111]">Khuyến mãi hot</span>
-          </button>
-
-          {subCategories.map((cat) => (
-            <button
-              key={cat.label}
-              onClick={() => onSelectSubCategory(cat.label)}
-              className={`px-3 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
-                selectedSubCategory === cat.label
-                  ? 'bg-[#01B341] text-white shadow-xs font-bold'
-                  : 'bg-white border border-[#E3E8E1] text-[#555E57] hover:text-[#111111]'
-              }`}
-            >
-              {cat.label} ({cat.count})
-            </button>
-          ))}
-        </div>
       </div>
 
       {/* DESKTOP SORT TOOLBAR */}
