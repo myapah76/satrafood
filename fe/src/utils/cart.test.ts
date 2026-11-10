@@ -102,3 +102,15 @@ test('sortProducts sorts correctly by price ascending and descending', () => {
   assert.equal(desc[0].id, 'p1');
   assert.equal(desc[1].id, 'p2');
 });
+
+test('calculateCartTotals applies SATRAFRESHT3 voucher discount correctly', () => {
+  const items: CartItem[] = [
+    { product: mockProductA, quantity: 4 }, // 76000 * 4 = 304000 (> 250000)
+  ];
+  const totals = calculateCartTotals(items, true, 30000);
+  assert.equal(totals.subtotal, 304000);
+  assert.equal(totals.couponDiscount, 30000);
+  assert.equal(totals.memberDiscount, 6080);
+  assert.equal(totals.shippingFee, 0);
+  assert.equal(totals.finalTotal, 267920);
+});

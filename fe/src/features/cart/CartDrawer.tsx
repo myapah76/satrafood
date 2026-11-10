@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { CartItem } from '../../types';
 import { calculateCartTotals, formatVND } from '../../utils/cart';
-import { CartIcon, RightIcon } from '../../components/icons';
+import { CartIcon, GiftIcon, RightIcon } from '../../components/icons';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -220,6 +220,65 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         {/* Cart Footer Summary */}
         {items.length > 0 && !orderSuccess && (
           <div className="p-4 bg-[#F6F8F5] border-t border-[#E3E8E1] space-y-3">
+            {/* Quick Available Voucher Card */}
+            <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-[4px] p-2.5 sm:p-3 shadow-2xs">
+              <div className="flex items-start justify-between gap-2">
+                <div className="flex items-start gap-2 min-w-0">
+                  <GiftIcon className="w-5 h-5 text-[#01B341] shrink-0 mt-0.5" aria-hidden="true" />
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      <h5 className="font-label-lg font-bold text-xs text-[#111111]">Voucher Giảm 30K</h5>
+                      <span className="bg-[#DAFF01] text-[#111111] font-black text-[9.5px] px-1.5 py-0.2 rounded-[3px]">
+                        HOT
+                      </span>
+                    </div>
+                    <p className="font-body-sm text-[#555E57] text-[11px] mt-0.5 leading-snug">
+                      Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên.
+                    </p>
+                    <div className="text-[11px] text-[#006e24] font-medium mt-1">
+                      Mã: <span className="font-mono font-bold tracking-wide select-all bg-white px-1.5 py-0.5 rounded-[3px] border border-[#01B341]/30">SATRAFRESHT3</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (appliedCoupon?.code === 'SATRAFRESHT3') {
+                      setAppliedCoupon(null);
+                      setCouponError('');
+                      return;
+                    }
+                    if (totals.subtotal < 250000) {
+                      setCouponError(
+                        `Mã SATRAFRESHT3 áp dụng cho đơn từ 250.000 đ (cần thêm ${formatVND(250000 - totals.subtotal)})`
+                      );
+                      setCouponCode('SATRAFRESHT3');
+                      return;
+                    }
+                    setAppliedCoupon({ code: 'SATRAFRESHT3', discount: 30000 });
+                    setCouponCode('');
+                    setCouponError('');
+                  }}
+                  className={`shrink-0 px-2.5 py-1.5 rounded-[4px] text-xs font-bold transition-all border-0 cursor-pointer shadow-2xs ${
+                    appliedCoupon?.code === 'SATRAFRESHT3'
+                      ? 'bg-[#006e24] hover:bg-[#00521b] text-white flex items-center gap-1'
+                      : 'bg-[#01B341] hover:bg-[#006e24] text-white active:scale-95'
+                  }`}
+                  aria-label={appliedCoupon?.code === 'SATRAFRESHT3' ? 'Hủy mã SATRAFRESHT3' : 'Áp dụng mã SATRAFRESHT3'}
+                >
+                  {appliedCoupon?.code === 'SATRAFRESHT3' ? (
+                    <>
+                      <span className="material-symbols-outlined text-[14px]">check</span>
+                      <span>Đã áp dụng</span>
+                    </>
+                  ) : (
+                    'Áp dụng'
+                  )}
+                </button>
+              </div>
+            </div>
+
             {/* Voucher input */}
             <form onSubmit={handleApplyCoupon} className="flex gap-2">
               <input
@@ -239,8 +298,23 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
             {couponError && <p className="text-[11px] text-[#FF161F]">{couponError}</p>}
             {appliedCoupon && (
               <div className="flex items-center justify-between text-xs text-[#006e24] font-semibold bg-[#DAFF01]/30 p-2 rounded-[4px]">
-                <span>Đã áp dụng mã {appliedCoupon.code}</span>
-                <span>-{formatVND(appliedCoupon.discount)}</span>
+                <div className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[16px]">check_circle</span>
+                  <span>Đã áp dụng mã {appliedCoupon.code}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="font-bold">-{formatVND(appliedCoupon.discount)}</span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setAppliedCoupon(null);
+                      setCouponError('');
+                    }}
+                    className="text-[11px] text-[#555E57] hover:text-[#FF161F] underline cursor-pointer bg-transparent border-0 p-0"
+                  >
+                    Bỏ mã
+                  </button>
+                </div>
               </div>
             )}
 
