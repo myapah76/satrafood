@@ -38,15 +38,15 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const categoryMenuRef = useRef<HTMLDivElement>(null);
-  const mobileCategoryMenuRef = useRef<HTMLDivElement>(null);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Close dropdown menu when clicking outside (handling both desktop and mobile dropdowns)
+  // Close dropdown menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const isInsideDesktop = categoryMenuRef.current?.contains(event.target as Node);
-      const isInsideMobile = mobileCategoryMenuRef.current?.contains(event.target as Node);
-      if (!isInsideDesktop && !isInsideMobile) {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node)
+      ) {
         setIsCategoryMenuOpen(false);
       }
     };
@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="hidden md:block">
         {/* ROW 1: Top Bar: Left (Delivery + Search) | Center (Logo) | Right (Rewards + Cart + Avatar) */}
         <div className="h-[68px] bg-[#FFFFFF] border-b border-[#E3E8E1]/60">
-          <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-full flex items-center justify-between gap-4">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between gap-4">
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0">
@@ -136,11 +136,11 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* 2. Center: SATRAFOODS Brand Name / Stencil Logo (Prominently Centered) */}
-            <div className="flex items-center justify-center shrink-0 px-2">
+            {/* 2. Center: SATRAFOODS Brand Name / Stencil Logo (Prominently Centered with generous breathing space) */}
+            <div className="flex-1 flex items-center justify-center shrink-0 px-8 lg:px-14 xl:px-20">
               <button
                 onClick={() => onNavigate('home')}
-                className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-0.5 rounded-[4px] hover:opacity-95 transition-opacity"
+                className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-1 rounded-[4px] hover:opacity-95 transition-opacity"
                 aria-label="Satrafoods Trang Chủ - Logo thương hiệu"
               >
                 <img
@@ -208,7 +208,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* ROW 2: Sub-Bar: Left (Danh mục sản phẩm + HOT Khuyến mãi hot) | Right (Hệ thống 180+ Cửa hàng) */}
         <div className="h-11 bg-[#FFFFFF]">
-          <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-full flex items-center justify-between text-xs">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between text-xs">
             {/* Left side: Danh mục sản phẩm (sổ ra danh mục con) + HOT Khuyến mãi hot */}
             <div className="flex items-center gap-3 shrink-0">
               {/* Green "Danh mục sản phẩm" button with dropdown */}
@@ -392,77 +392,6 @@ export const Header: React.FC<HeaderProps> = ({
             )}
           </div>
         </div>
-
-        {/* Row 3: Mobile Category Menu + HOT Promo - Only show if at "danh muc section" */}
-        {currentView === 'category' && (
-          <div className="relative px-3 py-2 bg-white border-b border-[#E3E8E1] flex items-center gap-3">
-            {/* Green Category Menu Button */}
-            <div className="relative" ref={mobileCategoryMenuRef}>
-              <button
-                onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-[4px] font-bold text-xs hover:bg-[#009636] transition-colors cursor-pointer border-0 shadow-xs"
-                type="button"
-                aria-expanded={isCategoryMenuOpen}
-                aria-label="Danh mục sản phẩm"
-              >
-                <span className="material-symbols-outlined text-[17px]">menu</span>
-                <span>Danh mục sản phẩm</span>
-                {isCategoryMenuOpen ? (
-                  <UpIcon className="w-3.5 h-3.5 text-white" />
-                ) : (
-                  <DownIcon className="w-3.5 h-3.5 text-white" />
-                )}
-              </button>
-
-              {/* Mobile Dropdown Menu for Subcategories */}
-              {isCategoryMenuOpen && (
-                <div className="absolute left-0 top-full mt-1.5 w-72 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
-                  <div className="bg-white border border-[#E3E8E1] rounded-[4px] shadow-2xl py-2 text-left">
-                    <div className="px-3.5 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1 flex items-center justify-between">
-                      <span>Phân ngành hàng tươi sống</span>
-                      <span className="text-[10px] bg-[#DAFF01] text-[#111111] px-1.5 py-0.5 rounded-[4px] font-black">
-                        VietGAP
-                      </span>
-                    </div>
-                    {subCategories.map((cat) => (
-                      <button
-                        key={cat.id}
-                        onClick={() => {
-                          setIsCategoryMenuOpen(false);
-                          onNavigate('category', cat.id === 'all' ? undefined : cat.id);
-                        }}
-                        data-slug={getSlugByCategory(cat.id === 'all' ? undefined : cat.id)}
-                        className="w-full px-3.5 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px] group"
-                      >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <span className="material-symbols-outlined text-[18px] text-[#01B341] shrink-0 group-hover:scale-110 transition-transform">
-                            {cat.icon}
-                          </span>
-                          <span className="truncate">{cat.label}</span>
-                        </div>
-                        <RightIcon className="w-3.5 h-3.5 text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0" />
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* HOT Promo Button: Pink HOT badge + plain text Khuyến mãi hot (NO background) */}
-            <button
-              onClick={() => onNavigate('category', 'Khuyến mãi hot')}
-              className="flex items-center gap-1.5 px-1 py-1 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 bg-transparent hover:opacity-85"
-              aria-label="Khuyến mãi hot"
-            >
-              <span className="bg-[#FC95FD] text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs">
-                HOT
-              </span>
-              <span className="text-[#111111] hover:text-[#01B341] font-bold text-xs transition-colors">
-                Khuyến mãi hot
-              </span>
-            </button>
-          </div>
-        )}
       </div>
     </header>
   );

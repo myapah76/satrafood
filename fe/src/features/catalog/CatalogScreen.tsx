@@ -177,7 +177,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     selectedStandards.length + (selectedPriceRange !== 'all' ? 1 : 0);
 
   return (
-    <div className="w-full pt-34 lg:pt-36 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-144px)] pb-20 md:pb-12">
+    <div className="w-full pt-28 md:pt-36 lg:pt-42 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-28 md:pb-24">
       {/* Breadcrumb Navigation: Hidden on mobile (< md) */}
       <nav aria-label="Breadcrumb" className="hidden md:flex items-center gap-1.5 text-xs text-[#555E57] my-3">
         <button
@@ -231,7 +231,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
           - Cột trái: Bộ lọc sản phẩm (FilterSidebar)
           - Cột phải: Div món (Row trên là thanh lọc "sắp xếp theo", Row dưới là danh sách món)
       */}
-      <div className="grid grid-cols-12 gap-6 items-start mt-3">
+      <div className="grid grid-cols-12 gap-6 lg:gap-8 items-start mt-4">
         {/* Left Column: Filter Sidebar */}
         <FilterSidebar
           subCategories={SUB_CATEGORIES}

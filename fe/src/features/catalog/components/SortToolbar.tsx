@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SortOption } from '../../../types';
+import { DownIcon, UpIcon, RightIcon } from '../../../components/icons';
 
 interface SortToolbarProps {
   sortBy: SortOption;
@@ -24,6 +25,18 @@ const DEFAULT_STANDARDS = [
   { id: 'ATTP', label: 'Chuỗi ATTP' },
 ];
 
+const SUB_CATEGORIES_MENU = [
+  { label: 'Tất cả thực phẩm tươi sống', id: 'all', icon: 'storefront' },
+  { label: 'Thịt heo thảo mộc & VietGAP', id: 'Thịt heo thảo mộc & VietGAP', icon: 'nutrition' },
+  { label: 'Bò Úc & Bò ta nhập khẩu', id: 'Bò Úc & Bò ta nhập khẩu', icon: 'set_meal' },
+  { label: 'Gia cầm tươi chuẩn CP', id: 'Gia cầm tươi chuẩn CP', icon: 'egg' },
+  { label: 'Cá & Hải sản tươi sống', id: 'Cá & Hải sản tươi sống', icon: 'phishing' },
+  { label: 'Rau ăn lá VietGAP', id: 'Rau ăn lá VietGAP', icon: 'eco' },
+  { label: 'Củ quả sạch Đà Lạt', id: 'Củ quả sạch Đà Lạt', icon: 'agriculture' },
+  { label: 'Trái cây nhiệt đới Nam Bộ', id: 'Trái cây nhiệt đới Nam Bộ', icon: 'yard' },
+  { label: 'Món sơ chế nấu ngay', id: 'Món sơ chế nấu ngay', icon: 'skillet' },
+];
+
 const SORT_OPTIONS: { id: SortOption; label: string }[] = [
   { id: 'popular', label: 'Phổ biến nhất' },
   { id: 'best_selling', label: 'Bán chạy' },
@@ -37,7 +50,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
   onSortChange,
   viewMode,
   onViewModeChange,
-  subCategories,
+  subCategories: _subCategories,
   selectedSubCategory,
   onSelectSubCategory,
   onOpenMobileFilter,
@@ -46,13 +59,117 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
   selectedStandards,
   onToggleStandard,
 }) => {
+  const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+  const categoryMenuRef = useRef<HTMLDivElement>(null);
   const standardsToRender = safetyStandards || DEFAULT_STANDARDS;
+
+  // Close subcategories menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsCategoryMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const categoryBtnLabel =
+    selectedSubCategory &&
+    selectedSubCategory !== 'all' &&
+    selectedSubCategory !== 'Khuyến mãi hot'
+      ? selectedSubCategory
+      : 'Danh mục sản phẩm';
 
   return (
     <>
-      {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 */}
-      <div className="lg:hidden space-y-2 mb-3">
-        {/* Row 1: Quick Filter Bar: [tune] Bộ lọc (N) | [VietGAP ✓] [Chuẩn OCOP] [GlobalGAP]... | Phổ biến ⇅ */}
+      {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 & 4 */}
+      <div className="lg:hidden space-y-2.5 mb-3">
+        {/* Row 1 on Mobile: "Danh mục sản phẩm" dropdown button + "HOT Khuyến mãi hot" button */}
+        <div className="relative flex items-center justify-between gap-2.5 pt-0.5">
+          {/* Green Category Menu Dropdown */}
+          <div className="relative" ref={categoryMenuRef}>
+            <button
+              onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
+              className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-[4px] font-bold text-xs hover:bg-[#009636] transition-colors cursor-pointer border-0 shadow-xs"
+              type="button"
+              aria-expanded={isCategoryMenuOpen}
+              aria-label="Danh mục sản phẩm"
+            >
+              <span className="material-symbols-outlined text-[17px]">menu</span>
+              <span className="max-w-[150px] truncate">{categoryBtnLabel}</span>
+              {isCategoryMenuOpen ? (
+                <UpIcon className="w-3.5 h-3.5 text-white" />
+              ) : (
+                <DownIcon className="w-3.5 h-3.5 text-white" />
+              )}
+            </button>
+
+            {/* Subcategories Dropdown Panel */}
+            {isCategoryMenuOpen && (
+              <div className="absolute left-0 top-full mt-1.5 w-72 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                <div className="bg-white border border-[#E3E8E1] rounded-[4px] shadow-2xl py-2 text-left">
+                  <div className="px-3.5 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1 flex items-center justify-between">
+                    <span>Phân ngành hàng tươi sống</span>
+                    <span className="text-[10px] bg-[#DAFF01] text-[#111111] px-1.5 py-0.5 rounded-[4px] font-black">
+                      VietGAP
+                    </span>
+                  </div>
+                  {SUB_CATEGORIES_MENU.map((cat) => {
+                    const isSelected =
+                      (cat.id === 'all' && (selectedSubCategory === 'all' || !selectedSubCategory)) ||
+                      selectedSubCategory === cat.label;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setIsCategoryMenuOpen(false);
+                          onSelectSubCategory(cat.id === 'all' ? 'all' : cat.label);
+                        }}
+                        className={`w-full px-3.5 py-2 text-left text-[13px] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px] group ${
+                          isSelected
+                            ? 'bg-[#F6F8F5] text-[#01B341] font-bold'
+                            : 'hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341]'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <span className="material-symbols-outlined text-[18px] text-[#01B341] shrink-0 group-hover:scale-110 transition-transform">
+                            {cat.icon}
+                          </span>
+                          <span className="truncate">{cat.label}</span>
+                        </div>
+                        <RightIcon className="w-3.5 h-3.5 text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0" />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* HOT Promo Button: Pink HOT badge + text Khuyến mãi hot */}
+          <button
+            onClick={() => onSelectSubCategory('Khuyến mãi hot')}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border ${
+              selectedSubCategory === 'Khuyến mãi hot'
+                ? 'border-[#01B341] bg-[#01B341]/10 text-[#01B341] shadow-2xs'
+                : 'border-transparent bg-transparent hover:opacity-85 text-[#111111]'
+            }`}
+            aria-label="Khuyến mãi hot"
+          >
+            <span className="bg-[#FC95FD] text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs">
+              HOT
+            </span>
+            <span className="hover:text-[#01B341] font-bold text-xs transition-colors">
+              Khuyến mãi hot
+            </span>
+          </button>
+        </div>
+
+        {/* Row 2: Quick Filter Bar: [tune] Bộ lọc (N) | [VietGAP ✓] [Chuẩn OCOP] [GlobalGAP]... | Phổ biến ⇅ */}
         <div className="flex items-center gap-1.5 bg-[#F6F8F5] p-2 rounded-[4px] border border-[#E3E8E1] shadow-2xs">
           {/* 1. Left Pinned: Bộ lọc button with tune icon and circular pink badge */}
           <button
