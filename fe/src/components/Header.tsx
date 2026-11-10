@@ -272,7 +272,7 @@ export const Header: React.FC<HeaderProps> = ({
                 className="flex items-center gap-1.5 px-2 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 bg-transparent hover:opacity-85"
                 aria-label="Khuyến mãi hot"
               >
-                <span className="bg-[#FC95FD] text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs">
+                <span className="bg-[#FC95FD] text-[#24102E] font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs">
                   HOT
                 </span>
                 <span className="text-[#111111] hover:text-[#01B341] font-bold text-xs transition-colors">
