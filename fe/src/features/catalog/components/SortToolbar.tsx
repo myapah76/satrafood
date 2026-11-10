@@ -129,19 +129,13 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
                           setIsCategoryMenuOpen(false);
                           onSelectSubCategory(cat.id === 'all' ? 'all' : cat.label);
                         }}
-                        className={`w-full px-3.5 py-2 text-left text-[13px] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px] group ${
+                        className={`w-full px-3.5 py-2 text-left text-[13px] font-medium flex items-center transition-colors cursor-pointer border-0 bg-transparent rounded-[4px] ${
                           isSelected
                             ? 'bg-[#F6F8F5] text-[#01B341] font-bold'
                             : 'hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341]'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 min-w-0">
-                          <span className="material-symbols-outlined text-[18px] text-[#01B341] shrink-0 group-hover:scale-110 transition-transform">
-                            {cat.icon}
-                          </span>
-                          <span className="truncate">{cat.label}</span>
-                        </div>
-                        <RightIcon className="w-3.5 h-3.5 text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0" />
+                        <span className="truncate">{cat.label}</span>
                       </button>
                     );
                   })}
