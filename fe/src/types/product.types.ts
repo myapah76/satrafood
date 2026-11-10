@@ -1,5 +1,5 @@
 export type SafetyStandard = 'VietGAP' | 'GlobalGAP' | 'OCOP' | 'Organic' | 'ATTP';
-export type ProductBadgeColor = 'green' | 'lime' | 'orange' | 'red';
+export type ProductBadgeColor = 'green' | 'lime' | 'orange' | 'red' | 'pink';
 
 export interface Product {
   id: string;
