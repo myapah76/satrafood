@@ -58,10 +58,29 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             <UpIcon className="w-3.5 h-3.5 text-[#555E57] shrink-0" aria-hidden="true" />
           </h4>
           <ul className="space-y-1 text-xs list-none p-0 m-0">
-            {subCategories.map((cat, idx) => {
-              const isActive =
-                selectedSubCategory === cat.label ||
-                (selectedSubCategory === 'all' && idx === 0);
+            <li>
+              <button
+                onClick={() => onSelectSubCategory('all')}
+                className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
+                  selectedSubCategory === 'all'
+                    ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
+                    : 'text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5]'
+                }`}
+              >
+                <span className="line-clamp-1">Tất cả thực phẩm tươi sống</span>
+                <span
+                  className={`text-[11px] px-1.5 py-0.5 rounded-[4px] ${
+                    selectedSubCategory === 'all'
+                      ? 'bg-[#DAFF01] text-[#111111] font-bold'
+                      : 'text-[#555E57]'
+                  }`}
+                >
+                  12
+                </span>
+              </button>
+            </li>
+            {subCategories.map((cat) => {
+              const isActive = selectedSubCategory === cat.label;
               return (
                 <li key={cat.label}>
                   <button

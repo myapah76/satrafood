@@ -88,3 +88,4 @@ test('ICON_REGISTRY contains all 19 SVG icon mappings', () => {
 test('AppIcon component renders or returns null for unknown name without crashing', () => {
   assert.equal(typeof AppIcon, 'function');
 });
+

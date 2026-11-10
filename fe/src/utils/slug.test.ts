@@ -10,8 +10,9 @@ test('slugify converts Vietnamese strings to clean URL slugs', () => {
 });
 
 test('getSlugByCategory returns pre-mapped clean slug or slugified fallback', () => {
-  assert.equal(getSlugByCategory('all'), 'tat-ca-thuc-pham');
-  assert.equal(getSlugByCategory(undefined), 'tat-ca-thuc-pham');
+  assert.equal(getSlugByCategory('all'), 'tat-ca-thuc-pham-tuoi-song');
+  assert.equal(getSlugByCategory(undefined), 'tat-ca-thuc-pham-tuoi-song');
+  assert.equal(getSlugByCategory('Tất cả thực phẩm tươi sống'), 'tat-ca-thuc-pham-tuoi-song');
   assert.equal(getSlugByCategory('Thịt heo thảo mộc & VietGAP'), 'thit-heo-thao-moc-vietgap');
   assert.equal(getSlugByCategory('Khuyến mãi hot'), 'khuyen-mai-hot');
   assert.equal(getSlugByCategory('Trái cây nhiệt đới Nam Bộ'), 'trai-cay-nhiet-doi-nam-bo');
@@ -19,7 +20,9 @@ test('getSlugByCategory returns pre-mapped clean slug or slugified fallback', ()
 });
 
 test('getCategoryBySlug returns matching Vietnamese category label or "all"', () => {
+  assert.equal(getCategoryBySlug('tat-ca-thuc-pham-tuoi-song'), 'all');
   assert.equal(getCategoryBySlug('tat-ca-thuc-pham'), 'all');
+  assert.equal(getCategoryBySlug('thuc-pham-tuoi-song'), 'all');
   assert.equal(getCategoryBySlug('all'), 'all');
   assert.equal(getCategoryBySlug(undefined), 'all');
   assert.equal(getCategoryBySlug('thit-heo-thao-moc-vietgap'), 'Thịt heo thảo mộc & VietGAP');
@@ -30,7 +33,12 @@ test('getCategoryBySlug returns matching Vietnamese category label or "all"', ()
 
 test('CATEGORY_SLUG_MAP has bi-directional integrity', () => {
   for (const [category, slug] of Object.entries(CATEGORY_SLUG_MAP)) {
-    if (category === 'all') {
+    if (
+      category === 'all' ||
+      category === 'Tất cả thực phẩm tươi sống' ||
+      category === 'Tất cả thực phẩm' ||
+      category === 'Thực phẩm tươi sống'
+    ) {
       assert.equal(getCategoryBySlug(slug), 'all');
     } else {
       assert.equal(getCategoryBySlug(slug), category);

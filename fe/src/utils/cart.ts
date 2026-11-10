@@ -50,7 +50,13 @@ export function filterProducts(products: Product[], options: FilterOptions): Pro
     }
 
     // Sub-category filter
-    if (options.subCategory && options.subCategory !== 'all') {
+    if (
+      options.subCategory &&
+      options.subCategory !== 'all' &&
+      options.subCategory !== 'Tất cả thực phẩm tươi sống' &&
+      options.subCategory !== 'Tất cả thực phẩm' &&
+      options.subCategory !== 'Thực phẩm tươi sống'
+    ) {
       if (p.subCategory !== options.subCategory) {
         return false;
       }

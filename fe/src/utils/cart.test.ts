@@ -76,6 +76,16 @@ test('filterProducts filters by sub-category, search query, and standards', () =
   const filteredOcop = filterProducts(products, { standards: ['OCOP'] });
   assert.equal(filteredOcop.length, 1);
   assert.equal(filteredOcop[0].id, 'p2');
+
+  // "Tất cả thực phẩm tươi sống" and "all" should return all products
+  const allSub1 = filterProducts(products, { subCategory: 'all' });
+  assert.equal(allSub1.length, 2);
+
+  const allSub2 = filterProducts(products, { subCategory: 'Tất cả thực phẩm tươi sống' });
+  assert.equal(allSub2.length, 2);
+
+  const allSub3 = filterProducts(products, { subCategory: undefined });
+  assert.equal(allSub3.length, 2);
 });
 
 test('sortProducts sorts correctly by price ascending and descending', () => {

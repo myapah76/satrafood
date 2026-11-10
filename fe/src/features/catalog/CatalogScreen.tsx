@@ -48,12 +48,21 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
 }) => {
   const products = productsData as Product[];
 
+  const isAllCategory = (cat?: string) =>
+    !cat ||
+    cat === 'all' ||
+    cat === 'Tất cả thực phẩm tươi sống' ||
+    cat === 'Tất cả thực phẩm' ||
+    cat === 'Thực phẩm tươi sống';
+
   const [selectedSubCategory, setSelectedSubCategory] = useState<string>(() => {
-    if (initialSubCategory) return initialSubCategory;
+    if (initialSubCategory) {
+      return isAllCategory(initialSubCategory) ? 'all' : initialSubCategory;
+    }
     if (typeof window !== 'undefined' && window.location.hash) {
       const rawSlug = window.location.hash.replace(/^#/, '');
       const mapped = getCategoryBySlug(rawSlug);
-      if (mapped !== 'all') return mapped;
+      return isAllCategory(mapped) ? 'all' : mapped;
     }
     return 'all';
   });
@@ -61,7 +70,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
   const [selectedStandards, setSelectedStandards] = useState<string[]>(['VietGAP', 'OCOP', 'ATTP']);
   const [selectedPriceRange, setSelectedPriceRange] = useState<
     'all' | 'under50' | '50to100' | '100to200' | 'above200'
-  >('50to100');
+  >('all');
   const [selectedPackaging, setSelectedPackaging] = useState<string[]>([]);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<SortOption>('popular');
@@ -72,17 +81,37 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
   // Sync when initialSubCategory prop updates from header navigation
   useEffect(() => {
     if (initialSubCategory) {
-      setSelectedSubCategory(initialSubCategory);
-      const slug = getSlugByCategory(initialSubCategory);
+      const cat = isAllCategory(initialSubCategory) ? 'all' : initialSubCategory;
+      setSelectedSubCategory(cat);
+      const slug = getSlugByCategory(cat === 'all' ? undefined : cat);
       if (window.location.hash !== `#${slug}`) {
         window.location.hash = slug;
       }
+    } else {
+      setSelectedSubCategory('all');
     }
   }, [initialSubCategory]);
 
+  // Sync when window.location.hash changes (deep linking / back-forward navigation)
+  useEffect(() => {
+    const handleHashSync = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        const rawSlug = window.location.hash.replace(/^#/, '');
+        const mapped = getCategoryBySlug(rawSlug);
+        setSelectedSubCategory(isAllCategory(mapped) ? 'all' : mapped);
+      } else {
+        setSelectedSubCategory('all');
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashSync);
+    return () => window.removeEventListener('hashchange', handleHashSync);
+  }, []);
+
   const handleSelectSubCategory = (subCat: string) => {
-    setSelectedSubCategory(subCat);
-    const slug = getSlugByCategory(subCat === 'all' ? undefined : subCat);
+    const cat = isAllCategory(subCat) ? 'all' : subCat;
+    setSelectedSubCategory(cat);
+    const slug = getSlugByCategory(cat === 'all' ? undefined : cat);
     window.location.hash = slug;
   };
 
@@ -120,18 +149,19 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
 
   // Filter & sort logic
   const filteredAndSortedProducts = useMemo(() => {
+    const isAll = isAllCategory(selectedSubCategory);
+
     const filterOpts: FilterOptions = {
-      subCategory: selectedSubCategory === 'all' ? undefined : selectedSubCategory,
+      subCategory: isAll ? undefined : selectedSubCategory,
       standards:
         selectedStandards.length > 0 && selectedStandards.length < 3 ? selectedStandards : undefined,
-      priceRange:
-        selectedPriceRange === '50to100' && selectedSubCategory === 'all' ? 'all' : selectedPriceRange,
+      priceRange: selectedPriceRange,
       tags: selectedTags.length > 0 ? selectedTags : undefined,
       searchQuery: searchQuery,
     };
 
     let result = filterProducts(products, filterOpts);
-    if (result.length === 0) {
+    if (result.length === 0 && isAll) {
       result = products;
     }
     return sortProducts(result, sortBy);

@@ -25,10 +25,9 @@ export default function App() {
   const [targetSubCategory, setTargetSubCategory] = useState<string | undefined>(() => {
     if (typeof window !== 'undefined' && window.location.hash) {
       const hash = window.location.hash.replace(/^#/, '');
-      const mapped = getCategoryBySlug(hash);
-      if (mapped !== 'all') return mapped;
+      return getCategoryBySlug(hash);
     }
-    return undefined;
+    return 'all';
   });
 
   const [searchQuery, setSearchQuery] = useState('');
@@ -64,13 +63,19 @@ export default function App() {
 
   const handleNavigate = (view: 'home' | 'category', subCategory?: string) => {
     setCurrentView(view);
-    setTargetSubCategory(subCategory);
+    const isAll =
+      !subCategory ||
+      subCategory === 'all' ||
+      subCategory === 'Tất cả thực phẩm tươi sống' ||
+      subCategory === 'Tất cả thực phẩm';
+    const target = isAll ? 'all' : subCategory;
+    setTargetSubCategory(target);
     if (view === 'home') {
       if (window.location.hash && window.location.hash !== '') {
         window.history.pushState(null, '', window.location.pathname);
       }
     } else {
-      const slug = getSlugByCategory(subCategory);
+      const slug = getSlugByCategory(target);
       window.location.hash = slug;
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -86,7 +91,7 @@ export default function App() {
       } else {
         const cat = getCategoryBySlug(hash);
         setCurrentView('category');
-        setTargetSubCategory(cat === 'all' ? undefined : cat);
+        setTargetSubCategory(cat);
       }
     };
 
