@@ -81,27 +81,27 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0 z-10">
-              {/* Delivery Location Selector Box */}
+              {/* Delivery Location Selector Box: 173px x 36px */}
               <button
                 onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
+                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 w-[173px] h-[36px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
-                <BoxIcon className="w-5 h-5 text-[#01B341]" />
-                <div className="flex flex-col">
+                <BoxIcon className="w-5 h-5 text-[#01B341] shrink-0" />
+                <div className="flex flex-col min-w-0 flex-1">
                   <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none">
                     GIAO NHANH 2H
                   </span>
-                  <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate max-w-[90px]">
+                  <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate">
                     {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
                   </span>
                 </div>
-                <span className="material-symbols-outlined text-[16px] text-[#555E57] ml-0.5 leading-none">expand_more</span>
+                <span className="material-symbols-outlined text-[16px] text-[#555E57] ml-0.5 leading-none shrink-0">expand_more</span>
               </button>
 
-              {/* Search Bar Box - Compact width to balance distance symmetrically with Tích điểm thành viên */}
-              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-38 sm:w-40 md:w-42 lg:w-44 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
+              {/* Search Bar Box: 176px x 36px */}
+              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 w-[176px] h-[36px] focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs shrink-0">
                 <SearchIcon className="w-4 h-4 text-[#555E57] mr-1.5 pointer-events-none" />
                 <input
                   className="w-full bg-transparent font-body-md text-xs text-[#111111] placeholder:text-[#555E57] outline-none"
