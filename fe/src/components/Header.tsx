@@ -89,11 +89,11 @@ export const Header: React.FC<HeaderProps> = ({
                 aria-label="Chọn khu vực giao hàng"
               >
                 <BoxIcon className="w-5 h-5 text-[#01B341] shrink-0" />
-                <div className="flex flex-col min-w-0 flex-1">
-                  <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none">
+                <div className="flex flex-col min-w-0 flex-1 justify-center">
+                  <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none whitespace-nowrap">
                     GIAO NHANH 2H
                   </span>
-                  <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate">
+                  <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate whitespace-nowrap">
                     {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
                   </span>
                 </div>
@@ -219,17 +219,19 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <button
                   onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-                  className="flex items-center gap-2 bg-[#01B341] text-white px-4 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
+                  className="flex items-center justify-between bg-[#01B341] text-white px-3 w-[173px] h-[36px] rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs shrink-0"
                   type="button"
                   aria-expanded={isCategoryMenuOpen}
                   aria-label="Danh mục sản phẩm"
                 >
-                  <span className="material-symbols-outlined text-[18px]">menu</span>
-                  <span className="whitespace-nowrap font-bold">Danh mục sản phẩm</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <span className="material-symbols-outlined text-[18px] shrink-0 leading-none">menu</span>
+                    <span className="whitespace-nowrap font-bold text-[12px] truncate">Danh mục sản phẩm</span>
+                  </div>
                   {isCategoryMenuOpen ? (
-                    <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_less</span>
+                    <span className="material-symbols-outlined text-[16px] text-white leading-none shrink-0">expand_less</span>
                   ) : (
-                    <span className="material-symbols-outlined text-[18px] text-white leading-none">expand_more</span>
+                    <span className="material-symbols-outlined text-[16px] text-white leading-none shrink-0">expand_more</span>
                   )}
                 </button>
 
