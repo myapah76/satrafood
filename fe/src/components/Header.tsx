@@ -81,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0 z-10">
-              {/* Delivery Location Selector Box: Same natural size & layout as Tích điểm & Giỏ hàng */}
+              {/* Delivery Location Selector Box: 173px x 44px with 6px 12px padding */}
               <button
                 onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs shrink-0 text-left"
+                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 w-[173px] h-[44px] hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs shrink-0 text-left"
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
