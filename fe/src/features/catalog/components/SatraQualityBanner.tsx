@@ -2,7 +2,7 @@ import React from 'react';
 
 export const SatraQualityBanner: React.FC = () => {
   return (
-    <div className="w-full mb-4 sm:mb-5">
+    <div className="w-full mb-4 sm:mb-5 hidden md:block">
       <div className="w-full rounded-[4px] text-white p-3.5 sm:p-4.5 shadow-sm border border-[#01B341]/20 flex flex-col md:flex-row items-center justify-between gap-3.5 sm:gap-4 bg-[#01B341]">
         <div className="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
           <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[4px] bg-[#DAFF01] text-[#111111] flex items-center justify-center shrink-0 shadow-xs">

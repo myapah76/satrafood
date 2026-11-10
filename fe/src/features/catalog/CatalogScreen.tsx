@@ -9,6 +9,7 @@ import { MobileFilterDrawer } from './components/MobileFilterDrawer';
 import { ProductCard } from './components/ProductCard';
 import { SortToolbar } from './components/SortToolbar';
 import { CommitmentBanner } from './components/CommitmentBanner';
+import { SatraQualityBanner } from './components/SatraQualityBanner';
 
 interface CatalogScreenProps {
   initialSubCategory?: string;
@@ -200,7 +201,10 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         </span>
       </nav>
 
-      {/* Satra Quality Commitment Banner - Reusing CommitmentBanner for consistent responsive 2x2 grid */}
+      {/* Cam kết Satra - Chỉ hiển thị trên PC */}
+      <SatraQualityBanner />
+
+      {/* Cam kết 4 dịch vụ dạng lưới 2x2 - Giữ nguyên trên Mobile */}
       <CommitmentBanner />
 
       {/* Mobile Voucher Banner matching Image 2 */}
