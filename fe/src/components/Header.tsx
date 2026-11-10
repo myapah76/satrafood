@@ -100,8 +100,8 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="material-symbols-outlined text-[16px] text-[#555E57] ml-0.5 leading-none">expand_more</span>
               </button>
 
-              {/* Search Bar Box */}
-              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-44 md:w-48 lg:w-64 xl:w-72 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
+              {/* Search Bar Box - Compact width to balance distance symmetrically with Tích điểm thành viên */}
+              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-38 sm:w-40 md:w-42 lg:w-44 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
                 <SearchIcon className="w-4 h-4 text-[#555E57] mr-1.5 pointer-events-none" />
                 <input
                   className="w-full bg-transparent font-body-md text-xs text-[#111111] placeholder:text-[#555E57] outline-none"
@@ -206,8 +206,8 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* ROW 2: Sub-Bar: Left (Danh mục sản phẩm + HOT Khuyến mãi hot) | Right (Hệ thống 180+ Cửa hàng) */}
-        <div className="h-13 sm:h-14 bg-[#FFFFFF] border-b border-[#E3E8E1]">
-          <div className="max-w-[1440px] mx-auto px-5 sm:px-8 lg:px-12 xl:px-14 h-full flex items-center justify-between text-xs py-1">
+        <div className="h-12 bg-[#FFFFFF] border-b border-[#E3E8E1]">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between text-xs">
             {/* Left side: Danh mục sản phẩm (sổ ra danh mục con) + HOT Khuyến mãi hot */}
             <div className="flex items-center gap-7 sm:gap-8 shrink-0">
               {/* Green "Danh mục sản phẩm" button with dropdown */}
