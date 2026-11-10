@@ -172,6 +172,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
             {['Đang giảm giá', 'Hàng mới về', 'Bán chạy nhất', 'Giao 2H'].map((tag) => {
               const isTagActive =
                 selectedTags.includes(tag) || (tag === 'Đang giảm giá' && selectedTags.length === 0);
+              const isDiscountTag = tag === 'Đang giảm giá';
               return (
                 <button
                   key={tag}
@@ -179,7 +180,9 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   onClick={() => onToggleTag(tag)}
                   className={`px-2.5 py-1 rounded-[4px] text-[11px] font-semibold transition-colors cursor-pointer border ${
                     isTagActive
-                      ? 'bg-[#DAFF01] text-[#111111] border-[#01B341]/30 font-bold'
+                      ? isDiscountTag
+                        ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] font-bold shadow-xs'
+                        : 'bg-[#DAFF01] text-[#111111] border-[#01B341]/30 font-bold'
                       : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111] border-[#E3E8E1]'
                   }`}
                 >

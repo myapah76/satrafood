@@ -112,19 +112,19 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             Tất cả (12)
           </button>
 
-          {/* HOT Promo chip (RGB: 252 149 253 | Hex: #FC95FD) */}
+          {/* HOT Promo chip: HOT là màu hồng, Khuyến mãi hot là không có màu nền */}
           <button
             onClick={() => onSelectSubCategory('Khuyến mãi hot')}
-            className={`px-2.5 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border-0 flex items-center gap-1 ${
+            className={`px-2.5 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border flex items-center gap-1.5 transition-colors bg-transparent ${
               selectedSubCategory === 'Khuyến mãi hot'
-                ? 'bg-[#FC95FD] text-[#111111] ring-2 ring-[#01B341]'
-                : 'bg-[#FC95FD] text-[#111111] hover:opacity-90'
+                ? 'border-[#01B341] shadow-2xs'
+                : 'border-[#E3E8E1] hover:border-[#01B341]'
             }`}
           >
-            <span className="material-symbols-outlined text-[14px] text-[#111111]">
-              local_fire_department
+            <span className="bg-[#FC95FD] text-[#111111] font-black text-[10px] px-1.5 py-0.5 rounded-[4px]">
+              HOT
             </span>
-            <span>Ưu đãi HOT</span>
+            <span className="text-[#111111]">Khuyến mãi hot</span>
           </button>
 
           {subCategories.map((cat) => (

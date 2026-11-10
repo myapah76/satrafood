@@ -17,8 +17,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onShowTraceability,
   onShowToast,
 }) => {
+  // Trạng thái sản phẩm "Đang giảm giá" dùng màu hồng (#FC95FD)
+  const isDiscount = product.badge === 'Đang giảm giá' || product.tags?.includes('Đang giảm giá');
   const badgeStyle =
-    product.badgeColor === 'lime'
+    isDiscount || product.badgeColor === 'pink'
+      ? 'bg-[#FC95FD] text-[#111111]'
+      : product.badgeColor === 'lime'
       ? 'bg-[#DAFF01] text-[#111111]'
       : product.badgeColor === 'orange'
       ? 'bg-[#FF9400] text-white'
@@ -43,8 +47,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               <span className="text-[11px] font-bold text-[#01B341] uppercase">
                 {product.subCategory}
               </span>
+              {/* Huy hiệu -20% dùng màu hồng (#FC95FD) */}
+              {product.discountPercent && (
+                <span className="px-1.5 py-0.5 bg-[#FC95FD] text-[#111111] rounded-[4px] text-[10px] font-extrabold shadow-2xs">
+                  -{product.discountPercent}%
+                </span>
+              )}
               {product.badge && (
-                <span className="px-1.5 py-0.5 bg-[#01B341] text-white rounded-[4px] text-[10px] font-bold">
+                <span className={`px-1.5 py-0.5 rounded-[4px] text-[10px] font-bold ${badgeStyle}`}>
                   {product.badge}
                 </span>
               )}
@@ -125,8 +135,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               {formatVND(product.originalPrice)}
             </span>
           </div>
+          {/* Huy hiệu -20% dùng màu hồng (#FC95FD) */}
           {product.discountPercent && (
-            <span className="text-[10px] font-label-sm text-[#FF161F] bg-[#FF161F]/10 px-1 py-0.5 rounded-[4px] font-bold">
+            <span className="text-[10px] font-label-sm text-[#111111] bg-[#FC95FD] px-1.5 py-0.5 rounded-[4px] font-extrabold shadow-2xs">
               -{product.discountPercent}%
             </span>
           )}

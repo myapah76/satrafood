@@ -258,7 +258,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(1)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 1
-                    ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
+                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -268,7 +268,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(2)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 2
-                    ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
+                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -278,7 +278,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(3)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 3
-                    ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
+                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -289,7 +289,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(10)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 10
-                    ? 'bg-[#01B341] text-white border-[#01B341]'
+                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] font-black'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >

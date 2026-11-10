@@ -57,7 +57,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
           {deals.map((deal) => {
             const badgeBg =
               deal.tagType === 'discount'
-                ? 'bg-[#FF161F] text-white'
+                ? 'bg-[#FC95FD] text-[#111111]'
                 : deal.tagType === 'same_price'
                 ? 'bg-[#DAFF01] text-[#111111]'
                 : 'bg-[#FF9400] text-white';
