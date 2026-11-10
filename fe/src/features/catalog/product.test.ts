@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import productsData from '../../data/products.json';
 import promotionsData from '../../data/promotions.json';
 import { Product, PromoDeal } from '../../types';
+import { filterProducts } from '../../utils/cart';
 
 describe('Product Data and Mobile Specs Integrity', () => {
   it('all 12 products have specMeta and overlay metadata for mobile cards', () => {
@@ -40,6 +41,35 @@ describe('Product Data and Mobile Specs Integrity', () => {
       assert.ok(deals[i].price > 0, 'deal price must be positive');
       assert.ok(deals[i].originalPrice > deals[i].price, 'original price must be greater than sale price');
     });
+  });
+
+  it('filters all 12 products properly by safety standards and categories', () => {
+    const products = productsData as Product[];
+
+    // VietGAP standard filter
+    const vietgap = filterProducts(products, { standards: ['VietGAP'] });
+    assert.ok(vietgap.length > 0, 'VietGAP filter must return products');
+    vietgap.forEach((p: Product) => {
+      assert.ok(p.standards.includes('VietGAP'), `${p.name} must have VietGAP`);
+    });
+
+    // OCOP standard filter
+    const ocop = filterProducts(products, { standards: ['OCOP'] });
+    assert.ok(ocop.length > 0, 'OCOP filter must return products');
+    ocop.forEach((p: Product) => {
+      assert.ok(p.standards.includes('OCOP'), `${p.name} must have OCOP`);
+    });
+
+    // Khuyến mãi hot filter
+    const hotDeals = filterProducts(products, { subCategory: 'Khuyến mãi hot' });
+    assert.ok(hotDeals.length > 0, 'Khuyến mãi hot must return discounted products');
+    hotDeals.forEach((p: Product) => {
+      assert.ok((p.discountPercent ?? 0) > 0, `${p.name} must have discountPercent`);
+    });
+
+    // All categories filter
+    const all = filterProducts(products, { subCategory: 'all' });
+    assert.equal(all.length, 12, 'all category filter must return 12 products');
   });
 });
 

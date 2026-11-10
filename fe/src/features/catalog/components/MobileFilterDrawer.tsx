@@ -113,19 +113,28 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
             <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5">
               Tiêu Chuẩn An Toàn
             </h4>
-            <div className="space-y-2">
-              {safetyStandards.map((std) => (
-                <label key={std.id} className="flex items-center gap-2.5 cursor-pointer">
-                  <input
-                    type="checkbox"
-                    checked={selectedStandards.includes(std.id)}
-                    onChange={() => onToggleStandard(std.id)}
-                    className="w-4 h-4 rounded-[4px] text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
-                  />
-                  <span className="flex-1 text-[#111111] font-medium">{std.label}</span>
-                  <span className="text-[#555E57] font-normal">({std.count})</span>
-                </label>
-              ))}
+            <div className="flex flex-wrap gap-2">
+              {safetyStandards.map((std) => {
+                const isSelected = selectedStandards.includes(std.id);
+                return (
+                  <button
+                    key={std.id}
+                    type="button"
+                    onClick={() => onToggleStandard(std.id)}
+                    className={`px-3 py-2 rounded-[4px] text-xs font-semibold cursor-pointer border transition-all flex items-center gap-1.5 ${
+                      isSelected
+                        ? 'bg-[#01B341] text-white border-[#01B341] shadow-2xs font-bold'
+                        : 'bg-[#F6F8F5] text-[#111111] border-[#E3E8E1] hover:border-[#01B341]'
+                    }`}
+                  >
+                    <span>{std.label}</span>
+                    {isSelected && <span className="font-bold">✓</span>}
+                    <span className={`text-[10.5px] ${isSelected ? 'text-white/80' : 'text-[#555E57]'}`}>
+                      ({std.count})
+                    </span>
+                  </button>
+                );
+              })}
             </div>
           </div>
 

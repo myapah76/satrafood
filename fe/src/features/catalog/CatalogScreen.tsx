@@ -67,7 +67,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     return 'all';
   });
 
-  const [selectedStandards, setSelectedStandards] = useState<string[]>(['VietGAP', 'OCOP', 'ATTP']);
+  const [selectedStandards, setSelectedStandards] = useState<string[]>([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState<
     'all' | 'under50' | '50to100' | '100to200' | 'above200'
   >('all');
@@ -153,8 +153,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
 
     const filterOpts: FilterOptions = {
       subCategory: isAll ? undefined : selectedSubCategory,
-      standards:
-        selectedStandards.length > 0 && selectedStandards.length < 3 ? selectedStandards : undefined,
+      standards: selectedStandards.length > 0 ? selectedStandards : undefined,
       priceRange: selectedPriceRange,
       tags: selectedTags.length > 0 ? selectedTags : undefined,
       searchQuery: searchQuery,
@@ -169,7 +168,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
 
   const activeFiltersCount =
     (selectedSubCategory !== 'all' ? 1 : 0) +
-    (selectedStandards.length > 0 ? 1 : 0) +
+    selectedStandards.length +
     (selectedPriceRange !== 'all' ? 1 : 0);
 
   return (
@@ -235,6 +234,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
             onSelectSubCategory={handleSelectSubCategory}
             onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
             activeFiltersCount={activeFiltersCount}
+            safetyStandards={SAFETY_STANDARDS}
             selectedStandards={selectedStandards}
             onToggleStandard={handleToggleStandard}
           />

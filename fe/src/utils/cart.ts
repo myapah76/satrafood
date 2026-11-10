@@ -57,7 +57,9 @@ export function filterProducts(products: Product[], options: FilterOptions): Pro
       options.subCategory !== 'Tất cả thực phẩm' &&
       options.subCategory !== 'Thực phẩm tươi sống'
     ) {
-      if (p.subCategory !== options.subCategory) {
+      if (options.subCategory === 'Khuyến mãi hot') {
+        if (!p.discountPercent || p.discountPercent <= 0) return false;
+      } else if (p.subCategory !== options.subCategory) {
         return false;
       }
     }

@@ -38,15 +38,15 @@ export const Header: React.FC<HeaderProps> = ({
 }) => {
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const categoryMenuRef = useRef<HTMLDivElement>(null);
+  const mobileCategoryMenuRef = useRef<HTMLDivElement>(null);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
-  // Close dropdown menu when clicking outside
+  // Close dropdown menu when clicking outside (handling both desktop and mobile dropdowns)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        categoryMenuRef.current &&
-        !categoryMenuRef.current.contains(event.target as Node)
-      ) {
+      const isInsideDesktop = categoryMenuRef.current?.contains(event.target as Node);
+      const isInsideMobile = mobileCategoryMenuRef.current?.contains(event.target as Node);
+      if (!isInsideDesktop && !isInsideMobile) {
         setIsCategoryMenuOpen(false);
       }
     };
@@ -396,7 +396,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Row 3: Mobile Category Menu + HOT Promo matching Picture 4 */}
         <div className="relative px-3 py-2 bg-white border-b border-[#E3E8E1] flex items-center gap-3">
           {/* Green Category Menu Button */}
-          <div className="relative">
+          <div className="relative" ref={mobileCategoryMenuRef}>
             <button
               onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
               className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-[4px] font-bold text-xs hover:bg-[#009636] transition-colors cursor-pointer border-0 shadow-xs"

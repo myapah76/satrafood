@@ -77,6 +77,10 @@ test('filterProducts filters by sub-category, search query, and standards', () =
   assert.equal(filteredOcop.length, 1);
   assert.equal(filteredOcop[0].id, 'p2');
 
+  // "Khuyến mãi hot" filter should return products with discountPercent > 0
+  const promoSub = filterProducts(products, { subCategory: 'Khuyến mãi hot' });
+  assert.equal(promoSub.length, 2);
+
   // "Tất cả thực phẩm tươi sống" and "all" should return all products
   const allSub1 = filterProducts(products, { subCategory: 'all' });
   assert.equal(allSub1.length, 2);

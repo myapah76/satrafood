@@ -11,9 +11,18 @@ interface SortToolbarProps {
   onSelectSubCategory: (cat: string) => void;
   onOpenMobileFilter: () => void;
   activeFiltersCount: number;
+  safetyStandards?: { id: string; label: string; count?: number }[];
   selectedStandards?: string[];
   onToggleStandard?: (std: string) => void;
 }
+
+const DEFAULT_STANDARDS = [
+  { id: 'VietGAP', label: 'VietGAP' },
+  { id: 'OCOP', label: 'Chuẩn OCOP' },
+  { id: 'GlobalGAP', label: 'GlobalGAP' },
+  { id: 'Organic', label: 'Organic' },
+  { id: 'ATTP', label: 'Chuỗi ATTP' },
+];
 
 const SORT_OPTIONS: { id: SortOption; label: string }[] = [
   { id: 'popular', label: 'Phổ biến nhất' },
@@ -33,64 +42,72 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
   onSelectSubCategory,
   onOpenMobileFilter,
   activeFiltersCount,
+  safetyStandards,
   selectedStandards,
   onToggleStandard,
 }) => {
-  const isVietGAPActive = selectedStandards?.includes('VietGAP') ?? false;
-  const isOCOPActive = selectedStandards?.includes('OCOP') ?? false;
+  const standardsToRender = safetyStandards || DEFAULT_STANDARDS;
 
   return (
     <>
       {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 */}
       <div className="lg:hidden space-y-2 mb-3">
-        {/* Row 1: Quick Filter Bar: [tune] Bộ lọc (3) | VietGAP ✓ | Chuẩn OCOP | Phổ biến ⇅ */}
-        <div className="flex items-center justify-between gap-2 bg-[#F6F8F5] p-2 rounded-[4px] border border-[#E3E8E1] shadow-2xs overflow-x-auto">
-          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
-            {/* Bộ lọc button with tune icon and circular pink badge */}
-            <button
-              onClick={onOpenMobileFilter}
-              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#EEEEEE] hover:bg-[#E2E2E2] text-[#111111] rounded-[4px] font-bold text-xs cursor-pointer border-0 shadow-2xs transition-colors"
-              type="button"
-              aria-label="Mở bộ lọc"
-            >
-              <span className="material-symbols-outlined text-[16px] text-[#01B341]">tune</span>
-              <span>Bộ lọc</span>
+        {/* Row 1: Quick Filter Bar: [tune] Bộ lọc (N) | [VietGAP ✓] [Chuẩn OCOP] [GlobalGAP]... | Phổ biến ⇅ */}
+        <div className="flex items-center gap-1.5 bg-[#F6F8F5] p-2 rounded-[4px] border border-[#E3E8E1] shadow-2xs">
+          {/* 1. Left Pinned: Bộ lọc button with tune icon and circular pink badge */}
+          <button
+            onClick={onOpenMobileFilter}
+            className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#EEEEEE] hover:bg-[#E2E2E2] text-[#111111] rounded-[4px] font-bold text-xs cursor-pointer border-0 shadow-2xs transition-colors shrink-0"
+            type="button"
+            aria-label="Mở bộ lọc"
+          >
+            <span className="material-symbols-outlined text-[16px] text-[#01B341]">tune</span>
+            <span>Bộ lọc</span>
+            {activeFiltersCount > 0 && (
               <span className="w-5 h-5 rounded-full bg-[#FC95FD] text-white text-[10.5px] font-extrabold flex items-center justify-center">
-                {activeFiltersCount > 0 ? activeFiltersCount : 3}
+                {activeFiltersCount}
               </span>
-            </button>
+            )}
+          </button>
 
-            {/* Quick Filter Chip 1: VietGAP */}
-            <button
-              onClick={() => onToggleStandard?.('VietGAP')}
-              className={`px-3 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border-0 transition-colors flex items-center gap-1 ${
-                isVietGAPActive
-                  ? 'bg-[#01B341] text-white shadow-2xs'
-                  : 'bg-[#EEEEEE] text-[#111111] hover:bg-[#E2E2E2]'
-              }`}
-              type="button"
-            >
-              <span>VietGAP</span>
-              {isVietGAPActive && <span>✓</span>}
-            </button>
+          {/* 2. Center: Horizontally scrollable safety standard tags */}
+          <div className="flex items-center gap-1.5 overflow-x-auto scrollbar-none whitespace-nowrap flex-1 min-w-0 py-0.5">
+            {standardsToRender.map((std) => {
+              const isActive = selectedStandards?.includes(std.id) ?? false;
+              // Clean short display label if standard has long title
+              const displayLabel =
+                std.id === 'VietGAP'
+                  ? 'VietGAP'
+                  : std.id === 'OCOP'
+                  ? 'Chuẩn OCOP'
+                  : std.id === 'GlobalGAP'
+                  ? 'GlobalGAP'
+                  : std.id === 'Organic'
+                  ? 'Organic'
+                  : std.id === 'ATTP'
+                  ? 'Chuỗi ATTP'
+                  : std.label;
 
-            {/* Quick Filter Chip 2: Chuẩn OCOP */}
-            <button
-              onClick={() => onToggleStandard?.('OCOP')}
-              className={`px-3 py-1.5 rounded-[4px] text-xs font-medium shrink-0 cursor-pointer border-0 transition-colors flex items-center gap-1 ${
-                isOCOPActive
-                  ? 'bg-[#01B341] text-white font-bold shadow-2xs'
-                  : 'bg-[#EEEEEE] text-[#111111] hover:bg-[#E2E2E2]'
-              }`}
-              type="button"
-            >
-              <span>Chuẩn OCOP</span>
-              {isOCOPActive && <span>✓</span>}
-            </button>
+              return (
+                <button
+                  key={std.id}
+                  onClick={() => onToggleStandard?.(std.id)}
+                  className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 transition-all flex items-center gap-1 ${
+                    isActive
+                      ? 'bg-[#01B341] text-white font-bold shadow-2xs'
+                      : 'bg-[#EEEEEE] text-[#111111] hover:bg-[#E2E2E2]'
+                  }`}
+                  type="button"
+                >
+                  <span>{displayLabel}</span>
+                  {isActive && <span className="font-bold">✓</span>}
+                </button>
+              );
+            })}
           </div>
 
-          {/* Right side: Phổ biến ⇅ (Native Select with stylized display) */}
-          <div className="relative shrink-0 flex items-center">
+          {/* 3. Right Pinned: Phổ biến ⇅ (Native Select with stylized display) */}
+          <div className="relative shrink-0 flex items-center pl-1 border-l border-[#E3E8E1]">
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
@@ -104,7 +121,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
               ))}
             </select>
             <div className="flex items-center gap-1 text-xs font-semibold text-[#111111] cursor-pointer hover:text-[#01B341] px-1 py-1">
-              <span>
+              <span className="truncate max-w-[65px]">
                 {sortBy === 'popular'
                   ? 'Phổ biến'
                   : SORT_OPTIONS.find((o) => o.id === sortBy)?.label.split(' ')[0] || 'Phổ biến'}
