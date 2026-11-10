@@ -2,6 +2,7 @@ import React from 'react';
 import promotionsData from '../../../data/promotions.json';
 import { PromoDeal } from '../../../types';
 import { formatVND } from '../../../utils/cart';
+import { TagIcon, CartIcon } from '../../../components/icons';
 
 interface WeeklyDealsProps {
   onAddDealToCart: (dealId: string) => void;
@@ -11,64 +12,75 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
   const deals = promotionsData.featuredDeals as PromoDeal[];
   const campaign = promotionsData.campaign;
 
+  const [hours, minutes, seconds] = (campaign.countdownHours || '02:14:48').split(':');
+
   return (
     <section className="w-full my-4">
-      <div className="bg-white rounded-[4px] border border-[#E3E8E1] p-3 sm:p-4 shadow-xs">
-        {/* Section Header: Pink FLASH SALE badge + Title + Green Timer */}
-        <div className="flex items-center justify-between mb-3.5 sm:mb-4">
-          <div className="flex items-center gap-2">
-            <span className="bg-[#FC95FD] text-white font-extrabold text-[11px] sm:text-xs px-2 py-0.5 rounded-[4px] tracking-wide uppercase shadow-2xs">
-              FLASH SALE
+      <div className="rounded-[4px] p-4 sm:p-6 shadow-lg text-white relative overflow-hidden bg-[#01B341]">
+        {/* Decorative Packaging Graphic Texture */}
+        <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#DAFF01]/15 rounded-[4px] blur-2xl pointer-events-none" />
+        <div className="absolute left-1/3 -bottom-20 w-80 h-80 bg-[#FC95FD]/15 rounded-[4px] blur-3xl pointer-events-none" />
+
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 sm:mb-6 relative z-10 gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3">
+            <div className="px-3 py-1 bg-[#DAFF01] text-[#111111] font-label-lg rounded-[4px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5 text-xs w-fit">
+              <TagIcon className="w-4 h-4 text-[#111111]" />
+              {campaign.title || 'GÓI TRỌN ƯU ĐÃI'}
+            </div>
+            <span className="font-body-md text-xs text-white/90">
+              {campaign.subtitle || 'Flash Sale giảm tới 20% các mặt hàng tươi sống Satra'}
             </span>
-            <h2 className="text-[#111111] font-bold text-base sm:text-lg tracking-tight">
-              {campaign.title || 'Gói Trọn Ưu Đãi'}
-            </h2>
           </div>
 
-          {/* Green Countdown Timer */}
-          <div className="flex items-center gap-1 text-[#01B341] font-bold text-xs sm:text-sm">
-            <svg
-              className="w-4 h-4 text-[#01B341]"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <polyline points="12 7 12 12 15 14" />
-            </svg>
-            <span>{campaign.countdownHours || '02:14:48'}</span>
+          {/* Countdown Timer */}
+          <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-[4px] text-white self-start sm:self-auto">
+            <span className="font-label-sm text-[11px] text-[#DAFF01] uppercase font-bold">
+              Kết thúc sau:
+            </span>
+            <div className="flex items-center gap-1 font-label-md text-xs font-bold">
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
+                {hours || '02'}
+              </span>
+              :
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
+                {minutes || '14'}
+              </span>
+              :
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
+                {seconds || '48'}
+              </span>
+            </div>
           </div>
         </div>
 
         {/* 4 Featured Deals in 2x2 Grid (Mobile) / 4-column (Desktop) */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 relative z-10">
           {deals.map((deal) => {
-            const badgeStyle =
+            const badgeBg =
               deal.tagType === 'discount'
-                ? 'bg-[#FC95FD] text-white'
+                ? 'bg-[#FC95FD] text-[#111111]'
                 : deal.tagType === 'same_price'
                 ? 'bg-[#DAFF01] text-[#111111]'
                 : deal.tagType === 'combo'
                 ? 'bg-[#FF9400] text-white'
-                : 'bg-[#FC95FD] text-white';
+                : 'bg-[#DAFF01] text-[#111111]';
 
             return (
               <div
                 key={deal.id}
-                className="bg-white rounded-[4px] border border-[#E3E8E1] p-2 sm:p-2.5 flex flex-col justify-between hover:shadow-md transition-shadow relative overflow-hidden group"
+                className="bg-white rounded-[4px] text-[#111111] shadow-md hover:shadow-xl transition-all relative overflow-hidden group p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer"
+                onClick={() => onAddDealToCart(deal.id)}
               >
-                {/* Top-left Badge */}
-                <span
-                  className={`absolute top-2 left-2 z-10 text-[10.5px] sm:text-[11px] font-bold px-2 py-0.5 rounded-[4px] shadow-2xs ${badgeStyle}`}
+                {/* Top-right corner tag */}
+                <div
+                  className={`absolute top-0 right-0 font-label-md text-[10px] sm:text-[11px] font-extrabold px-2.5 py-0.5 rounded-bl-[4px] shadow-xs z-10 ${badgeBg}`}
                 >
                   {deal.tag}
-                </span>
+                </div>
 
                 <div>
                   {/* Image Box */}
-                  <div className="w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2 sm:mb-2.5">
+                  <div className="w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2 border border-[#E3E8E1]">
                     <img
                       src={deal.image}
                       alt={deal.title}
@@ -77,7 +89,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                   </div>
 
                   {/* Category */}
-                  <span className="text-[10px] sm:text-[11px] font-bold text-[#01B341] uppercase tracking-wider block mb-0.5 truncate">
+                  <span className="text-[10px] sm:text-[11px] font-bold text-[#006e24] uppercase tracking-wider block mb-0.5 truncate">
                     {deal.category}
                   </span>
 
@@ -86,26 +98,35 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                     {deal.title}
                   </h3>
 
-                  {/* Price Row: Green Sale Price + Strikethrough Original */}
-                  <div className="flex items-baseline gap-1.5 mb-2">
-                    <span className="text-sm sm:text-base font-black text-[#01B341]">
+                  {/* Specification */}
+                  <p className="font-body-sm text-[11px] text-[#555E57] line-clamp-1 mb-2">
+                    {deal.spec}
+                  </p>
+                </div>
+
+                {/* Price and Cart button */}
+                <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1]">
+                  <div className="flex items-baseline gap-1.5">
+                    <span className="font-title-lg text-xs sm:text-sm text-[#FF161F] font-black">
                       {formatVND(deal.price)}
                     </span>
-                    <span className="text-[10px] sm:text-xs text-[#888888] line-through">
+                    <span className="font-body-sm text-[10px] sm:text-[11px] text-[#555E57] line-through">
                       {formatVND(deal.originalPrice)}
                     </span>
                   </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onAddDealToCart(deal.id);
+                    }}
+                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0"
+                    title="Thêm vào giỏ"
+                    type="button"
+                    aria-label={`Thêm ${deal.title} vào giỏ hàng`}
+                  >
+                    <CartIcon className="w-4 h-4 text-white" aria-hidden="true" />
+                  </button>
                 </div>
-
-                {/* Full-width + Thêm button */}
-                <button
-                  onClick={() => onAddDealToCart(deal.id)}
-                  className="w-full bg-[#01B341] hover:bg-[#009636] text-white font-bold py-1.5 rounded-[4px] text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer border-0 shadow-xs"
-                  type="button"
-                  aria-label={`Thêm ${deal.title} vào giỏ hàng`}
-                >
-                  + Thêm
-                </button>
               </div>
             );
           })}
