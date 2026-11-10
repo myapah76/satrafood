@@ -7,10 +7,10 @@ describe('CommitmentBanner Integrity', () => {
     assert.equal(COMMITMENT_ITEMS.length, 4, 'must have 4 commitment items');
 
     const expected = [
-      { id: 'c1', title: 'Giao Nhanh 2h', subtitle: 'Giữ trọn tươi ngon' },
-      { id: 'c2', title: 'VietGAP & OCOP', subtitle: 'Nguồn gốc rõ ràng' },
-      { id: 'c3', title: 'Giá Luôn Bình Ổn', subtitle: 'Tiết kiệm mỗi ngày' },
-      { id: 'c4', title: '180+ Cửa Hàng', subtitle: 'Phủ rộng TP.HCM' },
+      { id: 'c1', title: 'Giao nhanh 2 Giờ', subtitle: 'Nhanh chóng & trọn vị tươi sống' },
+      { id: 'c2', title: 'Chuẩn VietGAP & OCOP', subtitle: '100% truy xuất nguồn gốc an toàn' },
+      { id: 'c3', title: 'Giá Luôn Bình Ổn', subtitle: 'Đồng hành trợ giá cho mọi gia đình' },
+      { id: 'c4', title: '180+ Cửa Hàng Phủ Rộng', subtitle: 'Phục vụ khắp TP.HCM & Cần Thơ' },
     ];
 
     expected.forEach((item, index) => {

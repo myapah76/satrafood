@@ -8,7 +8,7 @@ import { FilterSidebar } from './components/FilterSidebar';
 import { MobileFilterDrawer } from './components/MobileFilterDrawer';
 import { ProductCard } from './components/ProductCard';
 import { SortToolbar } from './components/SortToolbar';
-import { SatraQualityBanner } from './components/SatraQualityBanner';
+import { CommitmentBanner } from './components/CommitmentBanner';
 
 interface CatalogScreenProps {
   initialSubCategory?: string;
@@ -200,8 +200,8 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         </span>
       </nav>
 
-      {/* Satra Quality Commitment Banner - Placed right under breadcrumb as requested */}
-      <SatraQualityBanner />
+      {/* Satra Quality Commitment Banner - Reusing CommitmentBanner for consistent responsive 2x2 grid */}
+      <CommitmentBanner />
 
       {/* Mobile Voucher Banner matching Image 2 */}
       <div className="md:hidden mb-2.5 bg-[#01B341] text-white rounded-[4px] p-2.5 sm:p-3 flex items-center justify-between shadow-xs">

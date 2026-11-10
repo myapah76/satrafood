@@ -10,11 +10,11 @@ export interface CommitmentItem {
 export const COMMITMENT_ITEMS: CommitmentItem[] = [
   {
     id: 'c1',
-    title: 'Giao Nhanh 2h',
-    subtitle: 'Giữ trọn tươi ngon',
+    title: 'Giao nhanh 2 Giờ',
+    subtitle: 'Nhanh chóng & trọn vị tươi sống',
     icon: (
       <svg
-        className="w-6 h-6 text-[#01B341]"
+        className="w-5 h-5 sm:w-6 sm:h-6 text-[#01B341]"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -30,11 +30,11 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
   },
   {
     id: 'c2',
-    title: 'VietGAP & OCOP',
-    subtitle: 'Nguồn gốc rõ ràng',
+    title: 'Chuẩn VietGAP & OCOP',
+    subtitle: '100% truy xuất nguồn gốc an toàn',
     icon: (
       <svg
-        className="w-6 h-6 text-[#01B341]"
+        className="w-5 h-5 sm:w-6 sm:h-6 text-[#01B341]"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -50,10 +50,10 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
   {
     id: 'c3',
     title: 'Giá Luôn Bình Ổn',
-    subtitle: 'Tiết kiệm mỗi ngày',
+    subtitle: 'Đồng hành trợ giá cho mọi gia đình',
     icon: (
       <svg
-        className="w-6 h-6 text-[#01B341]"
+        className="w-5 h-5 sm:w-6 sm:h-6 text-[#01B341]"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -69,11 +69,11 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
   },
   {
     id: 'c4',
-    title: '180+ Cửa Hàng',
-    subtitle: 'Phủ rộng TP.HCM',
+    title: '180+ Cửa Hàng Phủ Rộng',
+    subtitle: 'Phục vụ khắp TP.HCM & Cần Thơ',
     icon: (
       <svg
-        className="w-6 h-6 text-[#01B341]"
+        className="w-5 h-5 sm:w-6 sm:h-6 text-[#01B341]"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -91,25 +91,25 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
 
 export const CommitmentBanner: React.FC = () => {
   return (
-    <div className="w-full mb-4 sm:mb-5">
+    <div className="w-full mb-3.5 sm:mb-5">
       {/* 2x2 Grid (Mobile) / 4-column (Desktop) matching reference design exactly */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5">
         {COMMITMENT_ITEMS.map((item) => (
           <div
             key={item.id}
-            className="bg-white border border-[#E3E8E1] rounded-[8px] p-3 sm:p-4 flex items-center gap-3 sm:gap-3.5 shadow-2xs hover:border-[#01B341] transition-colors"
+            className="bg-white border border-[#E3E8E1] rounded-[6px] sm:rounded-[8px] p-2.5 sm:p-4 flex items-center gap-2.5 sm:gap-3.5 shadow-2xs hover:border-[#01B341] transition-colors"
           >
             {/* Squircle Icon Box */}
-            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-[14px] bg-[#F6F8F5] flex items-center justify-center shrink-0">
+            <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-[10px] sm:rounded-[14px] bg-[#F6F8F5] flex items-center justify-center shrink-0">
               {item.icon}
             </div>
 
             {/* Content Text Stack */}
             <div className="flex flex-col min-w-0">
-              <span className="font-bold text-[13px] sm:text-[15px] text-[#111111] leading-tight truncate">
+              <span className="font-bold text-[11.5px] sm:text-[14px] lg:text-[15px] text-[#111111] leading-tight truncate">
                 {item.title}
               </span>
-              <span className="text-[11px] sm:text-xs text-[#555E57] leading-tight mt-1 truncate">
+              <span className="text-[9.5px] sm:text-xs text-[#555E57] leading-tight mt-0.5 sm:mt-1 truncate">
                 {item.subtitle}
               </span>
             </div>

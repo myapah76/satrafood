@@ -3,6 +3,7 @@ import { CartItem } from '../types';
 import { getSlugByCategory } from '../utils/slug';
 import {
   BoltIcon,
+  BoxIcon,
   CartIcon,
   GiftIcon,
   LocationIcon,
@@ -87,7 +88,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
-                <BoltIcon className="w-5 h-5 text-[#01B341]" />
+                <BoxIcon className="w-5 h-5 text-[#01B341]" />
                 <div className="flex flex-col">
                   <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none">
                     GIAO NHANH 2H
@@ -301,17 +302,15 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="flex md:hidden flex-col bg-white">
         {/* Row 1: Location + Logo (Centered) + Member + Cart */}
         <div className="relative px-3 py-2 flex items-center justify-between gap-2 border-b border-[#E3E8E1] h-12">
-          {/* Mobile Delivery Location */}
+          {/* Mobile Delivery Location - No icon, simple clean TP-HCM */}
           <button
             onClick={onOpenLocation}
-            className="flex items-center gap-1 px-2 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec] shrink-0 z-10"
+            className="flex items-center px-2.5 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec] shrink-0 z-10"
             aria-label="Chọn khu vực giao hàng"
           >
-            <BoltIcon className="w-4 h-4 text-[#01B341]" />
-            <span className="truncate max-w-[70px]">
-              {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
+            <span className="truncate">
+              {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP-HCM'}
             </span>
-            <span className="material-symbols-outlined text-[16px] text-[#555E57] leading-none">expand_more</span>
           </button>
 
           {/* Mobile Center Logo (Strictly Centered) */}
