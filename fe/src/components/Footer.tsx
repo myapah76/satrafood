@@ -1,4 +1,5 @@
 import React from 'react';
+import { BoltIcon, EcoIcon, TagIcon, LocationIcon } from './icons';
 
 interface FooterProps {
   onOpenStoreLocator?: () => void;
@@ -13,7 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
         <div className="max-w-[1240px] mx-auto px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
-              <span className="material-symbols-outlined text-[28px]">schedule</span>
+              <BoltIcon className="w-7 h-7 text-[#01B341]" />
             </div>
             <div>
               <h4 className="font-label-lg text-sm font-bold text-[#111111]">Giao nhanh 2 Giờ</h4>
@@ -23,7 +24,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
 
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
-              <span className="material-symbols-outlined text-[28px]">verified_user</span>
+              <EcoIcon className="w-7 h-7 text-[#01B341]" />
             </div>
             <div>
               <h4 className="font-label-lg text-sm font-bold text-[#111111]">Chuẩn VietGAP &amp; OCOP</h4>
@@ -33,7 +34,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
 
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
-              <span className="material-symbols-outlined text-[28px]">loyalty</span>
+              <TagIcon className="w-7 h-7 text-[#01B341]" />
             </div>
             <div>
               <h4 className="font-label-lg text-sm font-bold text-[#111111]">Giá Luôn Bình Ổn</h4>
@@ -43,7 +44,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
 
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
-              <span className="material-symbols-outlined text-[28px]">storefront</span>
+              <LocationIcon className="w-6 h-6 text-[#01B341]" />
             </div>
             <div>
               <h4 className="font-label-lg text-sm font-bold text-[#111111]">180+ Cửa Hàng Phủ Rộng</h4>
@@ -175,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
             </h4>
             <div className="p-4 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] space-y-2 shadow-sm">
               <div className="flex items-center gap-1.5 text-[#01B341] font-bold text-xs">
-                <span className="material-symbols-outlined text-[18px]">store</span>
+                <LocationIcon className="w-4 h-4 text-[#01B341]" />
                 <span>180+ Cửa hàng tại TP.HCM &amp; Cần Thơ</span>
               </div>
               <p className="font-body-sm text-xs text-[#555E57]">
@@ -196,11 +197,11 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               </p>
               <div className="flex flex-wrap lg:flex-nowrap items-center gap-2">
                 <div className="px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#01B341] font-bold flex items-center gap-1.5 shadow-2xs whitespace-nowrap shrink-0">
-                  <span className="material-symbols-outlined text-[16px] text-[#01B341]">shield</span>
+                  <EcoIcon className="w-4 h-4 text-[#01B341]" />
                   <span>Đã Đăng Ký BCT</span>
                 </div>
                 <div className="px-2.5 py-1.5 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] font-bold flex items-center gap-1.5 shadow-2xs whitespace-nowrap shrink-0">
-                  <span className="material-symbols-outlined text-[16px] text-[#01B341]">eco</span>
+                  <EcoIcon className="w-4 h-4 text-[#01B341]" />
                   <span>ATVSTP TP.HCM</span>
                 </div>
               </div>

@@ -1,6 +1,17 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { CartItem } from '../types';
 import { getSlugByCategory } from '../utils/slug';
+import {
+  BoltIcon,
+  CartIcon,
+  DownIcon,
+  GiftIcon,
+  LocationIcon,
+  RightIcon,
+  SearchIcon,
+  UpIcon,
+  UserIcon,
+} from './icons';
 
 interface HeaderProps {
   currentView: 'home' | 'category';
@@ -78,9 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
-                <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-                  two_wheeler
-                </span>
+                <BoltIcon className="w-5 h-5 text-[#01B341]" />
                 <div className="flex flex-col">
                   <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none">
                     GIAO NHANH 2H
@@ -89,16 +98,12 @@ export const Header: React.FC<HeaderProps> = ({
                     {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
                   </span>
                 </div>
-                <span className="material-symbols-outlined text-[#555E57] text-[16px] ml-0.5">
-                  expand_more
-                </span>
+                <DownIcon className="w-3.5 h-3.5 text-[#555E57] ml-0.5" />
               </button>
 
               {/* Search Bar Box */}
               <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-60 lg:w-68 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
-                <span className="material-symbols-outlined text-[#555E57] text-[18px] mr-1.5 pointer-events-none">
-                  search
-                </span>
+                <SearchIcon className="w-4 h-4 text-[#555E57] mr-1.5 pointer-events-none" />
                 <input
                   className="w-full bg-transparent font-body-md text-xs text-[#111111] placeholder:text-[#555E57] outline-none"
                   placeholder="Tìm rau củ, thịt tươi..."
@@ -155,9 +160,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 aria-label="Tích điểm thành viên Satra Rewards"
               >
-                <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-                  redeem
-                </span>
+                <GiftIcon className="w-5 h-5 text-[#01B341]" />
                 <div className="flex flex-col text-left">
                   <span className="font-label-sm text-[9.5px] text-[#555E57] leading-none">
                     Tích điểm 2%
@@ -175,9 +178,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 aria-label="Giỏ hàng Satrafoods"
               >
-                <span className="material-symbols-outlined text-[#01B341] text-[22px]">
-                  shopping_basket
-                </span>
+                <CartIcon className="w-5 h-5 text-[#01B341]" />
                 <div className="flex flex-col text-left">
                   <span className="font-label-sm text-[9.5px] text-[#555E57] leading-none">
                     Giỏ hàng
@@ -199,7 +200,7 @@ export const Header: React.FC<HeaderProps> = ({
                 type="button"
                 aria-label="Tài khoản khách hàng"
               >
-                <span className="material-symbols-outlined text-[20px]">person</span>
+                <UserIcon className="w-5 h-5 text-white" />
               </button>
             </div>
           </div>
@@ -226,9 +227,11 @@ export const Header: React.FC<HeaderProps> = ({
                 >
                   <span className="material-symbols-outlined text-[18px]">menu</span>
                   <span className="whitespace-nowrap font-bold">Danh mục sản phẩm</span>
-                  <span className="material-symbols-outlined text-[16px] transition-transform duration-200">
-                    {isCategoryMenuOpen ? 'expand_less' : 'expand_more'}
-                  </span>
+                  {isCategoryMenuOpen ? (
+                    <UpIcon className="w-3.5 h-3.5 text-white transition-transform duration-200" />
+                  ) : (
+                    <DownIcon className="w-3.5 h-3.5 text-white transition-transform duration-200" />
+                  )}
                 </button>
 
                 {/* Sổ ra danh mục con tươi sống */}
@@ -257,9 +260,7 @@ export const Header: React.FC<HeaderProps> = ({
                             </span>
                             <span className="truncate">{cat.label}</span>
                           </div>
-                          <span className="material-symbols-outlined text-[16px] text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0">
-                            chevron_right
-                          </span>
+                          <RightIcon className="w-3.5 h-3.5 text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0" />
                         </button>
                       ))}
                     </div>
@@ -297,7 +298,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="flex items-center gap-1.5 text-[#111111] hover:text-[#01B341] cursor-pointer transition-colors bg-transparent border-0 text-xs font-semibold shrink-0 rounded-[4px] px-2 py-1"
               type="button"
             >
-              <span className="material-symbols-outlined text-[16px] text-[#01B341]">pin_drop</span>
+              <LocationIcon className="w-4 h-4 text-[#01B341]" />
               <span>Hệ thống 180+ Cửa hàng</span>
             </button>
           </div>
@@ -314,11 +315,11 @@ export const Header: React.FC<HeaderProps> = ({
             className="flex items-center gap-1 px-2 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
             aria-label="Chọn khu vực giao hàng"
           >
-            <span className="material-symbols-outlined text-[15px]">two_wheeler</span>
+            <BoltIcon className="w-4 h-4 text-[#01B341]" />
             <span className="truncate max-w-[70px]">
               {selectedCity.includes('Cần Thơ') ? 'Cần Thơ' : 'TP.HCM'}
             </span>
-            <span className="material-symbols-outlined text-[14px] text-[#555E57]">expand_more</span>
+            <DownIcon className="w-3.5 h-3.5 text-[#555E57]" />
           </button>
 
           {/* Mobile Center Logo */}
@@ -341,7 +342,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="w-7 h-7 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
               aria-label="Tài khoản Satra Rewards"
             >
-              <span className="material-symbols-outlined text-[16px]">redeem</span>
+              <GiftIcon className="w-4 h-4 text-[#006e24]" />
             </button>
 
             <button
@@ -349,7 +350,7 @@ export const Header: React.FC<HeaderProps> = ({
               className="relative w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center cursor-pointer hover:bg-[#006e24]"
               aria-label="Giỏ hàng"
             >
-              <span className="material-symbols-outlined text-[16px]">shopping_basket</span>
+              <CartIcon className="w-4 h-4 text-white" />
               {totalCount > 0 && (
                 <span className="absolute -top-1 -right-1 min-w-[16px] h-4 px-0.5 bg-[#DAFF01] text-[#111111] text-[9px] rounded-[4px] flex items-center justify-center font-black border border-white">
                   {totalCount}
@@ -362,9 +363,7 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Row 2: Mobile Search input */}
         <div className="px-3 py-2 bg-[#F6F8F5] border-b border-[#E3E8E1]">
           <div className="relative flex items-center">
-            <span className="material-symbols-outlined absolute left-2.5 text-[#6d7b6a] text-[18px] pointer-events-none">
-              search
-            </span>
+            <SearchIcon className="w-4 h-4 text-[#6d7b6a] absolute left-2.5 pointer-events-none" />
             <input
               className="w-full h-8 pl-8 pr-8 bg-white border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:border-[#01B341] transition-all"
               placeholder="Tìm thịt heo VietGAP, cá tươi, rau củ quả..."

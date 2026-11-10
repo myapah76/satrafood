@@ -1,5 +1,6 @@
 import React from 'react';
 import { CartItem } from '../types';
+import { HomeIcon, BoxIcon, TagIcon, LocationIcon, CartIcon } from './icons';
 
 interface MobileBottomNavProps {
   currentView: 'home' | 'category';
@@ -35,9 +36,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           type="button"
           aria-label="Trang chủ"
         >
-          <span className="material-symbols-outlined text-[22px]">
-            home
-          </span>
+          <HomeIcon className="w-5 h-5 mb-0.5" />
           <span className="text-[10px] tracking-tight mt-0.5 leading-none">Trang chủ</span>
         </button>
 
@@ -52,7 +51,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           type="button"
           aria-label="Danh mục sản phẩm"
         >
-          <span className="material-symbols-outlined text-[22px]">category</span>
+          <BoxIcon className="w-5 h-5 mb-0.5" />
           <span className="text-[10px] tracking-tight mt-0.5 leading-none">Danh mục</span>
         </button>
 
@@ -68,8 +67,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           type="button"
           aria-label="Khuyến mãi"
         >
-          <div className="relative">
-            <span className="material-symbols-outlined text-[22px] text-[#FF161F]">local_fire_department</span>
+          <div className="relative flex items-center justify-center">
+            <TagIcon className="w-5 h-5 text-[#FF161F] mb-0.5" />
             <span className="absolute -top-1 -right-2 px-1 py-0.5 bg-[#FC95FD] text-[#111111] text-[8px] font-black rounded-[4px] leading-tight">
               HOT
             </span>
@@ -93,7 +92,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           type="button"
           aria-label="Cửa hàng"
         >
-          <span className="material-symbols-outlined text-[22px]">storefront</span>
+          <LocationIcon className="w-5 h-5 mb-0.5" />
           <span className="text-[10px] tracking-tight mt-0.5 leading-none">Cửa hàng</span>
         </button>
 
@@ -104,8 +103,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           type="button"
           aria-label="Giỏ hàng"
         >
-          <div className="relative">
-            <span className="material-symbols-outlined text-[22px]">shopping_bag</span>
+          <div className="relative flex items-center justify-center">
+            <CartIcon className="w-5 h-5 mb-0.5" />
             {totalCount > 0 && (
               <span className="absolute -top-1 -right-2 min-w-4 h-4 px-1 bg-[#DAFF01] text-[#111111] text-[10px] font-bold rounded-[4px] flex items-center justify-center border border-white shadow-xs">
                 {totalCount}
