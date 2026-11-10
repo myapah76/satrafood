@@ -76,10 +76,10 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="hidden md:block">
         {/* ROW 1: Top Bar: Left (Delivery + Search) | Center (Logo) | Right (Rewards + Cart + Avatar) */}
         <div className="h-[68px] bg-[#FFFFFF] border-b border-[#E3E8E1]/60">
-          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between gap-4">
+          <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full relative flex items-center justify-between gap-4">
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
-            <div className="flex items-center gap-2.5 shrink-0">
+            <div className="flex items-center gap-2.5 shrink-0 z-10">
               {/* Delivery Location Selector Box */}
               <button
                 onClick={onOpenLocation}
@@ -100,7 +100,7 @@ export const Header: React.FC<HeaderProps> = ({
               </button>
 
               {/* Search Bar Box */}
-              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-60 lg:w-68 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
+              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 py-1.5 w-44 md:w-48 lg:w-64 xl:w-72 focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs">
                 <SearchIcon className="w-4 h-4 text-[#555E57] mr-1.5 pointer-events-none" />
                 <input
                   className="w-full bg-transparent font-body-md text-xs text-[#111111] placeholder:text-[#555E57] outline-none"
@@ -134,8 +134,8 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
             </div>
 
-            {/* 2. Center: SATRAFOODS Brand Name / Stencil Logo (Prominently Centered with generous breathing space) */}
-            <div className="flex-1 flex items-center justify-center shrink-0 px-8 lg:px-14 xl:px-20">
+            {/* 2. Center: SATRAFOODS Brand Name / Stencil Logo (Strictly Centered) */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-auto">
               <button
                 onClick={() => onNavigate('home')}
                 className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-1 rounded-[4px] hover:opacity-95 transition-opacity"
@@ -150,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
             </div>
 
             {/* 3. Right Group: Satra Rewards Box + Cart Box + Avatar Button */}
-            <div className="flex items-center justify-end gap-2.5 shrink-0">
+            <div className="flex items-center justify-end gap-2.5 shrink-0 ml-auto z-10">
               {/* Satra Rewards Box */}
               <button
                 onClick={onOpenMembership}
@@ -300,11 +300,11 @@ export const Header: React.FC<HeaderProps> = ({
       {/* MOBILE HEADER (md:hidden) */}
       <div className="flex md:hidden flex-col bg-white">
         {/* Row 1: Location + Logo (Centered) + Member + Cart */}
-        <div className="px-3 py-2 flex items-center justify-between gap-2 border-b border-[#E3E8E1]">
+        <div className="relative px-3 py-2 flex items-center justify-between gap-2 border-b border-[#E3E8E1] h-12">
           {/* Mobile Delivery Location */}
           <button
             onClick={onOpenLocation}
-            className="flex items-center gap-1 px-2 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec]"
+            className="flex items-center gap-1 px-2 py-1 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-[11px] font-bold text-[#006e24] cursor-pointer hover:bg-[#f1edec] shrink-0 z-10"
             aria-label="Chọn khu vực giao hàng"
           >
             <BoltIcon className="w-4 h-4 text-[#01B341]" />
@@ -314,21 +314,23 @@ export const Header: React.FC<HeaderProps> = ({
             <span className="material-symbols-outlined text-[16px] text-[#555E57] leading-none">expand_more</span>
           </button>
 
-          {/* Mobile Center Logo */}
-          <button
-            onClick={() => onNavigate('home')}
-            className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-0"
-            aria-label="Satrafoods Trang Chủ"
-          >
-            <img
-              alt="SATRAFOODS"
-              className="h-7 w-auto object-contain"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
-            />
-          </button>
+          {/* Mobile Center Logo (Strictly Centered) */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-auto">
+            <button
+              onClick={() => onNavigate('home')}
+              className="flex items-center justify-center cursor-pointer bg-transparent border-0 p-0"
+              aria-label="Satrafoods Trang Chủ"
+            >
+              <img
+                alt="SATRAFOODS"
+                className="h-7 w-auto object-contain"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHxkGMdUJhI3u0eym5gViRsz7AvScSba5gFHF5r-o767qlFJSlORJ1uHAVHOye6JVzYUHRvM_DW9BQxTjDnRZ2xgpKWiPOQ4zhiQ5npwRjMXC5a82VE1iX7oEk1zAKrR2uVoaq_qW6M00QvSF2l-dH_W4rR5icSXz6QCiFLLtIZpShl93Q1QzYFPnvrjBlnXEqFYI3Jp9Pxl4DiRlzwdNSZl2XkwpNCu6xDw99IyHu1DFq4cL6vnG4vQ"
+              />
+            </button>
+          </div>
 
           {/* Right Mobile Actions */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 shrink-0 ml-auto z-10">
             <button
               onClick={onOpenMembership}
               className="w-7 h-7 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#006e24] cursor-pointer hover:bg-[#f1edec]"

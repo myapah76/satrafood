@@ -177,7 +177,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     selectedStandards.length + (selectedPriceRange !== 'all' ? 1 : 0);
 
   return (
-    <div className="w-full pt-24 md:pt-32 lg:pt-36 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-12 md:pb-14">
+    <div className="w-full pt-24 md:pt-32 lg:pt-36 max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-3 sm:pb-4">
       {/* Breadcrumb Navigation: Hidden on mobile (< md) */}
       <nav aria-label="Breadcrumb" className="hidden md:flex items-center gap-1.5 text-xs text-[#555E57] my-3">
         <button

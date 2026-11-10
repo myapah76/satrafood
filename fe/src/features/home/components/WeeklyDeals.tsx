@@ -104,13 +104,13 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                   </p>
                 </div>
 
-                {/* Price and Cart button */}
-                <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1]">
-                  <div className="flex items-baseline gap-1.5">
-                    <span className="font-title-lg text-xs sm:text-sm text-[#FF161F] font-black">
+                {/* Price and Cart button - Mobile stacked & compact to prevent awkward line breaks */}
+                <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1] gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5 min-w-0 pr-0.5">
+                    <span className="font-title-lg text-[11px] sm:text-sm text-[#FF161F] font-black leading-tight whitespace-nowrap">
                       {formatVND(deal.price)}
                     </span>
-                    <span className="font-body-sm text-[10px] sm:text-[11px] text-[#555E57] line-through">
+                    <span className="font-body-sm text-[9px] sm:text-[11px] text-[#717A73] line-through leading-tight whitespace-nowrap">
                       {formatVND(deal.originalPrice)}
                     </span>
                   </div>
@@ -119,12 +119,12 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                       e.stopPropagation();
                       onAddDealToCart(deal.id);
                     }}
-                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0"
+                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0 shrink-0"
                     title="Thêm vào giỏ"
                     type="button"
                     aria-label={`Thêm ${deal.title} vào giỏ hàng`}
                   >
-                    <CartIcon className="w-4 h-4 text-white" aria-hidden="true" />
+                    <CartIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </div>

@@ -36,7 +36,7 @@ export const StoreLocatorSection: React.FC<StoreLocatorSectionProps> = ({ onShow
 
   return (
     <section
-      className="w-full bg-white rounded-[4px] p-4 sm:p-8 shadow-sm mb-4 border border-[#E3E8E1]"
+      className="w-full bg-white rounded-[4px] p-4 sm:p-8 shadow-sm mb-1 sm:mb-2 border border-[#E3E8E1]"
       id="store-locator"
     >
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center">
