@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { CartItem } from '../types';
 import { getSlugByCategory } from '../utils/slug';
 
@@ -26,18 +26,33 @@ export const Header: React.FC<HeaderProps> = ({
   onSearchChange,
 }) => {
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
+  const categoryMenuRef = useRef<HTMLDivElement>(null);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
+  // Close dropdown menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        categoryMenuRef.current &&
+        !categoryMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsCategoryMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const subCategories = [
-    { label: 'Tất cả thực phẩm tươi sống', id: 'all' },
-    { label: 'Thịt heo thảo mộc & VietGAP', id: 'Thịt heo thảo mộc & VietGAP' },
-    { label: 'Bò Úc & Bò ta nhập khẩu', id: 'Bò Úc & Bò ta nhập khẩu' },
-    { label: 'Gia cầm tươi chuẩn CP', id: 'Gia cầm tươi chuẩn CP' },
-    { label: 'Cá & Hải sản tươi sống', id: 'Cá & Hải sản tươi sống' },
-    { label: 'Rau ăn lá VietGAP', id: 'Rau ăn lá VietGAP' },
-    { label: 'Củ quả sạch Đà Lạt', id: 'Củ quả sạch Đà Lạt' },
-    { label: 'Trái cây nhiệt đới Nam Bộ', id: 'Trái cây nhiệt đới Nam Bộ' },
-    { label: 'Món sơ chế nấu ngay', id: 'Món sơ chế nấu ngay' },
+    { label: 'Tất cả thực phẩm tươi sống', id: 'all', icon: 'storefront' },
+    { label: 'Thịt heo thảo mộc & VietGAP', id: 'Thịt heo thảo mộc & VietGAP', icon: 'nutrition' },
+    { label: 'Bò Úc & Bò ta nhập khẩu', id: 'Bò Úc & Bò ta nhập khẩu', icon: 'set_meal' },
+    { label: 'Gia cầm tươi chuẩn CP', id: 'Gia cầm tươi chuẩn CP', icon: 'egg' },
+    { label: 'Cá & Hải sản tươi sống', id: 'Cá & Hải sản tươi sống', icon: 'phishing' },
+    { label: 'Rau ăn lá VietGAP', id: 'Rau ăn lá VietGAP', icon: 'eco' },
+    { label: 'Củ quả sạch Đà Lạt', id: 'Củ quả sạch Đà Lạt', icon: 'agriculture' },
+    { label: 'Trái cây nhiệt đới Nam Bộ', id: 'Trái cây nhiệt đới Nam Bộ', icon: 'yard' },
+    { label: 'Món sơ chế nấu ngay', id: 'Món sơ chế nấu ngay', icon: 'skillet' },
   ];
 
   const handleSearchSubmit = () => {
@@ -48,87 +63,78 @@ export const Header: React.FC<HeaderProps> = ({
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#FFFFFF] shadow-[0_4px_16px_rgba(17,17,17,0.08)] border-b border-[#E3E8E1]">
-      {/* Top Bar - Desktop: Left (Categories & Quick Links) | Center (Logo) | Right (Delivery & Search & Actions) */}
+      {/* Top Bar - Desktop: Left (Danh mục sản phẩm + HOT khuyến mãi) | Center (Logo) | Right (Delivery & Search & Actions) */}
       <div className="hidden md:block h-20 bg-[#FFFFFF]">
         <div className="max-w-[1240px] mx-auto px-4 lg:px-8 h-full flex items-center justify-between gap-4">
           
-          {/* 1. LEFT: Product Categories Navigation Dropdown & Quick Links */}
+          {/* 1. LEFT: Chỉ hiển thị "Danh mục sản phẩm" (sổ ra danh mục con) và "HOT khuyến mãi" */}
           <div className="flex items-center gap-2 lg:gap-3 shrink-0">
-            {/* Category Dropdown Button */}
-            <div className="relative">
+            {/* Category Dropdown Button (Sổ ra được danh mục con) */}
+            <div
+              ref={categoryMenuRef}
+              className="relative"
+              onMouseEnter={() => setIsCategoryMenuOpen(true)}
+              onMouseLeave={() => setIsCategoryMenuOpen(false)}
+            >
               <button
-                onClick={() => setIsCategoryMenuOpen(!isCategoryMenuOpen)}
-                className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
+                onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
+                className="flex items-center gap-1.5 bg-[#01B341] text-white px-3.5 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
                 type="button"
                 aria-expanded={isCategoryMenuOpen}
                 aria-label="Danh mục sản phẩm"
               >
                 <span className="material-symbols-outlined text-[18px]">menu</span>
                 <span className="whitespace-nowrap font-bold">Danh mục sản phẩm</span>
-                <span className="material-symbols-outlined text-[16px]">
+                <span className="material-symbols-outlined text-[16px] transition-transform duration-200">
                   {isCategoryMenuOpen ? 'expand_less' : 'expand_more'}
                 </span>
               </button>
 
+              {/* Sổ ra danh mục con tươi sống */}
               {isCategoryMenuOpen && (
                 <div
-                  className="absolute left-0 top-full mt-1.5 w-64 bg-white border border-[#E3E8E1] rounded-[4px] shadow-xl py-2 z-50 text-left animate-in fade-in slide-in-from-top-1 duration-150"
-                  onMouseLeave={() => setIsCategoryMenuOpen(false)}
+                  className="absolute left-0 top-full pt-1.5 w-72 z-50 animate-in fade-in slide-in-from-top-1 duration-150"
                 >
-                  <div className="px-3 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1">
-                    Phân ngành hàng tươi sống
-                  </div>
-                  {subCategories.map((cat) => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setIsCategoryMenuOpen(false);
-                        onNavigate('category', cat.id === 'all' ? undefined : cat.id);
-                      }}
-                      data-slug={getSlugByCategory(cat.id === 'all' ? undefined : cat.id)}
-                      className="w-full px-3.5 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px]"
-                    >
-                      <span>{cat.label}</span>
-                      <span className="material-symbols-outlined text-[16px] text-[#555E57]">
-                        chevron_right
+                  <div className="bg-white border border-[#E3E8E1] rounded-[4px] shadow-2xl py-2 text-left">
+                    <div className="px-3.5 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1 flex items-center justify-between">
+                      <span>Phân ngành thực phẩm tươi sống</span>
+                      <span className="text-[10px] bg-[#DAFF01] text-[#111111] px-1.5 py-0.5 rounded-[4px] font-black">
+                        VietGAP
                       </span>
-                    </button>
-                  ))}
+                    </div>
+                    {subCategories.map((cat) => (
+                      <button
+                        key={cat.id}
+                        onClick={() => {
+                          setIsCategoryMenuOpen(false);
+                          onNavigate('category', cat.id === 'all' ? undefined : cat.id);
+                        }}
+                        data-slug={getSlugByCategory(cat.id === 'all' ? undefined : cat.id)}
+                        className="w-full px-3.5 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center justify-between transition-colors cursor-pointer border-0 bg-transparent rounded-[4px] group"
+                      >
+                        <div className="flex items-center gap-2.5 min-w-0">
+                          <span className="material-symbols-outlined text-[18px] text-[#01B341] shrink-0 group-hover:scale-110 transition-transform">
+                            {cat.icon}
+                          </span>
+                          <span className="truncate">{cat.label}</span>
+                        </div>
+                        <span className="material-symbols-outlined text-[16px] text-[#555E57] group-hover:text-[#01B341] group-hover:translate-x-0.5 transition-all shrink-0">
+                          chevron_right
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
 
-            {/* Quick Link: Home */}
-            <button
-              onClick={() => onNavigate('home')}
-              className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 whitespace-nowrap ${
-                currentView === 'home'
-                  ? 'text-[#01B341] bg-[#F6F8F5] font-bold'
-                  : 'text-[#111111] hover:text-[#01B341]'
-              }`}
-            >
-              Trang chủ
-            </button>
-
-            {/* Quick Link: Category */}
-            <button
-              onClick={() => onNavigate('category')}
-              className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold transition-colors cursor-pointer bg-transparent border-0 whitespace-nowrap ${
-                currentView === 'category'
-                  ? 'text-[#01B341] bg-[#F6F8F5] font-bold'
-                  : 'text-[#111111] hover:text-[#01B341]'
-              }`}
-            >
-              Thực phẩm tươi sống
-            </button>
-
             {/* HOT Promo Badge / Button (RGB: 252 149 253 | CMYK: 0 41 0 1 | Hex: #FC95FD) */}
             <button
               onClick={() => onNavigate('category', 'Khuyến mãi hot')}
-              className="flex items-center gap-1 bg-[#FC95FD] text-[#111111] hover:opacity-90 px-2.5 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 whitespace-nowrap shadow-xs"
+              className="flex items-center gap-1.5 bg-[#FC95FD] text-[#111111] hover:opacity-90 px-3 py-2 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 whitespace-nowrap shadow-xs"
               aria-label="Khuyến mãi hot"
             >
-              <span className="material-symbols-outlined text-[15px] text-[#111111]">
+              <span className="material-symbols-outlined text-[16px] text-[#111111]">
                 local_fire_department
               </span>
               <span>HOT khuyến mãi</span>
@@ -402,27 +408,6 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Row 3: Horizontal scrollable category links with 4px corner radius */}
         <div className="px-3 py-1.5 flex items-center gap-1.5 overflow-x-auto whitespace-nowrap bg-white text-xs scrollbar-none">
-          <button
-            onClick={() => onNavigate('home')}
-            className={`px-2.5 py-1 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
-              currentView === 'home'
-                ? 'bg-[#01B341] text-white'
-                : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'
-            }`}
-          >
-            Trang chủ
-          </button>
-          <button
-            onClick={() => onNavigate('category')}
-            className={`px-2.5 py-1 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
-              currentView === 'category'
-                ? 'bg-[#01B341] text-white'
-                : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'
-            }`}
-          >
-            Thực phẩm tươi sống
-          </button>
-          
           {/* Mobile HOT Promo chip using #FC95FD and vector icon local_fire_department */}
           <button
             onClick={() => onNavigate('category', 'Khuyến mãi hot')}
@@ -434,10 +419,10 @@ export const Header: React.FC<HeaderProps> = ({
             <span>Ưu đãi HOT</span>
           </button>
 
-          {subCategories.slice(1, 6).map((cat) => (
+          {subCategories.map((cat) => (
             <button
               key={cat.id}
-              onClick={() => onNavigate('category', cat.id)}
+              onClick={() => onNavigate('category', cat.id === 'all' ? undefined : cat.id)}
               className="px-2 py-1 rounded-[4px] text-xs font-medium shrink-0 cursor-pointer border-0 bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]"
             >
               {cat.label.replace(' & VietGAP', '').replace(' tươi sống', '')}

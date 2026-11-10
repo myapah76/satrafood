@@ -174,21 +174,11 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
       {/* Mini Banner Category Assurance */}
       <CommitmentBanner />
 
-      {/* Mobile Toolbar & Filter Triggers */}
-      <SortToolbar
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        viewMode={viewMode}
-        onViewModeChange={setViewMode}
-        subCategories={SUB_CATEGORIES}
-        selectedSubCategory={selectedSubCategory}
-        onSelectSubCategory={handleSelectSubCategory}
-        onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
-        activeFiltersCount={activeFiltersCount}
-      />
-
-      {/* 2-Column Catalog Layout */}
-      <div className="grid grid-cols-12 gap-6 items-start">
+      {/* 2-Column Catalog Layout: 
+          - Cột trái: Bộ lọc sản phẩm (FilterSidebar)
+          - Cột phải: Div món (Row trên là thanh lọc "sắp xếp theo", Row dưới là danh sách món)
+      */}
+      <div className="grid grid-cols-12 gap-6 items-start mt-3">
         {/* Left Column: Filter Sidebar */}
         <FilterSidebar
           subCategories={SUB_CATEGORIES}
@@ -207,8 +197,21 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
           onCopyVoucher={handleCopyVoucher}
         />
 
-        {/* Right Column: Catalog Grid */}
+        {/* Right Column: Div Món (Bao gồm thanh lọc Sắp xếp theo ở trên món + Grid các món ăn bên dưới) */}
         <section className="col-span-12 lg:col-span-9 space-y-4">
+          {/* Row 1 (ở trên món): Thanh lọc "Sắp xếp theo" & "Chế độ xem" */}
+          <SortToolbar
+            sortBy={sortBy}
+            onSortChange={setSortBy}
+            viewMode={viewMode}
+            onViewModeChange={setViewMode}
+            subCategories={SUB_CATEGORIES}
+            selectedSubCategory={selectedSubCategory}
+            onSelectSubCategory={handleSelectSubCategory}
+            onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
+            activeFiltersCount={activeFiltersCount}
+          />
+
           {/* Search Result Indicator if search query active */}
           {searchQuery && (
             <div className="p-3 bg-[#F6F8F5] rounded-[4px] border border-[#E3E8E1] text-xs flex items-center justify-between">
@@ -218,7 +221,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
             </div>
           )}
 
-          {/* Product Cards Container */}
+          {/* Row 2 (dưới thanh sắp xếp): Danh sách món ăn / thực phẩm tươi sống */}
           <div
             className={
               viewMode === 'grid'
@@ -238,7 +241,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
             ))}
           </div>
 
-          {/* Pagination */}
+          {/* Row 3: Pagination */}
           <div className="bg-white rounded-[4px] border border-[#E3E8E1] p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs mt-6 text-xs">
             <p className="font-body-sm text-[#555E57]">
               Đang xem 1 - {filteredAndSortedProducts.length} trên tổng số 156 mặt hàng tươi sống
