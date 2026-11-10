@@ -210,50 +210,38 @@ export type IconName =
   | 'right'
   | 'tag';
 
+export const ICON_REGISTRY: Record<IconName, React.FC<IconProps>> = {
+  bolt: BoltIcon,
+  box: BoxIcon,
+  cart: CartIcon,
+  face: FaceIcon,
+  globe: GlobeIcon,
+  left: LeftIcon,
+  up: UpIcon,
+  down: DownIcon,
+  heart: HeartIcon,
+  home: HomeIcon,
+  letter: LetterIcon,
+  location: LocationIcon,
+  search: SearchIcon,
+  user: UserIcon,
+  eco: EcoIcon,
+  phone: PhoneIcon,
+  gift: GiftIcon,
+  right: RightIcon,
+  tag: TagIcon,
+};
+
+// Friendly aliases matching original filenames
+export const MagnifyGlassIcon = SearchIcon;
+export const PersonIcon = UserIcon;
+export const ParkIcon = EcoIcon;
+export const PresentIcon = GiftIcon;
+
 export const AppIcon: React.FC<IconProps & { name: IconName }> = ({
   name,
   ...props
 }) => {
-  switch (name) {
-    case 'bolt':
-      return <BoltIcon {...props} />;
-    case 'box':
-      return <BoxIcon {...props} />;
-    case 'cart':
-      return <CartIcon {...props} />;
-    case 'face':
-      return <FaceIcon {...props} />;
-    case 'globe':
-      return <GlobeIcon {...props} />;
-    case 'left':
-      return <LeftIcon {...props} />;
-    case 'up':
-      return <UpIcon {...props} />;
-    case 'down':
-      return <DownIcon {...props} />;
-    case 'heart':
-      return <HeartIcon {...props} />;
-    case 'home':
-      return <HomeIcon {...props} />;
-    case 'letter':
-      return <LetterIcon {...props} />;
-    case 'location':
-      return <LocationIcon {...props} />;
-    case 'search':
-      return <SearchIcon {...props} />;
-    case 'user':
-      return <UserIcon {...props} />;
-    case 'eco':
-      return <EcoIcon {...props} />;
-    case 'phone':
-      return <PhoneIcon {...props} />;
-    case 'gift':
-      return <GiftIcon {...props} />;
-    case 'right':
-      return <RightIcon {...props} />;
-    case 'tag':
-      return <TagIcon {...props} />;
-    default:
-      return null;
-  }
+  const Component = ICON_REGISTRY[name];
+  return Component ? <Component {...props} /> : null;
 };
