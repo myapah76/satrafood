@@ -157,3 +157,9 @@
 .font-headline-md { font-size: 24px; line-height: 32px; font-weight: 700; letter-spacing: -0.01em; }
 .font-headline-lg { font-size: 32px; line-height: 40px; font-weight: 700; letter-spacing: -0.015em; }
 .font-headline-xl { font-size: 44px; line-height: 52px; font-weight: 800; letter-spacing: -0.02em; }
+
+/* Global styling for pink accent elements (#FC95FD) */
+[class*="bg-[#FC95FD]"]:not([class*="bg-[#FC95FD]/"]) {
+  color: #24102E;
+  letter-spacing: 1px;
+}

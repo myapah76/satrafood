@@ -36,3 +36,4 @@ export const SatraQualityBanner: React.FC = () => {
     </div>
   );
 };
+

@@ -153,10 +153,10 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
           {/* HOT Promo Button: Just HOT on mobile as requested ("thành HOT thui bỏ khuyến mãi") */}
           <button
             onClick={() => onSelectSubCategory('Khuyến mãi hot')}
-            className={`h-8 px-3.5 rounded-[4px] text-xs font-black transition-all cursor-pointer border flex items-center justify-center shrink-0 shadow-2xs ${
+            className={`h-8 px-3.5 rounded-[4px] text-xs font-black transition-all cursor-pointer border flex items-center justify-center shrink-0 shadow-2xs tracking-[1px] ${
               selectedSubCategory === 'Khuyến mãi hot'
-                ? 'bg-[#FC95FD] text-white border-[#01B341] ring-2 ring-[#01B341]'
-                : 'bg-[#FC95FD] text-white border-transparent hover:opacity-90 active:scale-95'
+                ? 'bg-[#FC95FD] text-[#24102E] border-[#01B341] ring-2 ring-[#01B341]'
+                : 'bg-[#FC95FD] text-[#24102E] border-transparent hover:opacity-90 active:scale-95'
             }`}
             aria-label="Khuyến mãi HOT"
           >
@@ -176,7 +176,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             <span className="material-symbols-outlined text-[16px] text-[#01B341]">tune</span>
             <span>Bộ lọc</span>
             {activeFiltersCount > 0 && (
-              <span className="w-5 h-5 rounded-full bg-[#FC95FD] text-white text-[10.5px] font-extrabold flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-[#FC95FD] text-[#24102E] text-[10.5px] font-extrabold flex items-center justify-center tracking-[1px]">
                 {activeFiltersCount}
               </span>
             )}

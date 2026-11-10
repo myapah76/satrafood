@@ -69,7 +69,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
         >
           <div className="relative flex items-center justify-center">
             <TagIcon className="w-5 h-5 text-[#FF161F] mb-0.5" />
-            <span className="absolute -top-1 -right-2 px-1 py-0.5 bg-[#FC95FD] text-[#24102E] text-[8px] font-black rounded-[4px] leading-tight">
+            <span className="absolute -top-1 -right-2 px-1 py-0.5 bg-[#FC95FD] text-[#24102E] text-[8px] font-black rounded-[4px] leading-tight tracking-[1px]">
               HOT
             </span>
           </div>

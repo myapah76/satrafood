@@ -312,7 +312,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(1)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 1
-                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
+                    ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] shadow-xs font-black tracking-[1px]'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -322,7 +322,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(2)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 2
-                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
+                    ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] shadow-xs font-black tracking-[1px]'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -332,7 +332,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(3)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 3
-                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] shadow-xs font-black'
+                    ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] shadow-xs font-black tracking-[1px]'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >
@@ -343,7 +343,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 onClick={() => setCurrentPage(10)}
                 className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 10
-                    ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] font-black'
+                    ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] font-black tracking-[1px]'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
                 }`}
               >

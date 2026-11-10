@@ -43,7 +43,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
               className="w-full h-full object-cover"
             />
             {product.discountPercent && (
-              <span className="absolute top-1 left-1 px-1.5 py-0.2 bg-[#FC95FD] text-white rounded-[4px] text-[9.5px] font-extrabold shadow-2xs">
+              <span className="absolute top-1 left-1 px-1.5 py-0.2 bg-[#FC95FD] text-[#24102E] rounded-[4px] text-[9.5px] font-extrabold shadow-2xs tracking-[1px]">
                 -{product.discountPercent}%
               </span>
             )}
@@ -98,7 +98,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
           {/* Top-left: Pink discount pill (-20%, -18%, etc.) */}
           {product.discountPercent && (
-            <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#FC95FD] text-white rounded-[4px] text-[10.5px] font-bold shadow-2xs z-10">
+            <span className="absolute top-2 left-2 px-2 py-0.5 bg-[#FC95FD] text-[#24102E] rounded-[4px] text-[10.5px] font-bold shadow-2xs z-10 tracking-[1px]">
               -{product.discountPercent}%
             </span>
           )}

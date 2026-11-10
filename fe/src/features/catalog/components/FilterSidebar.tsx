@@ -276,7 +276,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     className={`px-2.5 py-1 rounded-[4px] text-[11px] font-semibold transition-colors cursor-pointer border ${
                       isTagActive
                         ? isDiscountTag
-                          ? 'bg-[#FC95FD] text-[#111111] border-[#FC95FD] font-bold shadow-xs'
+                          ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] font-bold shadow-xs tracking-[1px]'
                           : 'bg-[#DAFF01] text-[#111111] border-[#01B341]/30 font-bold'
                         : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111] border-[#E3E8E1]'
                     }`}
