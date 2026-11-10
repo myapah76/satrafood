@@ -18,15 +18,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onShowTraceability,
   onShowToast,
 }) => {
-  // Trạng thái sản phẩm "Đang giảm giá" dùng màu hồng (#FC95FD)
-  const isDiscount = product.badge === 'Đang giảm giá' || product.tags?.includes('Đang giảm giá');
+  // Màu sắc ban đầu của tiêu chuẩn / huy hiệu sản phẩm (VietGAP, Thủy canh, Chuẩn CP...)
   const badgeStyle =
-    isDiscount || product.badgeColor === 'pink'
-      ? 'bg-[#FC95FD] text-[#111111]'
-      : product.badgeColor === 'lime'
+    product.badgeColor === 'lime'
       ? 'bg-[#DAFF01] text-[#111111]'
       : product.badgeColor === 'orange'
       ? 'bg-[#FF9400] text-white'
+      : product.badgeColor === 'pink'
+      ? 'bg-[#FC95FD] text-[#111111]'
       : 'bg-[#01B341] text-white';
 
   const handleAdd = () => {
