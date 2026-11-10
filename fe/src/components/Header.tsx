@@ -81,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0 z-10">
-              {/* Delivery Location Selector Box: Tuned for visual balance with Right Group & Cart */}
+              {/* Delivery Location Selector Box: 173px x 44px */}
               <button
                 onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 w-[140px] h-[44px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
+                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 w-[173px] h-[44px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
