@@ -235,6 +235,8 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
             onSelectSubCategory={handleSelectSubCategory}
             onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
             activeFiltersCount={activeFiltersCount}
+            selectedStandards={selectedStandards}
+            onToggleStandard={handleToggleStandard}
           />
 
           {/* Search Result Indicator if search query active */}

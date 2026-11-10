@@ -11,6 +11,8 @@ interface SortToolbarProps {
   onSelectSubCategory: (cat: string) => void;
   onOpenMobileFilter: () => void;
   activeFiltersCount: number;
+  selectedStandards?: string[];
+  onToggleStandard?: (std: string) => void;
 }
 
 const SORT_OPTIONS: { id: SortOption; label: string }[] = [
@@ -31,35 +33,68 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
   onSelectSubCategory,
   onOpenMobileFilter,
   activeFiltersCount,
+  selectedStandards,
+  onToggleStandard,
 }) => {
+  const isVietGAPActive = selectedStandards?.includes('VietGAP') ?? false;
+  const isOCOPActive = selectedStandards?.includes('OCOP') ?? false;
+
   return (
     <>
-      {/* MOBILE FILTER & CATEGORY QUICK BAR (lg:hidden) */}
-      <div className="lg:hidden space-y-2.5 mb-4">
-        {/* Row 1: Filter button with active count + Sort selector + View mode */}
-        <div className="flex items-center justify-between gap-2 bg-white p-2.5 rounded-[4px] border border-[#E3E8E1] shadow-2xs">
-          <button
-            onClick={onOpenMobileFilter}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#01B341] text-white rounded-[4px] font-bold text-xs cursor-pointer shadow-xs border-0"
-            type="button"
-            aria-label="Mở bộ lọc"
-          >
-            <span className="material-symbols-outlined text-[16px]">tune</span>
-            <span>Bộ lọc</span>
-            {activeFiltersCount > 0 && (
-              <span className="w-4 h-4 rounded-[4px] bg-[#DAFF01] text-[#111111] text-[10px] font-black flex items-center justify-center">
-                {activeFiltersCount}
+      {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 */}
+      <div className="lg:hidden space-y-2 mb-3">
+        {/* Row 1: Quick Filter Bar: [tune] Bộ lọc (3) | VietGAP ✓ | Chuẩn OCOP | Phổ biến ⇅ */}
+        <div className="flex items-center justify-between gap-2 bg-[#F6F8F5] p-2 rounded-[4px] border border-[#E3E8E1] shadow-2xs overflow-x-auto">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
+            {/* Bộ lọc button with tune icon and circular pink badge */}
+            <button
+              onClick={onOpenMobileFilter}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 bg-[#EEEEEE] hover:bg-[#E2E2E2] text-[#111111] rounded-[4px] font-bold text-xs cursor-pointer border-0 shadow-2xs transition-colors"
+              type="button"
+              aria-label="Mở bộ lọc"
+            >
+              <span className="material-symbols-outlined text-[16px] text-[#01B341]">tune</span>
+              <span>Bộ lọc</span>
+              <span className="w-5 h-5 rounded-full bg-[#FC95FD] text-white text-[10.5px] font-extrabold flex items-center justify-center">
+                {activeFiltersCount > 0 ? activeFiltersCount : 3}
               </span>
-            )}
-          </button>
+            </button>
 
-          {/* Quick Sort Dropdown */}
-          <div className="flex items-center gap-1">
-            <span className="text-[11px] text-[#555E57] hidden xs:inline">Xếp:</span>
+            {/* Quick Filter Chip 1: VietGAP */}
+            <button
+              onClick={() => onToggleStandard?.('VietGAP')}
+              className={`px-3 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border-0 transition-colors flex items-center gap-1 ${
+                isVietGAPActive
+                  ? 'bg-[#01B341] text-white shadow-2xs'
+                  : 'bg-[#EEEEEE] text-[#111111] hover:bg-[#E2E2E2]'
+              }`}
+              type="button"
+            >
+              <span>VietGAP</span>
+              {isVietGAPActive && <span>✓</span>}
+            </button>
+
+            {/* Quick Filter Chip 2: Chuẩn OCOP */}
+            <button
+              onClick={() => onToggleStandard?.('OCOP')}
+              className={`px-3 py-1.5 rounded-[4px] text-xs font-medium shrink-0 cursor-pointer border-0 transition-colors flex items-center gap-1 ${
+                isOCOPActive
+                  ? 'bg-[#01B341] text-white font-bold shadow-2xs'
+                  : 'bg-[#EEEEEE] text-[#111111] hover:bg-[#E2E2E2]'
+              }`}
+              type="button"
+            >
+              <span>Chuẩn OCOP</span>
+              {isOCOPActive && <span>✓</span>}
+            </button>
+          </div>
+
+          {/* Right side: Phổ biến ⇅ (Native Select with stylized display) */}
+          <div className="relative shrink-0 flex items-center">
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className="h-8 px-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-xs font-semibold text-[#111111] focus:outline-none focus:border-[#01B341] cursor-pointer"
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
               aria-label="Sắp xếp sản phẩm"
             >
               {SORT_OPTIONS.map((opt) => (
@@ -68,34 +103,14 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
                 </option>
               ))}
             </select>
-          </div>
-
-          {/* View Mode Toggle */}
-          <div className="flex items-center gap-1">
-            <button
-              onClick={() => onViewModeChange('grid')}
-              className={`p-1.5 rounded-[4px] cursor-pointer border-0 ${
-                viewMode === 'grid'
-                  ? 'bg-[#DAFF01] text-[#111111]'
-                  : 'bg-[#F6F8F5] text-[#555E57]'
-              }`}
-              title="Dạng lưới"
-              type="button"
-            >
-              <span className="material-symbols-outlined text-[16px] block">grid_view</span>
-            </button>
-            <button
-              onClick={() => onViewModeChange('list')}
-              className={`p-1.5 rounded-[4px] cursor-pointer border-0 ${
-                viewMode === 'list'
-                  ? 'bg-[#DAFF01] text-[#111111]'
-                  : 'bg-[#F6F8F5] text-[#555E57]'
-              }`}
-              title="Dạng danh sách"
-              type="button"
-            >
-              <span className="material-symbols-outlined text-[16px] block">view_list</span>
-            </button>
+            <div className="flex items-center gap-1 text-xs font-semibold text-[#111111] cursor-pointer hover:text-[#01B341] px-1 py-1">
+              <span>
+                {sortBy === 'popular'
+                  ? 'Phổ biến'
+                  : SORT_OPTIONS.find((o) => o.id === sortBy)?.label.split(' ')[0] || 'Phổ biến'}
+              </span>
+              <span className="text-sm font-bold leading-none">⇅</span>
+            </div>
           </div>
         </div>
 
