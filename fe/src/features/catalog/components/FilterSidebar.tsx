@@ -214,16 +214,18 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         </div>
       </div>
 
-      {/* Quick Promotion Box in Sidebar */}
-      <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-[4px] p-4 text-center">
-        <GiftIcon className="w-8 h-8 text-[#01B341] mx-auto mb-1" aria-hidden="true" />
-        <h5 className="font-label-lg font-bold text-xs text-[#111111]">Voucher Giảm 30K</h5>
-        <p className="font-body-sm text-[#555E57] text-[11px] mt-1">
-          Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên.
-        </p>
+      {/* Quick Promotion Box in Sidebar - Aligned with product card */}
+      <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-[4px] p-4 sm:p-5 text-center flex flex-col justify-between sm:min-h-[174px] shadow-xs">
+        <div>
+          <GiftIcon className="w-8 h-8 sm:w-9 sm:h-9 text-[#01B341] mx-auto mb-1.5" aria-hidden="true" />
+          <h5 className="font-label-lg font-bold text-xs sm:text-sm text-[#111111]">Voucher Giảm 30K</h5>
+          <p className="font-body-sm text-[#555E57] text-[11px] sm:text-xs mt-1 leading-relaxed">
+            Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên.
+          </p>
+        </div>
         <button
           onClick={onCopyVoucher}
-          className="mt-3 w-full py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer shadow-xs border-0"
+          className="mt-3.5 w-full py-1.5 sm:py-2 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer shadow-xs border-0 flex items-center justify-center gap-1"
           type="button"
         >
           LƯU MÃ: SATRAFRESHT3
