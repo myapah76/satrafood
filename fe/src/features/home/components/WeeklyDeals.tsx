@@ -2,6 +2,7 @@ import React from 'react';
 import promotionsData from '../../../data/promotions.json';
 import { PromoDeal } from '../../../types';
 import { formatVND } from '../../../utils/cart';
+import { TagIcon, CartIcon } from '../../../components/icons';
 
 interface WeeklyDealsProps {
   onAddDealToCart: (dealId: string) => void;
@@ -23,7 +24,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 sm:mb-6 relative z-10 gap-3">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3">
             <div className="px-3 py-1 bg-[#DAFF01] text-[#111111] font-label-lg rounded-[4px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5 text-xs w-fit">
-              <span className="material-symbols-outlined text-[18px]">local_offer</span>
+              <TagIcon className="w-4 h-4 text-[#111111]" />
               {campaign.title}
             </div>
             <span className="font-body-md text-xs text-white/90">
@@ -113,7 +114,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                         type="button"
                         aria-label={`Thêm ${deal.title} vào giỏ hàng`}
                       >
-                        <span className="material-symbols-outlined text-[16px]">add</span>
+                        <CartIcon className="w-4 h-4 text-white" aria-hidden="true" />
                       </button>
                     </div>
                   </div>

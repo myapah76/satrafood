@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CartItem } from '../../types';
 import { calculateCartTotals, formatVND } from '../../utils/cart';
+import { CartIcon, RightIcon } from '../../components/icons';
 
 interface CartDrawerProps {
   isOpen: boolean;
@@ -66,7 +67,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
         {/* Cart Header */}
         <div className="p-4 bg-[#FFFFFF] border-b border-[#E3E8E1] flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <span className="material-symbols-outlined text-[#01B341] text-[24px]">shopping_bag</span>
+            <CartIcon className="w-6 h-6 text-[#01B341]" />
             <h3 className="font-bold text-base text-[#111111]">
               Giỏ Hàng Của Bạn ({totals.totalItemsCount})
             </h3>
@@ -143,7 +144,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
           /* Empty Cart */
           <div className="flex-1 p-6 flex flex-col items-center justify-center text-center space-y-3">
             <div className="w-20 h-20 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#555E57]">
-              <span className="material-symbols-outlined text-[36px]">remove_shopping_cart</span>
+              <CartIcon className="w-10 h-10 text-[#555E57]/60" aria-hidden="true" />
             </div>
             <h4 className="font-bold text-base text-[#111111]">Giỏ hàng của bạn đang trống</h4>
             <p className="text-xs text-[#555E57] max-w-xs">
@@ -289,7 +290,7 @@ export const CartDrawer: React.FC<CartDrawerProps> = ({
               ) : (
                 <>
                   <span>GIAO HÀNG NGAY 2H</span>
-                  <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                  <RightIcon className="w-4 h-4 text-white shrink-0" aria-hidden="true" />
                 </>
               )}
             </button>

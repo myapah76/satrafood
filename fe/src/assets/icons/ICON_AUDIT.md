@@ -26,9 +26,9 @@ The repository includes **19 core brand and UI SVG assets** designed specificall
 | `Heart.svg` | `HeartIcon` | `0 0 87 78` | Yêu thích, tri ân khách hàng thân thiết, loyalty |
 | `Box.svg` | `BoxIcon` | `0 0 82 93` | Hộp hàng hóa, danh mục sản phẩm, đóng gói tiêu chuẩn |
 | `Right.svg` | `RightIcon` | `0 0 71 46` | Mũi tên phải, tiếp theo, xem chi tiết, phân trang Sau |
-| `Group 8825.svg` | `LeftIcon` | `0 0 71 46` | Mũi tên trái, quay lại, phân trang Trước |
-| `Group 8826.svg` | `UpIcon` | `0 0 46 71` | Mũi tên lên, thu gọn menu dropdown |
-| `Group 8827.svg` | `DownIcon` | `0 0 46 71` | Mũi tên xuống, mở rộng menu dropdown, chọn địa phương |
+| `Left.svg` | `LeftIcon` | `0 0 71 46` | Mũi tên trái, quay lại, phân trang Trước |
+| `Up.svg` | `UpIcon` | `0 0 46 71` | Mũi tên lên, thu gọn menu dropdown |
+| `Down.svg` | `DownIcon` | `0 0 46 71` | Mũi tên xuống, mở rộng menu dropdown, chọn địa phương |
 
 ---
 
@@ -41,31 +41,37 @@ The repository includes **19 core brand and UI SVG assets** designed specificall
 | **Header (Top bar)** | Nút người dùng (`person`) | `UserIcon` (`Nguoi.svg`) | Nền xanh đặc `#01B341`, icon màu trắng |
 | **Header (Top bar)** | Khối thành viên (`redeem`) | `GiftIcon` (`PresentIcon`) | `text-[#01B341]`, tích điểm 2% |
 | **Header (Top bar)** | Hộp giao nhanh (`two_wheeler`) | `BoltIcon` (`Bolt.svg`) | Tia chớp biểu tượng giao siêu tốc 2h |
-| **Header (Top bar)** | Mũi tên chọn khu vực (`expand_more`) | `DownIcon` (`Group 8827.svg`) | Mũi tên chỉ xuống bo góc |
+| **Header (Top bar)** | Mũi tên chọn khu vực (`expand_more`) | `DownIcon` (`Down.svg`) | Mũi tên chỉ xuống bo góc |
 | **Header (Sub-bar)** | Hệ thống cửa hàng (`pin_drop`) | `LocationIcon` (`Location.svg`) | Màu xanh lá `#01B341` |
 | **Header (Sub-bar)** | Mũi tên danh mục con (`chevron_right`) | `RightIcon` (`Right.svg`) | Chuyển động khi hover sang phải |
 | **Header (Sub-bar)** | Mũi tên menu cha (`expand_less`/`more`) | `UpIcon` / `DownIcon` | Đổi hướng mượt mà theo trạng thái mở/đóng |
 | **Catalog Screen** | Breadcrumb Trang chủ (`home`) | `HomeIcon` (`Home.svg`) | Icon kích thước $16\text{px}$, màu `#555E57` |
-| **Catalog Screen** | Nút trang trước (`chevron_left`) | `LeftIcon` (`Group 8825.svg`) | Phân trang bảng sản phẩm |
+| **Catalog Screen** | Nút trang trước (`chevron_left`) | `LeftIcon` (`Left.svg`) | Phân trang bảng sản phẩm |
 | **Catalog Screen** | Nút trang sau (`chevron_right`) | `RightIcon` (`Right.svg`) | Phân trang bảng sản phẩm |
 | **Product Card** | Nút "+ Thêm vào giỏ" (`add_shopping_cart`) | `CartIcon` (`Cart.svg`) | Hiển thị cả ở dạng Lưới và dạng Danh sách |
 | **Commitment Banner**| Cam kết Giao nhanh 2h (`bolt`) | `BoltIcon` (`Bolt.svg`) | Màu `#DAFF01` trên nền xanh |
 | **Commitment Banner**| Chuẩn chuỗi VietGAP (`verified`/`user`) | `EcoIcon` (`Park.svg`) | Nông nghiệp sạch tiêu chuẩn TP.HCM |
 | **Category Explorer**| Nút xem tất cả (`arrow_forward`) | `RightIcon` (`Right.svg`) | Điều hướng danh mục |
 | **Weekly Deals** | Huy hiệu deals sốc (`local_offer`) | `TagIcon` (`Tag.svg`) | Màu hồng `#FC95FD` / đỏ |
+| **Weekly Deals** | Nút thêm nhanh vào giỏ (`add`) | `CartIcon` (`Cart.svg`) | Màu trắng trên nền xanh `#01B341` |
 | **First Order Voucher**| Biểu tượng email đăng ký (`mark_email_read`) | `LetterIcon` (`Letter.svg`) | Đặt trong khối nền vàng chanh `#DAFF01` |
 | **Store Locator** | Ghim tiêu đề & bản đồ (`pin_drop`, `store`) | `LocationIcon` (`Location.svg`) | Kích thước đồng bộ, hiệu ứng ghim |
 | **Store Locator** | Ô tìm siêu thị (`search`) | `SearchIcon` (`Magnify glass.svg`) | Căn lề trái thanh tìm kiếm |
 | **Store Locator** | Nút Gọi cửa hàng (`call`) | `PhoneIcon` (`Phone.svg`) | Nút gọi số hotline |
 | **Footer** | Cam kết VietGAP & an toàn (`eco`, `shield`) | `EcoIcon` (`Park.svg`) | Huy hiệu chứng nhận ATVSTP & BCT |
 | **Footer** | Địa chỉ cửa hàng / chuỗi (`store`, `storefront`) | `LocationIcon` (`Location.svg`) | Địa chỉ trụ sở và mạng lưới bán buôn |
-| **Footer** | Satra Rewards tri ân (`loyalty`) | `HeartIcon` (`Heart.svg`) | Khối chăm sóc khách hàng thân thiết |
+| **Footer** | Satra Rewards tri ấn (`loyalty`) | `HeartIcon` (`Heart.svg`) | Khối chăm sóc khách hàng thân thiết |
 | **Mobile Bottom Nav** | Tab Trang chủ (`home`) | `HomeIcon` (`Home.svg`) | Thanh điều hướng đáy di động |
 | **Mobile Bottom Nav** | Tab Danh mục (`category`) | `BoxIcon` (`Box.svg`) | Hộp hàng hóa danh mục |
 | **Mobile Bottom Nav** | Tab Cửa hàng (`storefront`) | `LocationIcon` (`Location.svg`) | Ghim hệ thống cửa hàng |
 | **Mobile Bottom Nav** | Tab Giỏ hàng (`shopping_bag`) | `CartIcon` (`Cart.svg`) | Giỏ hàng kèm số lượng |
 | **Mobile Bottom Nav** | Tab Khuyến mãi (`local_fire_department`) | `TagIcon` (`Tag.svg`) | Thẻ giá / ưu đãi HOT |
 | **Cart Drawer** | Tiêu đề giỏ hàng (`shopping_bag`) | `CartIcon` (`Cart.svg`) | Giỏ hàng mua sắm |
+| **Cart Drawer** | Trạng thái giỏ rỗng (`remove_shopping_cart`) | `CartIcon` (`Cart.svg`) | Giỏ hàng mờ 60% trung tính |
+| **Cart Drawer** | Nút tiến hành thanh toán (`arrow_forward`) | `RightIcon` (`Right.svg`) | Mũi tên tiến tới giao hàng 2h |
+| **Filter Sidebar** | Nút thu gọn tiêu chí (`expand_less`) | `UpIcon` (`Up.svg`) | Mũi tên trỏ lên |
+| **Filter Sidebar** | Khối Voucher ưu đãi (`redeem`) | `GiftIcon` (`Present.svg`) | Hộp quà tặng khuyến mãi 30k |
+| **Membership Modal** | Đặc quyền thành viên (`workspace_premium`) | `GiftIcon` (`Present.svg`) | Hộp quà tặng đặc quyền tích điểm |
 | **Traceability Modal**| Tiêu chuẩn nông nghiệp (`agriculture`, `gpp_good`) | `EcoIcon` (`Park.svg`) | Canh tác VietGAP sạch |
 | **Traceability Modal**| Mã lô hàng / tem truy xuất (`tag`) | `TagIcon` (`Tag.svg`) | Mã lô nông sản |
 | **Traceability Modal**| Khách hàng hài lòng (`sentiment_very_satisfied`)| `FaceIcon` (`Face.svg`) | Nụ cười đánh giá tích cực |

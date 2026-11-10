@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { GiftIcon } from '../../components/icons';
 
 interface MembershipModalProps {
   isOpen: boolean;
@@ -111,7 +112,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
           {/* Member Benefits */}
           <div className="space-y-2 bg-[#F6F8F5] p-3.5 rounded-[4px] border border-[#E3E8E1] text-xs">
             <div className="font-bold text-[#111111] mb-1 flex items-center gap-1.5">
-              <span className="material-symbols-outlined text-[#01B341] text-[18px]">workspace_premium</span>
+              <GiftIcon className="w-4 h-4 text-[#01B341] shrink-0" aria-hidden="true" />
               Đặc quyền riêng cho bạn hôm nay:
             </div>
             <div className="flex items-start gap-2 text-[#555E57]">

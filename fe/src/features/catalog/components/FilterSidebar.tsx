@@ -1,4 +1,5 @@
 import React from 'react';
+import { UpIcon, GiftIcon } from '../../../components/icons';
 
 interface FilterSidebarProps {
   subCategories: { label: string; count: number }[];
@@ -54,7 +55,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div className="mb-5">
           <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5 flex items-center justify-between">
             <span>Danh mục con</span>
-            <span className="material-symbols-outlined text-[16px] text-[#555E57]">expand_less</span>
+            <UpIcon className="w-3.5 h-3.5 text-[#555E57] shrink-0" aria-hidden="true" />
           </h4>
           <ul className="space-y-1 text-xs list-none p-0 m-0">
             {subCategories.map((cat, idx) => {
@@ -92,7 +93,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         <div className="mb-5 pt-4 border-t border-[#E3E8E1]">
           <h4 className="font-label-md text-xs text-[#111111] font-bold uppercase tracking-wider mb-2.5 flex items-center justify-between">
             <span>Tiêu Chuẩn An Toàn</span>
-            <span className="material-symbols-outlined text-[16px] text-[#555E57]">expand_less</span>
+            <UpIcon className="w-3.5 h-3.5 text-[#555E57] shrink-0" aria-hidden="true" />
           </h4>
           <div className="space-y-2 text-xs">
             {safetyStandards.map((std) => (
@@ -196,7 +197,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 
       {/* Quick Promotion Box in Sidebar */}
       <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-[4px] p-4 text-center">
-        <span className="material-symbols-outlined text-[#01B341] text-[32px] mb-1">redeem</span>
+        <GiftIcon className="w-8 h-8 text-[#01B341] mx-auto mb-1" aria-hidden="true" />
         <h5 className="font-label-lg font-bold text-xs text-[#111111]">Voucher Giảm 30K</h5>
         <p className="font-body-sm text-[#555E57] text-[11px] mt-1">
           Đơn hàng thực phẩm tươi sống từ 250.000đ khi thanh toán thẻ thành viên.

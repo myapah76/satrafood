@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../types';
 import { formatVND } from '../../utils/cart';
+import { CartIcon, EcoIcon, FaceIcon, TagIcon } from '../../components/icons';
 
 interface TraceabilityModalProps {
   product: Product | null;
@@ -74,7 +75,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
           <div className="space-y-2.5 text-xs">
             <div className="flex items-start justify-between py-2 border-b border-[#E3E8E1]">
               <span className="text-[#555E57] font-medium flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-[#01B341]">agriculture</span>
+                <EcoIcon className="w-4 h-4 text-[#01B341]" />
                 Nông trại / Cơ sở sản xuất:
               </span>
               <span className="font-semibold text-[#111111] text-right max-w-[240px]">
@@ -92,7 +93,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
 
             <div className="flex items-center justify-between py-2 border-b border-[#E3E8E1]">
               <span className="text-[#555E57] font-medium flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-[#01B341]">tag</span>
+                <TagIcon className="w-4 h-4 text-[#01B341]" />
                 Mã lô kiểm nghiệm Satra:
               </span>
               <span className="font-mono font-bold text-[#006e24] bg-[#DAFF01]/30 px-2 py-0.5 rounded-[4px]">
@@ -102,7 +103,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
 
             <div className="flex items-center justify-between py-2 border-b border-[#E3E8E1]">
               <span className="text-[#555E57] font-medium flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-[#01B341]">verified_user</span>
+                <EcoIcon className="w-4 h-4 text-[#01B341]" />
                 Tiêu chuẩn chứng nhận:
               </span>
               <div className="flex items-center gap-1">
@@ -119,7 +120,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
 
             <div className="flex items-center justify-between py-2 border-b border-[#E3E8E1]">
               <span className="text-[#555E57] font-medium flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px] text-[#01B341]">sentiment_very_satisfied</span>
+                <FaceIcon className="w-4 h-4 text-[#01B341]" />
                 Chỉ số độ tươi mới (Freshness Score):
               </span>
               <span className="font-bold text-[#01B341] text-sm">
@@ -138,7 +139,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
 
           {/* Guarantee stamp */}
           <div className="p-3 rounded-[4px] bg-emerald-50 border border-emerald-200 flex items-center gap-3">
-            <span className="material-symbols-outlined text-emerald-700 text-[28px]">gpp_good</span>
+            <EcoIcon className="w-7 h-7 text-emerald-700 shrink-0" />
             <div className="text-[11px] text-emerald-900 leading-snug">
               <strong>Cam Kết Đổi Trả Miễn Phí Trong 24H:</strong> Nếu phát hiện sản phẩm dập nát hoặc không đạt độ tươi cam kết, Satrafoods hoàn tiền 100%.
             </div>
@@ -160,7 +161,7 @@ export const TraceabilityModal: React.FC<TraceabilityModalProps> = ({
             }}
             className="px-5 py-2 bg-[#01B341] hover:bg-[#006e24] text-white rounded-[4px] text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer shadow-sm border-0"
           >
-            <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+            <CartIcon className="w-4 h-4 text-white" />
             Thêm vào giỏ ({formatVND(product.price)})
           </button>
         </div>

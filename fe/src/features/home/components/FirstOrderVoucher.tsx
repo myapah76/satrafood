@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { LetterIcon } from '../../../components/icons';
 
 interface FirstOrderVoucherProps {
   onShowToast: (msg: string) => void;
@@ -19,7 +20,7 @@ export const FirstOrderVoucher: React.FC<FirstOrderVoucherProps> = ({ onShowToas
     <section className="w-full bg-[#F6F8F5] rounded-[4px] p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between shadow-sm mt-2 mb-6 border border-[#E3E8E1] gap-4">
       <div className="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
         <div className="w-12 h-12 rounded-[4px] bg-[#DAFF01] flex items-center justify-center text-[#111111] shrink-0 shadow-sm">
-          <span className="material-symbols-outlined text-[26px]">mark_email_read</span>
+          <LetterIcon className="w-6 h-6 text-[#111111]" />
         </div>
         <div>
           <h3 className="font-title-lg text-sm sm:text-base text-[#111111] font-bold">

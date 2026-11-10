@@ -1,4 +1,5 @@
 import React from 'react';
+import { BoltIcon } from '../../components/icons';
 
 interface LocationModalProps {
   isOpen: boolean;
@@ -35,7 +36,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
         {/* Header */}
         <div className="bg-[#01B341] text-white p-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <span className="material-symbols-outlined text-[24px]">local_shipping</span>
+            <BoltIcon className="w-6 h-6 text-white" />
             <div>
               <h3 className="font-bold text-base leading-tight">Chọn Khu Vực Giao Hàng Siêu Tốc 2H</h3>
               <p className="text-[11px] text-white/85">
@@ -84,7 +85,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
           </div>
 
           <div className="p-3 bg-[#DAFF01]/20 border border-[#DAFF01] rounded-[4px] flex items-center gap-2.5 text-xs text-[#111111]">
-            <span className="material-symbols-outlined text-[#01B341] text-[20px]">bolt</span>
+            <BoltIcon className="w-5 h-5 text-[#01B341]" />
             <span>
               <strong>Cam kết 2 Giờ:</strong> Nhận hàng mát lạnh, tươi mới tận tay từ cửa hàng gần nhất.
             </span>

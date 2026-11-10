@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import storesData from '../../../data/stores.json';
 import { StoreLocation } from '../../../types';
+import { LocationIcon, PhoneIcon, SearchIcon } from '../../../components/icons';
 
 interface StoreLocatorSectionProps {
   onShowToast: (msg: string) => void;
@@ -42,7 +43,7 @@ export const StoreLocatorSection: React.FC<StoreLocatorSectionProps> = ({ onShow
         {/* Left: Interactive Search & Quick Filters */}
         <div className="lg:col-span-6">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-[4px] bg-[#DAFF01] text-[#111111] font-bold text-[11px] uppercase tracking-wider mb-2">
-            <span className="material-symbols-outlined text-[16px] text-[#006e24]">pin_drop</span>
+            <LocationIcon className="w-3.5 h-3.5 text-[#006e24]" />
             HỆ THỐNG PHỦ KHẮP ĐỊA BÀN
           </div>
           <h2 className="text-xl sm:text-2xl font-bold text-[#111111] mb-2">
@@ -55,9 +56,7 @@ export const StoreLocatorSection: React.FC<StoreLocatorSectionProps> = ({ onShow
           {/* Search Bar With District Quick Selector */}
           <div className="space-y-4">
             <div className="relative flex items-center">
-              <span className="material-symbols-outlined absolute left-3.5 text-[#555E57] text-[20px]">
-                search
-              </span>
+              <SearchIcon className="w-5 h-5 text-[#555E57] absolute left-3.5 pointer-events-none" />
               <input
                 className="w-full h-11 sm:h-12 pl-11 pr-24 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] font-body-md text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:ring-2 focus:ring-[#01B341]"
                 placeholder="Nhập tên đường, phường hoặc quận..."
@@ -118,20 +117,20 @@ export const StoreLocatorSection: React.FC<StoreLocatorSectionProps> = ({ onShow
           >
             {/* Visual Map Pins */}
             <div className="absolute top-1/4 left-1/3 bg-[#01B341] text-white p-1.5 rounded-[4px] shadow-lg animate-bounce">
-              <span className="material-symbols-outlined text-[20px] block">store</span>
+              <LocationIcon className="w-5 h-5 block" />
             </div>
             <div className="absolute top-1/2 left-2/3 bg-[#006e24] text-white p-1 rounded-[4px] shadow-md">
-              <span className="material-symbols-outlined text-[16px] block">store</span>
+              <LocationIcon className="w-4 h-4 block" />
             </div>
             <div className="absolute top-1/3 right-1/4 bg-[#006e24] text-white p-1 rounded-[4px] shadow-md">
-              <span className="material-symbols-outlined text-[16px] block">store</span>
+              <LocationIcon className="w-4 h-4 block" />
             </div>
 
             {/* Active Store Card Overlay */}
             <div className="absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4 sm:right-4 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-[4px] shadow-lg border border-[#E3E8E1] flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
               <div className="flex items-start gap-2.5 sm:gap-3">
                 <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-[4px] bg-[#006e24] text-white flex items-center justify-center shrink-0 mt-0.5">
-                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">store</span>
+                  <LocationIcon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div>
                   <h4 className="font-bold text-xs sm:text-sm text-[#111111]">{activeStore.name}</h4>
@@ -147,10 +146,10 @@ export const StoreLocatorSection: React.FC<StoreLocatorSectionProps> = ({ onShow
                 </div>
               </div>
               <a
-                className="self-end sm:self-auto px-3.5 py-1.5 sm:py-2 bg-[#DAFF01] text-[#111111] font-bold text-xs rounded-[4px] hover:bg-[#01B341] hover:text-white transition-colors shrink-0 flex items-center gap-1 no-underline"
+                className="self-end sm:self-auto px-3.5 py-1.5 sm:py-2 bg-[#DAFF01] text-[#111111] font-bold text-xs rounded-[4px] hover:bg-[#01B341] hover:text-white transition-colors shrink-0 flex items-center gap-1.5 no-underline"
                 href={`tel:${activeStore.phone.replace(/\s+/g, '')}`}
               >
-                <span className="material-symbols-outlined text-[16px]">call</span>
+                <PhoneIcon className="w-4 h-4 text-[#111111]" />
                 <span>Gọi cửa hàng</span>
               </a>
             </div>

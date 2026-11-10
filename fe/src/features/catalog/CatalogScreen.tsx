@@ -3,6 +3,7 @@ import productsData from '../../data/products.json';
 import { FilterOptions, Product, SortOption } from '../../types';
 import { filterProducts, sortProducts } from '../../utils/cart';
 import { getSlugByCategory, getCategoryBySlug } from '../../utils/slug';
+import { HomeIcon, LeftIcon, RightIcon } from '../../components/icons';
 import { CommitmentBanner } from './components/CommitmentBanner';
 import { FilterSidebar } from './components/FilterSidebar';
 import { MobileFilterDrawer } from './components/MobileFilterDrawer';
@@ -149,7 +150,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
           onClick={onNavigateHome}
           className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-1 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
         >
-          <span className="material-symbols-outlined text-[16px]">home</span>
+          <HomeIcon className="w-3.5 h-3.5" />
           <span>Trang chủ</span>
         </button>
         <span className="text-[#E3E8E1] font-bold">/</span>
@@ -252,7 +253,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 disabled={currentPage === 1}
                 className="px-3 py-1.5 rounded-[4px] border border-[#E3E8E1] text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5] text-xs flex items-center gap-1 disabled:opacity-40 cursor-pointer"
               >
-                <span className="material-symbols-outlined text-[16px]">chevron_left</span> Trước
+                <LeftIcon className="w-3.5 h-3.5 mr-0.5" /> Trước
               </button>
               <button
                 onClick={() => setCurrentPage(1)}
@@ -300,7 +301,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 disabled={currentPage === 10}
                 className="px-3 py-1.5 rounded-[4px] border border-[#E3E8E1] text-[#01B341] hover:bg-[#F6F8F5] text-xs font-bold flex items-center gap-1 cursor-pointer"
               >
-                Sau <span className="material-symbols-outlined text-[16px]">chevron_right</span>
+                Sau <RightIcon className="w-3.5 h-3.5 ml-0.5" />
               </button>
             </div>
           </div>

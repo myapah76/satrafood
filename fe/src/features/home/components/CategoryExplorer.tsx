@@ -1,6 +1,7 @@
 import React from 'react';
 import categoriesData from '../../../data/categories.json';
 import { CategoryGridItem } from '../../../types';
+import { RightIcon } from '../../../components/icons';
 
 interface CategoryExplorerProps {
   onNavigateToCategory: (subCategory?: string) => void;
@@ -29,7 +30,7 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
         >
           <span className="hidden sm:inline">Xem tất cả ngành hàng</span>
           <span className="sm:hidden">Tất cả</span>
-          <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+          <RightIcon className="w-4 h-4 ml-0.5" />
         </button>
       </div>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Product } from '../../../types';
 import { formatVND } from '../../../utils/cart';
+import { CartIcon } from '../../../components/icons';
 
 interface ProductCardProps {
   product: Product;
@@ -76,9 +77,9 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="text-xs text-[#555E57] line-through">{formatVND(product.originalPrice)}</div>
           <button
             onClick={handleAdd}
-            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer flex items-center gap-1 border-0"
+            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer flex items-center gap-1.5 border-0"
           >
-            <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+            <CartIcon className="w-4 h-4 text-white" />
             Thêm vào giỏ
           </button>
         </div>
@@ -145,10 +146,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <button
           onClick={handleAdd}
-          className="w-full py-2 bg-[#01B341] text-white font-label-md text-xs rounded-[4px] hover:bg-[#006e24] transition-colors flex items-center justify-center gap-1 font-bold shadow-xs cursor-pointer border-0"
+          className="w-full py-2 bg-[#01B341] text-white font-label-md text-xs rounded-[4px] hover:bg-[#006e24] transition-colors flex items-center justify-center gap-1.5 font-bold shadow-xs cursor-pointer border-0"
           type="button"
         >
-          <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>
+          <CartIcon className="w-4 h-4 text-white" />
           <span>+ Thêm vào giỏ</span>
         </button>
       </div>
