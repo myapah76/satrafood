@@ -81,10 +81,10 @@ export const Header: React.FC<HeaderProps> = ({
             
             {/* 1. Left Group: Delivery Location Box + Search Input Box */}
             <div className="flex items-center gap-2.5 shrink-0 z-10">
-              {/* Delivery Location Selector Box: 173px x 36px */}
+              {/* Delivery Location Selector Box: Tuned for visual balance with Right Group & Cart */}
               <button
                 onClick={onOpenLocation}
-                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 w-[173px] h-[36px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
+                className="flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 w-[140px] h-[44px] shrink-0 text-left hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
                 type="button"
                 aria-label="Chọn khu vực giao hàng"
               >
@@ -93,15 +93,17 @@ export const Header: React.FC<HeaderProps> = ({
                   <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none whitespace-nowrap">
                     GIAO NHANH 2H
                   </span>
-                  <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate whitespace-nowrap">
-                    {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
-                  </span>
+                  <div className="flex items-center gap-0.5">
+                    <span className="font-body-sm text-[12px] text-[#111111] font-bold leading-tight truncate whitespace-nowrap">
+                      {selectedCity.includes('Cần Thơ') ? 'CẦN THƠ' : 'TP.HCM'}
+                    </span>
+                    <span className="material-symbols-outlined text-[15px] text-[#555E57] leading-none shrink-0">expand_more</span>
+                  </div>
                 </div>
-                <span className="material-symbols-outlined text-[16px] text-[#555E57] ml-0.5 leading-none shrink-0">expand_more</span>
               </button>
 
-              {/* Search Bar Box: 176px x 36px */}
-              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 w-[176px] h-[36px] focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs shrink-0">
+              {/* Search Bar Box: Tuned to balance Left and Right groups symmetrically around Center Logo */}
+              <div className="relative flex items-center bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-2.5 w-[160px] h-[44px] focus-within:border-[#01B341] focus-within:ring-1 focus-within:ring-[#01B341]/30 transition-all shadow-2xs shrink-0">
                 <SearchIcon className="w-4 h-4 text-[#555E57] mr-1.5 pointer-events-none" />
                 <input
                   className="w-full bg-transparent font-body-md text-xs text-[#111111] placeholder:text-[#555E57] outline-none"
