@@ -209,8 +209,8 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="h-12 bg-[#FFFFFF] border-b border-[#E3E8E1]">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between text-xs">
             {/* Left side: Danh mục sản phẩm (sổ ra danh mục con) + HOT Khuyến mãi hot */}
-            <div className="flex items-center gap-7 sm:gap-8 shrink-0">
-              {/* Green "Danh mục sản phẩm" button with dropdown */}
+            <div className="flex items-center gap-9 sm:gap-10 shrink-0">
+              {/* Green "Danh mục sản phẩm" button with dropdown - Added ~25% more padding (px-5 py-2.5) */}
               <div
                 ref={categoryMenuRef}
                 className="relative"
@@ -219,7 +219,7 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <button
                   onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-                  className="flex items-center gap-2 bg-[#01B341] text-white px-4 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
+                  className="flex items-center gap-2.5 bg-[#01B341] text-white px-5 py-2.5 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
                   type="button"
                   aria-expanded={isCategoryMenuOpen}
                   aria-label="Danh mục sản phẩm"
@@ -233,13 +233,13 @@ export const Header: React.FC<HeaderProps> = ({
                   )}
                 </button>
 
-                {/* Sổ ra danh mục con tươi sống */}
+                {/* Sổ ra danh mục con tươi sống - Thêm padding thoáng đãng */}
                 {isCategoryMenuOpen && (
-                  <div className="absolute left-0 top-full pt-1.5 w-72 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
+                  <div className="absolute left-0 top-full pt-1.5 w-80 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                     <div className="bg-white border border-[#E3E8E1] rounded-[4px] shadow-2xl py-2 text-left">
-                      <div className="px-3.5 py-1.5 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1 flex items-center justify-between">
+                      <div className="px-4 py-2 text-[11px] font-bold text-[#555E57] uppercase tracking-wider border-b border-[#E3E8E1] mb-1 flex items-center justify-between">
                         <span>Phân ngành hàng tươi sống</span>
-                        <span className="text-[10px] bg-[#DAFF01] text-[#111111] px-1.5 py-0.5 rounded-[4px] font-black">
+                        <span className="text-[10px] bg-[#DAFF01] text-[#111111] px-2 py-0.5 rounded-[4px] font-black">
                           VietGAP
                         </span>
                       </div>
@@ -251,7 +251,7 @@ export const Header: React.FC<HeaderProps> = ({
                             onNavigate('category', cat.id === 'all' ? undefined : cat.id);
                           }}
                           data-slug={getSlugByCategory(cat.id === 'all' ? undefined : cat.id)}
-                          className="w-full px-3.5 py-2 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center transition-colors cursor-pointer border-0 bg-transparent rounded-[4px]"
+                          className="w-full px-4.5 py-2.5 text-left text-[13px] hover:bg-[#F6F8F5] text-[#111111] hover:text-[#01B341] font-medium flex items-center transition-colors cursor-pointer border-0 bg-transparent rounded-[4px]"
                         >
                           <span className="truncate">{cat.label}</span>
                         </button>
@@ -261,13 +261,13 @@ export const Header: React.FC<HeaderProps> = ({
                 )}
               </div>
 
-              {/* HOT Khuyến mãi hot: HOT là màu hồng, Khuyến mãi hot là KHÔNG CÓ MÀU NỀN */}
+              {/* HOT Khuyến mãi hot - Added ~25% more padding (px-3 py-2) */}
               <button
                 onClick={() => onNavigate('category', 'Khuyến mãi hot')}
-                className="flex items-center gap-1.5 px-2 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 bg-transparent hover:opacity-85"
+                className="flex items-center gap-2 px-3 py-2 rounded-[4px] text-xs font-bold transition-all cursor-pointer border-0 bg-transparent hover:opacity-85"
                 aria-label="Khuyến mãi hot"
               >
-                <span className="bg-[#FC95FD] text-[#24102E] font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs tracking-[1px]">
+                <span className="bg-[#FC95FD] text-[#24102E] font-extrabold text-[10.5px] px-2 py-0.5 rounded-[4px] shadow-2xs tracking-[1px]">
                   HOT
                 </span>
                 <span className="text-[#111111] hover:text-[#01B341] font-bold text-xs transition-colors">
