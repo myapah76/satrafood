@@ -178,7 +178,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
       <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#555E57] my-3">
         <button
           onClick={onNavigateHome}
-          className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-1 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
+          className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-0 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
         >
           <HomeIcon className="w-3.5 h-3.5" />
           <span>Trang chủ</span>
@@ -186,20 +186,14 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         <span className="text-[#E3E8E1] font-bold">/</span>
         <button
           onClick={() => handleSelectSubCategory('all')}
-          className={`hover:text-[#01B341] transition-colors bg-transparent border-0 p-1 rounded-[4px] cursor-pointer text-xs ${
-            selectedSubCategory === 'all' ? 'text-[#01B341] font-bold' : 'text-[#555E57]'
-          }`}
+          className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
         >
           Danh mục sản phẩm
         </button>
-        {selectedSubCategory !== 'all' && (
-          <>
-            <span className="text-[#E3E8E1] font-bold">/</span>
-            <span className="text-[#111111] font-bold bg-[#F6F8F5] px-2 py-0.5 rounded-[4px] border border-[#E3E8E1]">
-              {selectedSubCategory}
-            </span>
-          </>
-        )}
+        <span className="text-[#E3E8E1] font-bold">/</span>
+        <span className="text-[#111111] font-bold">
+          {selectedSubCategory === 'all' ? 'Tất cả sản phẩm tươi sống' : selectedSubCategory}
+        </span>
       </nav>
 
       {/* Mini Banner Category Assurance */}
