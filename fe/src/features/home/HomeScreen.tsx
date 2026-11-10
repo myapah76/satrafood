@@ -38,7 +38,7 @@ export const HomeScreen: React.FC<HomeScreenProps> = ({
   };
 
   return (
-    <div className="w-full pt-28 md:pt-36 lg:pt-42 bg-[#fdf8f8] max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-28 md:pb-24">
+    <div className="w-full pt-24 md:pt-32 lg:pt-36 bg-[#fdf8f8] max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-12 md:pb-14">
       <div className="flex flex-col w-full">
         {/* 1. Hero Promotional Visual Banner */}
         <HeroBanner onExplore={() => onNavigateToCategory()} />

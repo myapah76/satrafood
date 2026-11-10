@@ -89,7 +89,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
       {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 & 4 */}
       <div className="lg:hidden space-y-2.5 mb-3">
         {/* Row 1 on Mobile: "Danh mục sản phẩm" dropdown button + "HOT" button */}
-        <div className="relative flex items-center justify-between gap-2.5 pt-0.5">
+        <div className="relative flex items-center justify-between gap-3 pt-1 pb-0.5">
           {/* Green Category Menu Dropdown */}
           <div className="relative" ref={categoryMenuRef}>
             <button

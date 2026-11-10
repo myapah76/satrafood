@@ -205,10 +205,10 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
 
         {/* ROW 2: Sub-Bar: Left (Danh mục sản phẩm + HOT Khuyến mãi hot) | Right (Hệ thống 180+ Cửa hàng) */}
-        <div className="h-11 bg-[#FFFFFF]">
+        <div className="h-12 bg-[#FFFFFF] border-b border-[#E3E8E1]">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 h-full flex items-center justify-between text-xs">
             {/* Left side: Danh mục sản phẩm (sổ ra danh mục con) + HOT Khuyến mãi hot */}
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex items-center gap-7 sm:gap-8 shrink-0">
               {/* Green "Danh mục sản phẩm" button with dropdown */}
               <div
                 ref={categoryMenuRef}
@@ -218,7 +218,7 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <button
                   onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-                  className="flex items-center gap-2 bg-[#01B341] text-white px-3.5 py-1.5 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
+                  className="flex items-center gap-2 bg-[#01B341] text-white px-4 py-2 rounded-[4px] font-bold hover:bg-[#006e24] transition-colors cursor-pointer text-xs border-0 shadow-xs"
                   type="button"
                   aria-expanded={isCategoryMenuOpen}
                   aria-label="Danh mục sản phẩm"
