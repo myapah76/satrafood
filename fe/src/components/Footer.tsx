@@ -9,8 +9,8 @@ interface FooterProps {
 export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy }) => {
   return (
     <footer className="w-full bg-[#F6F8F5] border-t border-[#E3E8E1] mt-3 sm:mt-4">
-      {/* 4 Service Promises Bar */}
-      <div className="bg-[#FFFFFF] border-b border-[#E3E8E1] py-5 lg:py-6">
+      {/* 4 Service Promises Bar - Visible on PC responsive, hidden on mobile */}
+      <div className="hidden md:block bg-[#FFFFFF] border-b border-[#E3E8E1] py-5 lg:py-6">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">

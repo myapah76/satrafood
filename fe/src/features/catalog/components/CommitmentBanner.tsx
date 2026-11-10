@@ -91,9 +91,9 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
 
 export const CommitmentBanner: React.FC = () => {
   return (
-    <div className="w-full mb-3.5 sm:mb-5">
-      {/* 2x2 Grid (Mobile) / 4-column (Desktop) matching reference design exactly */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3.5">
+    <div className="w-full mb-3.5 sm:mb-5 md:hidden">
+      {/* 2x2 Grid on Mobile (Hidden on PC since PC shows 4 promises in Footer) */}
+      <div className="grid grid-cols-2 gap-2 sm:gap-3.5">
         {COMMITMENT_ITEMS.map((item) => (
           <div
             key={item.id}
