@@ -4,7 +4,6 @@ import { FilterOptions, Product, SortOption } from '../../types';
 import { filterProducts, sortProducts } from '../../utils/cart';
 import { getSlugByCategory, getCategoryBySlug } from '../../utils/slug';
 import { HomeIcon, LeftIcon, RightIcon } from '../../components/icons';
-import { CommitmentBanner } from './components/CommitmentBanner';
 import { FilterSidebar } from './components/FilterSidebar';
 import { MobileFilterDrawer } from './components/MobileFilterDrawer';
 import { ProductCard } from './components/ProductCard';
@@ -220,11 +219,6 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         >
           Lưu mã
         </button>
-      </div>
-
-      {/* Desktop Commitment Banner */}
-      <div className="hidden md:block">
-        <CommitmentBanner />
       </div>
 
       {/* 2-Column Catalog Layout: 
