@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { MobileBottomNav } from './components/MobileBottomNav';
@@ -11,15 +11,31 @@ import { MembershipModal } from './features/membership/MembershipModal';
 import { TraceabilityModal } from './features/traceability/TraceabilityModal';
 import { useCart } from './stores';
 import { Product } from './types';
+import { getSlugByCategory, getCategoryBySlug } from './utils/slug';
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'category'>('home');
-  const [targetSubCategory, setTargetSubCategory] = useState<string | undefined>();
+  const [currentView, setCurrentView] = useState<'home' | 'category'>(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (hash && hash !== 'trang-chu') return 'category';
+    }
+    return 'home';
+  });
+
+  const [targetSubCategory, setTargetSubCategory] = useState<string | undefined>(() => {
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const hash = window.location.hash.replace(/^#/, '');
+      const mapped = getCategoryBySlug(hash);
+      if (mapped !== 'all') return mapped;
+    }
+    return undefined;
+  });
+
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCity, setSelectedCity] = useState('TP. Hồ Chí Minh');
   const [userPhone, setUserPhone] = useState('0908123456');
 
-  // Pre-seed 3 items matching Screen 2's header badge ("3 món") via reactive store hook
+  // Pre-seed 3 items matching UI specs
   const {
     cartItems,
     addToCart: handleAddToCart,
@@ -49,14 +65,40 @@ export default function App() {
   const handleNavigate = (view: 'home' | 'category', subCategory?: string) => {
     setCurrentView(view);
     setTargetSubCategory(subCategory);
+    if (view === 'home') {
+      if (window.location.hash && window.location.hash !== '') {
+        window.history.pushState(null, '', window.location.pathname);
+      }
+    } else {
+      const slug = getSlugByCategory(subCategory);
+      window.location.hash = slug;
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Listen to hash changes for deep linking
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace(/^#/, '');
+      if (!hash || hash === 'trang-chu') {
+        setCurrentView('home');
+        setTargetSubCategory(undefined);
+      } else {
+        const cat = getCategoryBySlug(hash);
+        setCurrentView('category');
+        setTargetSubCategory(cat === 'all' ? undefined : cat);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   return (
     <div className="bg-[#fdf8f8] text-[#111111] antialiased min-h-screen flex flex-col font-sans">
-      {/* Toast notification */}
+      {/* Toast notification with 4px corner radius */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-[#111111] text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-2.5 text-xs animate-in slide-in-from-bottom duration-200 border border-[#DAFF01]/40">
+        <div className="fixed bottom-6 right-6 z-50 bg-[#111111] text-white px-4 py-3 rounded-[4px] shadow-xl flex items-center gap-2.5 text-xs animate-in slide-in-from-bottom duration-200 border border-[#DAFF01]/40">
           <span className="material-symbols-outlined text-[#DAFF01] text-[18px]">check_circle</span>
           <span className="font-medium">{toastMessage}</span>
           <button

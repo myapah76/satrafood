@@ -50,7 +50,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full hover:bg-[#F6F8F5] flex items-center justify-center text-[#555E57] hover:text-[#111111] transition-colors cursor-pointer border-0"
+              className="w-8 h-8 rounded-[4px] hover:bg-[#F6F8F5] flex items-center justify-center text-[#555E57] hover:text-[#111111] transition-colors cursor-pointer border-0"
               aria-label="Đóng bộ lọc"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
@@ -68,14 +68,14 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
             <div className="space-y-1.5">
               <button
                 onClick={() => onSelectSubCategory('all')}
-                className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors cursor-pointer border-0 ${
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
                   selectedSubCategory === 'all'
                     ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
                     : 'text-[#555E57] hover:bg-[#F6F8F5]'
                 }`}
               >
                 <span>Tất cả sản phẩm tươi sống</span>
-                <span className="text-[11px] px-1.5 py-0.5 rounded-full bg-[#DAFF01] text-[#111111] font-bold">
+                <span className="text-[11px] px-1.5 py-0.5 rounded-[4px] bg-[#DAFF01] text-[#111111] font-bold">
                   12
                 </span>
               </button>
@@ -86,7 +86,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
                   <button
                     key={cat.label}
                     onClick={() => onSelectSubCategory(cat.label)}
-                    className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-left transition-colors cursor-pointer border-0 ${
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
                       isActive
                         ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
                         : 'text-[#555E57] hover:bg-[#F6F8F5]'
@@ -94,7 +94,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
                   >
                     <span className="line-clamp-1">{cat.label}</span>
                     <span
-                      className={`text-[11px] px-1.5 py-0.5 rounded-full ${
+                      className={`text-[11px] px-1.5 py-0.5 rounded-[4px] ${
                         isActive
                           ? 'bg-[#DAFF01] text-[#111111] font-bold'
                           : 'text-[#555E57] bg-gray-100'
@@ -120,7 +120,7 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
                     type="checkbox"
                     checked={selectedStandards.includes(std.id)}
                     onChange={() => onToggleStandard(std.id)}
-                    className="w-4 h-4 rounded text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
+                    className="w-4 h-4 rounded-[4px] text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
                   />
                   <span className="flex-1 text-[#111111] font-medium">{std.label}</span>
                   <span className="text-[#555E57] font-normal">({std.count})</span>
@@ -163,10 +163,10 @@ export const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
         <div className="p-4 bg-white border-t border-[#E3E8E1] space-y-2">
           <button
             onClick={onClose}
-            className="w-full py-3 bg-[#01B341] text-white font-bold rounded-xl shadow-md hover:bg-[#006e24] transition-colors cursor-pointer flex items-center justify-center gap-2 border-0"
+            className="w-full py-3 bg-[#01B341] text-white font-bold rounded-[4px] shadow-md hover:bg-[#006e24] transition-colors cursor-pointer flex items-center justify-center gap-2 border-0"
           >
             <span>Áp dụng bộ lọc</span>
-            <span className="px-2 py-0.5 rounded-full bg-[#DAFF01] text-[#111111] text-[11px] font-black">
+            <span className="px-2 py-0.5 rounded-[4px] bg-[#DAFF01] text-[#111111] text-[11px] font-black">
               {totalProductsCount} sản phẩm
             </span>
           </button>

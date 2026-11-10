@@ -39,17 +39,17 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-[#E3E8E1] text-[#111111]">
+      <div className="bg-white rounded-[4px] max-w-md w-full overflow-hidden shadow-2xl border border-[#E3E8E1] text-[#111111]">
         {/* Header with Satra brand lime & green */}
         <div className="bg-gradient-to-r from-[#01B341] to-[#006e24] text-white p-6 relative overflow-hidden">
-          <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-[#DAFF01]/20 rounded-full blur-xl pointer-events-none" />
+          <div className="absolute -right-8 -bottom-8 w-32 h-32 bg-[#DAFF01]/20 rounded-[4px] blur-xl pointer-events-none" />
           <div className="flex items-center justify-between mb-3">
-            <span className="px-2.5 py-1 rounded bg-[#DAFF01] text-[#111111] font-bold text-[11px] uppercase tracking-wider">
+            <span className="px-2.5 py-1 rounded-[4px] bg-[#DAFF01] text-[#111111] font-bold text-[11px] uppercase tracking-wider">
               Satra Rewards
             </span>
             <button
               onClick={onClose}
-              className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer border-0"
+              className="w-8 h-8 rounded-[4px] bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer border-0"
               aria-label="Đóng"
             >
               <span className="material-symbols-outlined text-[20px]">close</span>
@@ -64,7 +64,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
         {/* Content */}
         <div className="p-6 space-y-4">
           {/* Member Card Box */}
-          <div className="bg-gradient-to-br from-[#1c1b1b] to-[#313030] text-white rounded-xl p-4 shadow-md border border-neutral-700">
+          <div className="bg-gradient-to-br from-[#1c1b1b] to-[#313030] text-white rounded-[4px] p-4 shadow-md border border-neutral-700">
             <div className="flex items-center justify-between mb-3">
               <span className="text-[11px] font-bold tracking-widest text-[#DAFF01] uppercase">
                 SATRA GOLD MEMBER
@@ -97,11 +97,11 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
                 placeholder="090..."
-                className="flex-1 h-10 px-3 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg text-xs font-semibold focus:outline-none focus:border-[#01B341]"
+                className="flex-1 h-10 px-3 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-xs font-semibold focus:outline-none focus:border-[#01B341]"
               />
               <button
                 onClick={handleSave}
-                className="px-4 h-10 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer border-0"
+                className="px-4 h-10 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer border-0"
               >
                 {updateSuccess ? 'Đã lưu' : 'Cập nhật'}
               </button>
@@ -109,7 +109,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
           </div>
 
           {/* Member Benefits */}
-          <div className="space-y-2 bg-[#F6F8F5] p-3.5 rounded-xl border border-[#E3E8E1] text-xs">
+          <div className="space-y-2 bg-[#F6F8F5] p-3.5 rounded-[4px] border border-[#E3E8E1] text-xs">
             <div className="font-bold text-[#111111] mb-1 flex items-center gap-1.5">
               <span className="material-symbols-outlined text-[#01B341] text-[18px]">workspace_premium</span>
               Đặc quyền riêng cho bạn hôm nay:
@@ -129,7 +129,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
           </div>
 
           {/* Exclusive Coupon Code */}
-          <div className="border border-dashed border-[#01B341] rounded-xl p-3 flex items-center justify-between bg-[#DAFF01]/10">
+          <div className="border border-dashed border-[#01B341] rounded-[4px] p-3 flex items-center justify-between bg-[#DAFF01]/10">
             <div>
               <span className="text-[10px] uppercase font-bold text-[#006e24] block">Mã voucher thành viên:</span>
               <strong className="text-sm font-mono text-[#111111]">SATRAFRESHT3</strong>
@@ -137,7 +137,7 @@ export const MembershipModal: React.FC<MembershipModalProps> = ({
             </div>
             <button
               onClick={() => handleCopy('SATRAFRESHT3')}
-              className="px-3 py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer whitespace-nowrap border-0"
+              className="px-3 py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer whitespace-nowrap border-0"
             >
               {copiedCode ? 'Đã sao chép!' : 'Sao chép'}
             </button>

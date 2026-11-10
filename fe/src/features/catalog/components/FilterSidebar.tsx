@@ -35,7 +35,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
 }) => {
   return (
     <aside className="hidden lg:block lg:col-span-3 space-y-4">
-      <div className="bg-white rounded-2xl border border-[#E3E8E1] p-5 shadow-sm text-xs">
+      <div className="bg-white rounded-[4px] border border-[#E3E8E1] p-5 shadow-sm text-xs">
         <div className="flex items-center justify-between pb-3 border-b border-[#E3E8E1] mb-4">
           <div className="flex items-center gap-2">
             <span className="material-symbols-outlined text-[#01B341] text-[20px]">tune</span>
@@ -65,7 +65,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                 <li key={cat.label}>
                   <button
                     onClick={() => onSelectSubCategory(cat.label)}
-                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-left transition-colors cursor-pointer border-0 ${
+                    className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
                       isActive
                         ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
                         : 'text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5]'
@@ -73,7 +73,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   >
                     <span className="line-clamp-1">{cat.label}</span>
                     <span
-                      className={`text-[11px] px-1.5 py-0.5 rounded-full ${
+                      className={`text-[11px] px-1.5 py-0.5 rounded-[4px] ${
                         isActive
                           ? 'bg-[#DAFF01] text-[#111111] font-bold'
                           : 'text-[#555E57]'
@@ -101,7 +101,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   type="checkbox"
                   checked={selectedStandards.includes(std.id)}
                   onChange={() => onToggleStandard(std.id)}
-                  className="w-4 h-4 rounded text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
+                  className="w-4 h-4 rounded-[4px] text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
                 />
                 <span className="flex-1">{std.label}</span>
                 <span className="text-[11px] text-[#555E57]">({std.count})</span>
@@ -155,7 +155,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   type="checkbox"
                   checked={selectedPackaging.includes(spec)}
                   onChange={() => onTogglePackaging(spec)}
-                  className="w-4 h-4 rounded text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
+                  className="w-4 h-4 rounded-[4px] text-[#01B341] focus:ring-[#01B341] border-[#E3E8E1]"
                 />
                 <span className="flex-1">{spec}</span>
               </label>
@@ -177,7 +177,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   key={tag}
                   type="button"
                   onClick={() => onToggleTag(tag)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-colors cursor-pointer border ${
+                  className={`px-2.5 py-1 rounded-[4px] text-[11px] font-semibold transition-colors cursor-pointer border ${
                     isTagActive
                       ? 'bg-[#DAFF01] text-[#111111] border-[#01B341]/30 font-bold'
                       : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111] border-[#E3E8E1]'
@@ -192,7 +192,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
       </div>
 
       {/* Quick Promotion Box in Sidebar */}
-      <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-2xl p-4 text-center">
+      <div className="bg-gradient-to-br from-[#DAFF01]/25 to-[#01B341]/10 border border-[#01B341]/30 rounded-[4px] p-4 text-center">
         <span className="material-symbols-outlined text-[#01B341] text-[32px] mb-1">redeem</span>
         <h5 className="font-label-lg font-bold text-xs text-[#111111]">Voucher Giảm 30K</h5>
         <p className="font-body-sm text-[#555E57] text-[11px] mt-1">
@@ -200,7 +200,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
         </p>
         <button
           onClick={onCopyVoucher}
-          className="mt-3 w-full py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer shadow-xs border-0"
+          className="mt-3 w-full py-1.5 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer shadow-xs border-0"
           type="button"
         >
           LƯU MÃ: SATRAFRESHT3

@@ -11,7 +11,7 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
 
   return (
     <section
-      className="w-full bg-white rounded-2xl p-4 sm:p-8 shadow-sm mb-6 border border-[#E3E8E1]"
+      className="w-full bg-white rounded-[4px] p-4 sm:p-8 shadow-sm mb-6 border border-[#E3E8E1]"
       id="explore-categories"
     >
       <div className="flex items-center justify-between mb-6">
@@ -25,7 +25,7 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
         </div>
         <button
           onClick={() => onNavigateToCategory()}
-          className="inline-flex items-center gap-1 text-[#006e24] hover:text-[#01B341] font-bold text-xs transition-colors cursor-pointer bg-transparent border-0"
+          className="inline-flex items-center gap-1 text-[#006e24] hover:text-[#01B341] font-bold text-xs transition-colors cursor-pointer bg-transparent border-0 rounded-[4px]"
         >
           <span className="hidden sm:inline">Xem tất cả ngành hàng</span>
           <span className="sm:hidden">Tất cả</span>
@@ -38,12 +38,12 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
           <button
             key={cat.id}
             onClick={() => onNavigateToCategory(cat.subCategory)}
-            className="group flex flex-col items-center text-center p-1.5 sm:p-2 rounded-xl hover:bg-[#F6F8F5] transition-all duration-200 cursor-pointer bg-transparent border-0"
+            className="group flex flex-col items-center text-center p-1.5 sm:p-2 rounded-[4px] hover:bg-[#F6F8F5] transition-all duration-200 cursor-pointer bg-transparent border-0"
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 flex items-center justify-center rounded-2xl bg-[#F6F8F5] border border-[#E3E8E1] group-hover:scale-105 group-hover:shadow-md transition-all duration-300 overflow-hidden">
+            <div className="w-16 h-16 sm:w-20 sm:h-20 mb-2 sm:mb-3 flex items-center justify-center rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] group-hover:scale-105 group-hover:shadow-md transition-all duration-300 overflow-hidden">
               {cat.isSpecialBadge ? (
                 <div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center font-bold text-center leading-none text-[9px] sm:text-[10px] p-1 uppercase shadow-sm ${cat.badgeColor}`}
+                  className={`w-12 h-12 sm:w-14 sm:h-14 rounded-[4px] flex items-center justify-center font-bold text-center leading-none text-[9px] sm:text-[10px] p-1 uppercase shadow-sm ${cat.badgeColor}`}
                 >
                   {cat.badgeText}
                 </div>
@@ -51,7 +51,7 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
                 <img
                   src={cat.image}
                   alt={cat.title}
-                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-lg drop-shadow-xs"
+                  className="w-12 h-12 sm:w-14 sm:h-14 object-cover rounded-[4px] drop-shadow-xs"
                 />
               )}
             </div>

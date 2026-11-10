@@ -16,9 +16,9 @@ export const FirstOrderVoucher: React.FC<FirstOrderVoucherProps> = ({ onShowToas
   };
 
   return (
-    <section className="w-full bg-[#F6F8F5] rounded-2xl p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between shadow-sm mt-2 mb-6 border border-[#E3E8E1] gap-4">
+    <section className="w-full bg-[#F6F8F5] rounded-[4px] p-4 sm:p-6 flex flex-col md:flex-row items-center justify-between shadow-sm mt-2 mb-6 border border-[#E3E8E1] gap-4">
       <div className="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
-        <div className="w-12 h-12 rounded-full bg-[#DAFF01] flex items-center justify-center text-[#111111] shrink-0 shadow-sm">
+        <div className="w-12 h-12 rounded-[4px] bg-[#DAFF01] flex items-center justify-center text-[#111111] shrink-0 shadow-sm">
           <span className="material-symbols-outlined text-[26px]">mark_email_read</span>
         </div>
         <div>
@@ -33,7 +33,7 @@ export const FirstOrderVoucher: React.FC<FirstOrderVoucherProps> = ({ onShowToas
 
       <form onSubmit={handleNewsletterSubmit} className="flex items-center gap-2 w-full md:w-96">
         <input
-          className="flex-1 h-11 px-3 sm:px-4 rounded-lg bg-white border border-[#E3E8E1] font-body-md text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:ring-2 focus:ring-[#01B341]"
+          className="flex-1 h-11 px-3 sm:px-4 rounded-[4px] bg-white border border-[#E3E8E1] font-body-md text-xs text-[#111111] placeholder:text-[#555E57] focus:outline-none focus:ring-2 focus:ring-[#01B341]"
           placeholder="Nhập số điện thoại hoặc email..."
           type="text"
           value={newsletterInput}
@@ -42,7 +42,7 @@ export const FirstOrderVoucher: React.FC<FirstOrderVoucherProps> = ({ onShowToas
           aria-label="Số điện thoại hoặc email nhận ưu đãi"
         />
         <button
-          className="h-11 px-4 sm:px-5 bg-[#01B341] text-white font-label-md text-xs font-bold rounded-lg hover:bg-[#006e24] transition-colors whitespace-nowrap cursor-pointer shadow-sm border-0"
+          className="h-11 px-4 sm:px-5 bg-[#01B341] text-white font-label-md text-xs font-bold rounded-[4px] hover:bg-[#006e24] transition-colors whitespace-nowrap cursor-pointer shadow-sm border-0"
           type="submit"
         >
           {newsletterSubscribed ? 'Đã Nhận Mã' : 'Đăng Ký'}

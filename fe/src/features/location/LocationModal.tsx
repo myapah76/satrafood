@@ -31,7 +31,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
-      <div className="bg-white rounded-2xl max-w-md w-full overflow-hidden shadow-2xl border border-[#E3E8E1] text-[#111111]">
+      <div className="bg-white rounded-[4px] max-w-md w-full overflow-hidden shadow-2xl border border-[#E3E8E1] text-[#111111]">
         {/* Header */}
         <div className="bg-[#01B341] text-white p-5 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -45,7 +45,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
           </div>
           <button
             onClick={onClose}
-            className="w-8 h-8 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer border-0"
+            className="w-8 h-8 rounded-[4px] bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-colors cursor-pointer border-0"
             aria-label="Đóng"
           >
             <span className="material-symbols-outlined text-[20px]">close</span>
@@ -68,7 +68,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
                     onSelectCity(loc);
                     onClose();
                   }}
-                  className={`px-3 py-2.5 rounded-xl text-xs font-semibold text-left border transition-all cursor-pointer flex items-center justify-between ${
+                  className={`px-3 py-2.5 rounded-[4px] text-xs font-semibold text-left border transition-all cursor-pointer flex items-center justify-between ${
                     isSelected
                       ? 'bg-[#01B341] text-white border-[#01B341] shadow-sm'
                       : 'bg-[#F6F8F5] border-[#E3E8E1] text-[#111111] hover:border-[#01B341] hover:bg-white'
@@ -83,7 +83,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
             })}
           </div>
 
-          <div className="p-3 bg-[#DAFF01]/20 border border-[#DAFF01] rounded-xl flex items-center gap-2.5 text-xs text-[#111111]">
+          <div className="p-3 bg-[#DAFF01]/20 border border-[#DAFF01] rounded-[4px] flex items-center gap-2.5 text-xs text-[#111111]">
             <span className="material-symbols-outlined text-[#01B341] text-[20px]">bolt</span>
             <span>
               <strong>Cam kết 2 Giờ:</strong> Nhận hàng mát lạnh, tươi mới tận tay từ cửa hàng gần nhất.
@@ -94,7 +94,7 @@ export const LocationModal: React.FC<LocationModalProps> = ({
         <div className="p-4 bg-[#F6F8F5] border-t border-[#E3E8E1] flex justify-end">
           <button
             onClick={onClose}
-            className="px-4 py-2 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] cursor-pointer border-0"
+            className="px-4 py-2 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#006e24] cursor-pointer border-0"
           >
             Xác nhận
           </button>

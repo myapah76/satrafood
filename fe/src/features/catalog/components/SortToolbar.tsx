@@ -37,17 +37,17 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
       {/* MOBILE FILTER & CATEGORY QUICK BAR (lg:hidden) */}
       <div className="lg:hidden space-y-2.5 mb-4">
         {/* Row 1: Filter button with active count + Sort selector + View mode */}
-        <div className="flex items-center justify-between gap-2 bg-white p-2.5 rounded-xl border border-[#E3E8E1] shadow-2xs">
+        <div className="flex items-center justify-between gap-2 bg-white p-2.5 rounded-[4px] border border-[#E3E8E1] shadow-2xs">
           <button
             onClick={onOpenMobileFilter}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#01B341] text-white rounded-lg font-bold text-xs cursor-pointer shadow-xs border-0"
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-[#01B341] text-white rounded-[4px] font-bold text-xs cursor-pointer shadow-xs border-0"
             type="button"
             aria-label="Mở bộ lọc"
           >
             <span className="material-symbols-outlined text-[16px]">tune</span>
             <span>Bộ lọc</span>
             {activeFiltersCount > 0 && (
-              <span className="w-4 h-4 rounded-full bg-[#DAFF01] text-[#111111] text-[10px] font-black flex items-center justify-center">
+              <span className="w-4 h-4 rounded-[4px] bg-[#DAFF01] text-[#111111] text-[10px] font-black flex items-center justify-center">
                 {activeFiltersCount}
               </span>
             )}
@@ -59,7 +59,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             <select
               value={sortBy}
               onChange={(e) => onSortChange(e.target.value as SortOption)}
-              className="h-8 px-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-lg text-xs font-semibold text-[#111111] focus:outline-none focus:border-[#01B341] cursor-pointer"
+              className="h-8 px-2 bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] text-xs font-semibold text-[#111111] focus:outline-none focus:border-[#01B341] cursor-pointer"
               aria-label="Sắp xếp sản phẩm"
             >
               {SORT_OPTIONS.map((opt) => (
@@ -74,7 +74,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
           <div className="flex items-center gap-1">
             <button
               onClick={() => onViewModeChange('grid')}
-              className={`p-1.5 rounded-lg cursor-pointer border-0 ${
+              className={`p-1.5 rounded-[4px] cursor-pointer border-0 ${
                 viewMode === 'grid'
                   ? 'bg-[#DAFF01] text-[#111111]'
                   : 'bg-[#F6F8F5] text-[#555E57]'
@@ -86,7 +86,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             </button>
             <button
               onClick={() => onViewModeChange('list')}
-              className={`p-1.5 rounded-lg cursor-pointer border-0 ${
+              className={`p-1.5 rounded-[4px] cursor-pointer border-0 ${
                 viewMode === 'list'
                   ? 'bg-[#DAFF01] text-[#111111]'
                   : 'bg-[#F6F8F5] text-[#555E57]'
@@ -99,25 +99,41 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
           </div>
         </div>
 
-        {/* Row 2: Sub-category chips horizontal scroll */}
+        {/* Row 2: Sub-category chips horizontal scroll with 4px corner radius */}
         <div className="flex items-center gap-1.5 overflow-x-auto whitespace-nowrap scrollbar-none py-0.5 text-xs">
           <button
             onClick={() => onSelectSubCategory('all')}
-            className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 cursor-pointer border-0 ${
+            className={`px-3 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
               selectedSubCategory === 'all'
-                ? 'bg-[#01B341] text-white shadow-xs'
+                ? 'bg-[#01B341] text-white shadow-xs font-bold'
                 : 'bg-white border border-[#E3E8E1] text-[#555E57] hover:text-[#111111]'
             }`}
           >
             Tất cả (12)
           </button>
+
+          {/* HOT Promo chip (RGB: 252 149 253 | Hex: #FC95FD) */}
+          <button
+            onClick={() => onSelectSubCategory('Khuyến mãi hot')}
+            className={`px-2.5 py-1.5 rounded-[4px] text-xs font-bold shrink-0 cursor-pointer border-0 flex items-center gap-1 ${
+              selectedSubCategory === 'Khuyến mãi hot'
+                ? 'bg-[#FC95FD] text-[#111111] ring-2 ring-[#01B341]'
+                : 'bg-[#FC95FD] text-[#111111] hover:opacity-90'
+            }`}
+          >
+            <span className="material-symbols-outlined text-[14px] text-[#111111]">
+              local_fire_department
+            </span>
+            <span>Ưu đãi HOT</span>
+          </button>
+
           {subCategories.map((cat) => (
             <button
               key={cat.label}
               onClick={() => onSelectSubCategory(cat.label)}
-              className={`px-3 py-1 rounded-full text-xs font-semibold shrink-0 cursor-pointer border-0 ${
+              className={`px-3 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 ${
                 selectedSubCategory === cat.label
-                  ? 'bg-[#01B341] text-white shadow-xs'
+                  ? 'bg-[#01B341] text-white shadow-xs font-bold'
                   : 'bg-white border border-[#E3E8E1] text-[#555E57] hover:text-[#111111]'
               }`}
             >
@@ -128,7 +144,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
       </div>
 
       {/* DESKTOP SORT TOOLBAR */}
-      <div className="hidden lg:flex bg-white rounded-xl border border-[#E3E8E1] p-3 items-center justify-between gap-3 shadow-sm text-xs">
+      <div className="hidden lg:flex bg-white rounded-[4px] border border-[#E3E8E1] p-3 items-center justify-between gap-3 shadow-sm text-xs">
         <div className="flex items-center gap-2 overflow-x-auto">
           <span className="font-bold text-[#555E57] uppercase shrink-0 text-[11px]">
             Sắp xếp theo:
@@ -139,7 +155,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
               <button
                 key={sort.id}
                 onClick={() => onSortChange(sort.id)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 transition-colors cursor-pointer border-0 ${
+                className={`px-3 py-1.5 rounded-[4px] text-xs font-bold shrink-0 transition-colors cursor-pointer border-0 ${
                   isActive
                     ? 'bg-[#01B341] text-white shadow-xs'
                     : 'bg-[#F6F8F5] hover:bg-[#f1edec] text-[#555E57] hover:text-[#111111]'
@@ -155,7 +171,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
           <span className="text-xs text-[#555E57] mr-1 hidden sm:inline">Chế độ xem:</span>
           <button
             onClick={() => onViewModeChange('grid')}
-            className={`p-1.5 rounded-lg shadow-2xs cursor-pointer border-0 ${
+            className={`p-1.5 rounded-[4px] shadow-2xs cursor-pointer border-0 ${
               viewMode === 'grid'
                 ? 'bg-[#DAFF01] text-[#111111]'
                 : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'
@@ -167,7 +183,7 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
           </button>
           <button
             onClick={() => onViewModeChange('list')}
-            className={`p-1.5 rounded-lg cursor-pointer border-0 ${
+            className={`p-1.5 rounded-[4px] cursor-pointer border-0 ${
               viewMode === 'list'
                 ? 'bg-[#DAFF01] text-[#111111]'
                 : 'bg-[#F6F8F5] text-[#555E57] hover:text-[#111111]'

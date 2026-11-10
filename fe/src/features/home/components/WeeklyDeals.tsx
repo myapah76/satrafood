@@ -15,14 +15,14 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
 
   return (
     <section className="w-full my-4">
-      <div className="rounded-2xl p-4 sm:p-6 shadow-lg text-white relative overflow-hidden bg-[#01B341]">
+      <div className="rounded-[4px] p-4 sm:p-6 shadow-lg text-white relative overflow-hidden bg-[#01B341]">
         {/* Decorative Packaging Graphic Texture */}
-        <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#DAFF01]/15 rounded-full blur-2xl pointer-events-none" />
-        <div className="absolute left-1/3 -bottom-20 w-80 h-80 bg-[#FC95FD]/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#DAFF01]/15 rounded-[4px] blur-2xl pointer-events-none" />
+        <div className="absolute left-1/3 -bottom-20 w-80 h-80 bg-[#FC95FD]/15 rounded-[4px] blur-3xl pointer-events-none" />
 
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-5 sm:mb-6 relative z-10 gap-3">
           <div className="flex flex-col sm:flex-row sm:items-center gap-2.5 sm:gap-3">
-            <div className="px-3 py-1 bg-[#DAFF01] text-[#111111] font-label-lg rounded-md font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5 text-xs w-fit">
+            <div className="px-3 py-1 bg-[#DAFF01] text-[#111111] font-label-lg rounded-[4px] font-black uppercase tracking-wider shadow-sm flex items-center gap-1.5 text-xs w-fit">
               <span className="material-symbols-outlined text-[18px]">local_offer</span>
               {campaign.title}
             </div>
@@ -32,20 +32,20 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
           </div>
 
           {/* Countdown Timer */}
-          <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-lg text-white self-start sm:self-auto">
+          <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-[4px] text-white self-start sm:self-auto">
             <span className="font-label-sm text-[11px] text-[#DAFF01] uppercase font-bold">
               Kết thúc sau:
             </span>
             <div className="flex items-center gap-1 font-label-md text-xs font-bold">
-              <span className="px-2 py-0.5 bg-white text-[#111111] rounded">
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {hours || '02'}
               </span>
               :
-              <span className="px-2 py-0.5 bg-white text-[#111111] rounded">
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {minutes || '14'}
               </span>
               :
-              <span className="px-2 py-0.5 bg-white text-[#111111] rounded">
+              <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {seconds || '48'}
               </span>
             </div>
@@ -60,22 +60,22 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                 ? 'bg-[#FF161F] text-white'
                 : deal.tagType === 'same_price'
                 ? 'bg-[#DAFF01] text-[#111111]'
-                : 'bg-[#FF9500] text-white';
+                : 'bg-[#FF9400] text-white';
 
             return (
               <div
                 key={deal.id}
-                className="bg-white rounded-xl text-[#111111] shadow-md hover:shadow-xl transition-all relative overflow-hidden group p-3 cursor-pointer"
+                className="bg-white rounded-[4px] text-[#111111] shadow-md hover:shadow-xl transition-all relative overflow-hidden group p-3 cursor-pointer"
                 onClick={() => onAddDealToCart(deal.id)}
               >
                 <div
-                  className={`absolute top-0 right-0 font-label-md text-[11px] font-extrabold px-3 py-1 rounded-bl-lg shadow-xs z-10 ${badgeBg}`}
+                  className={`absolute top-0 right-0 font-label-md text-[11px] font-extrabold px-3 py-1 rounded-bl-[4px] shadow-xs z-10 ${badgeBg}`}
                 >
                   {deal.tag}
                 </div>
 
                 <div className="flex gap-3 sm:gap-4">
-                  <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-lg overflow-hidden bg-[#F6F8F5] shrink-0 border border-[#E3E8E1]">
+                  <div className="w-22 h-22 sm:w-24 sm:h-24 rounded-[4px] overflow-hidden bg-[#F6F8F5] shrink-0 border border-[#E3E8E1]">
                     <img
                       src={deal.image}
                       alt={deal.title}
@@ -108,7 +108,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                           e.stopPropagation();
                           onAddDealToCart(deal.id);
                         }}
-                        className="w-7 h-7 rounded-lg bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0"
+                        className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0"
                         title="Thêm vào giỏ"
                         type="button"
                         aria-label={`Thêm ${deal.title} vào giỏ hàng`}

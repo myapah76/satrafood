@@ -1,7 +1,8 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import productsData from '../../data/products.json';
 import { FilterOptions, Product, SortOption } from '../../types';
 import { filterProducts, sortProducts } from '../../utils/cart';
+import { getSlugByCategory, getCategoryBySlug } from '../../utils/slug';
 import { CommitmentBanner } from './components/CommitmentBanner';
 import { FilterSidebar } from './components/FilterSidebar';
 import { MobileFilterDrawer } from './components/MobileFilterDrawer';
@@ -46,9 +47,16 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
 }) => {
   const products = productsData as Product[];
 
-  const [selectedSubCategory, setSelectedSubCategory] = useState<string>(
-    initialSubCategory || 'all'
-  );
+  const [selectedSubCategory, setSelectedSubCategory] = useState<string>(() => {
+    if (initialSubCategory) return initialSubCategory;
+    if (typeof window !== 'undefined' && window.location.hash) {
+      const rawSlug = window.location.hash.replace(/^#/, '');
+      const mapped = getCategoryBySlug(rawSlug);
+      if (mapped !== 'all') return mapped;
+    }
+    return 'all';
+  });
+
   const [selectedStandards, setSelectedStandards] = useState<string[]>(['VietGAP', 'OCOP', 'ATTP']);
   const [selectedPriceRange, setSelectedPriceRange] = useState<
     'all' | 'under50' | '50to100' | '100to200' | 'above200'
@@ -59,6 +67,23 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+
+  // Sync when initialSubCategory prop updates from header navigation
+  useEffect(() => {
+    if (initialSubCategory) {
+      setSelectedSubCategory(initialSubCategory);
+      const slug = getSlugByCategory(initialSubCategory);
+      if (window.location.hash !== `#${slug}`) {
+        window.location.hash = slug;
+      }
+    }
+  }, [initialSubCategory]);
+
+  const handleSelectSubCategory = (subCat: string) => {
+    setSelectedSubCategory(subCat);
+    const slug = getSlugByCategory(subCat === 'all' ? undefined : subCat);
+    window.location.hash = slug;
+  };
 
   const handleToggleStandard = (id: string) => {
     setSelectedStandards((prev) =>
@@ -79,7 +104,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
   };
 
   const handleResetFilters = () => {
-    setSelectedSubCategory('all');
+    handleSelectSubCategory('all');
     setSelectedStandards([]);
     setSelectedPriceRange('all');
     setSelectedPackaging([]);
@@ -117,25 +142,33 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
     (selectedPriceRange !== 'all' ? 1 : 0);
 
   return (
-    <div className="w-full pt-32 lg:pt-36 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-10 min-h-[calc(100vh-144px)] pb-20 md:pb-12">
-      {/* Breadcrumb Navigation */}
-      <nav aria-label="Breadcrumb" className="flex items-center gap-2 text-xs text-[#555E57] my-3">
+    <div className="w-full pt-32 lg:pt-36 max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-144px)] pb-20 md:pb-12">
+      {/* Breadcrumb Navigation: Trang chủ / Danh mục sản phẩm / [Tên phân ngành] */}
+      <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-[#555E57] my-3">
         <button
           onClick={onNavigateHome}
-          className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-0 cursor-pointer text-xs text-[#555E57]"
+          className="hover:text-[#01B341] transition-colors flex items-center gap-1 bg-transparent border-0 p-1 rounded-[4px] cursor-pointer text-xs text-[#555E57]"
         >
           <span className="material-symbols-outlined text-[16px]">home</span>
-          Trang chủ
+          <span>Trang chủ</span>
         </button>
         <span className="text-[#E3E8E1] font-bold">/</span>
         <button
-          onClick={() => setSelectedSubCategory('all')}
-          className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 cursor-pointer text-xs text-[#555E57]"
+          onClick={() => handleSelectSubCategory('all')}
+          className={`hover:text-[#01B341] transition-colors bg-transparent border-0 p-1 rounded-[4px] cursor-pointer text-xs ${
+            selectedSubCategory === 'all' ? 'text-[#01B341] font-bold' : 'text-[#555E57]'
+          }`}
         >
           Danh mục sản phẩm
         </button>
-        <span className="text-[#E3E8E1] font-bold">/</span>
-        <span className="text-[#111111] font-semibold">Thực phẩm tươi sống mỗi ngày</span>
+        {selectedSubCategory !== 'all' && (
+          <>
+            <span className="text-[#E3E8E1] font-bold">/</span>
+            <span className="text-[#111111] font-bold bg-[#F6F8F5] px-2 py-0.5 rounded-[4px] border border-[#E3E8E1]">
+              {selectedSubCategory}
+            </span>
+          </>
+        )}
       </nav>
 
       {/* Mini Banner Category Assurance */}
@@ -149,7 +182,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         onViewModeChange={setViewMode}
         subCategories={SUB_CATEGORIES}
         selectedSubCategory={selectedSubCategory}
-        onSelectSubCategory={setSelectedSubCategory}
+        onSelectSubCategory={handleSelectSubCategory}
         onOpenMobileFilter={() => setIsMobileFilterOpen(true)}
         activeFiltersCount={activeFiltersCount}
       />
@@ -160,7 +193,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         <FilterSidebar
           subCategories={SUB_CATEGORIES}
           selectedSubCategory={selectedSubCategory}
-          onSelectSubCategory={setSelectedSubCategory}
+          onSelectSubCategory={handleSelectSubCategory}
           safetyStandards={SAFETY_STANDARDS}
           selectedStandards={selectedStandards}
           onToggleStandard={handleToggleStandard}
@@ -178,7 +211,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         <section className="col-span-12 lg:col-span-9 space-y-4">
           {/* Search Result Indicator if search query active */}
           {searchQuery && (
-            <div className="p-3 bg-[#F6F8F5] rounded-xl border border-[#E3E8E1] text-xs flex items-center justify-between">
+            <div className="p-3 bg-[#F6F8F5] rounded-[4px] border border-[#E3E8E1] text-xs flex items-center justify-between">
               <span>
                 Kết quả tìm kiếm cho: <strong>"{searchQuery}"</strong> ({filteredAndSortedProducts.length} sản phẩm)
               </span>
@@ -206,7 +239,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
           </div>
 
           {/* Pagination */}
-          <div className="bg-white rounded-xl border border-[#E3E8E1] p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs mt-6 text-xs">
+          <div className="bg-white rounded-[4px] border border-[#E3E8E1] p-4 flex flex-col sm:flex-row items-center justify-between gap-3 shadow-xs mt-6 text-xs">
             <p className="font-body-sm text-[#555E57]">
               Đang xem 1 - {filteredAndSortedProducts.length} trên tổng số 156 mặt hàng tươi sống
             </p>
@@ -214,13 +247,13 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
               <button
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
-                className="px-3 py-1.5 rounded-lg border border-[#E3E8E1] text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5] text-xs flex items-center gap-1 disabled:opacity-40 cursor-pointer"
+                className="px-3 py-1.5 rounded-[4px] border border-[#E3E8E1] text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5] text-xs flex items-center gap-1 disabled:opacity-40 cursor-pointer"
               >
                 <span className="material-symbols-outlined text-[16px]">chevron_left</span> Trước
               </button>
               <button
                 onClick={() => setCurrentPage(1)}
-                className={`w-8 h-8 rounded-lg font-bold text-xs cursor-pointer border ${
+                className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 1
                     ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
@@ -230,7 +263,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
               </button>
               <button
                 onClick={() => setCurrentPage(2)}
-                className={`w-8 h-8 rounded-lg font-bold text-xs cursor-pointer border ${
+                className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 2
                     ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
@@ -240,7 +273,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
               </button>
               <button
                 onClick={() => setCurrentPage(3)}
-                className={`w-8 h-8 rounded-lg font-bold text-xs cursor-pointer border ${
+                className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 3
                     ? 'bg-[#01B341] text-white border-[#01B341] shadow-xs'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
@@ -251,7 +284,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
               <span className="px-1 text-[#555E57] text-xs">...</span>
               <button
                 onClick={() => setCurrentPage(10)}
-                className={`w-8 h-8 rounded-lg font-bold text-xs cursor-pointer border ${
+                className={`w-8 h-8 rounded-[4px] font-bold text-xs cursor-pointer border ${
                   currentPage === 10
                     ? 'bg-[#01B341] text-white border-[#01B341]'
                     : 'border-[#E3E8E1] hover:bg-[#F6F8F5] text-[#111111]'
@@ -262,7 +295,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
               <button
                 onClick={() => setCurrentPage((p) => Math.min(10, p + 1))}
                 disabled={currentPage === 10}
-                className="px-3 py-1.5 rounded-lg border border-[#E3E8E1] text-[#01B341] hover:bg-[#F6F8F5] text-xs font-bold flex items-center gap-1 cursor-pointer"
+                className="px-3 py-1.5 rounded-[4px] border border-[#E3E8E1] text-[#01B341] hover:bg-[#F6F8F5] text-xs font-bold flex items-center gap-1 cursor-pointer"
               >
                 Sau <span className="material-symbols-outlined text-[16px]">chevron_right</span>
               </button>
@@ -278,7 +311,7 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
         subCategories={SUB_CATEGORIES}
         selectedSubCategory={selectedSubCategory}
         onSelectSubCategory={(sub) => {
-          setSelectedSubCategory(sub);
+          handleSelectSubCategory(sub);
           setIsMobileFilterOpen(false);
         }}
         safetyStandards={SAFETY_STANDARDS}

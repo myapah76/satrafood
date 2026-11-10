@@ -21,7 +21,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     product.badgeColor === 'lime'
       ? 'bg-[#DAFF01] text-[#111111]'
       : product.badgeColor === 'orange'
-      ? 'bg-[#FF9500] text-white'
+      ? 'bg-[#FF9400] text-white'
       : 'bg-[#01B341] text-white';
 
   const handleAdd = () => {
@@ -31,12 +31,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   if (viewMode === 'list') {
     return (
-      <div className="bg-white rounded-xl p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341]">
+      <div className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] transition-all">
         <div className="flex items-center gap-3">
           <img
             src={product.image}
             alt={product.name}
-            className="w-20 h-20 object-cover rounded-lg shrink-0 border border-[#E3E8E1]"
+            className="w-20 h-20 object-cover rounded-[4px] shrink-0 border border-[#E3E8E1]"
           />
           <div>
             <div className="flex items-center gap-2">
@@ -44,7 +44,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
                 {product.subCategory}
               </span>
               {product.badge && (
-                <span className="px-1.5 py-0.2 bg-[#01B341] text-white rounded text-[10px] font-bold">
+                <span className="px-1.5 py-0.5 bg-[#01B341] text-white rounded-[4px] text-[10px] font-bold">
                   {product.badge}
                 </span>
               )}
@@ -53,7 +53,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             <p className="text-xs text-[#555E57]">{product.unit}</p>
             <button
               onClick={() => onShowTraceability(product)}
-              className="text-[11px] text-[#006e24] hover:underline flex items-center gap-1 mt-1 bg-transparent border-0 p-0 cursor-pointer"
+              className="text-[11px] text-[#006e24] hover:underline flex items-center gap-1 mt-1 bg-transparent border-0 p-0 cursor-pointer rounded-[4px]"
             >
               <span className="material-symbols-outlined text-[14px]">qr_code_2</span>
               Xem truy xuất nguồn gốc nông trại
@@ -66,7 +66,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           <div className="text-xs text-[#555E57] line-through">{formatVND(product.originalPrice)}</div>
           <button
             onClick={handleAdd}
-            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer flex items-center gap-1 border-0"
+            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer flex items-center gap-1 border-0"
           >
             <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>
             Thêm vào giỏ
@@ -77,10 +77,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-[#E3E8E1]">
+    <div className="bg-white rounded-[4px] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-[#E3E8E1]">
       <div>
         {/* Product Image Box */}
-        <div className="relative w-full aspect-square rounded-lg overflow-hidden bg-[#F6F8F5] mb-2.5">
+        <div className="relative w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2.5">
           <img
             alt={product.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
@@ -88,7 +88,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           />
           {product.badge && (
             <span
-              className={`absolute top-2 left-2 px-2 py-0.5 rounded font-label-sm text-[10px] font-bold shadow-xs ${badgeStyle}`}
+              className={`absolute top-2 left-2 px-2 py-0.5 rounded-[4px] font-label-sm text-[10px] font-bold shadow-xs ${badgeStyle}`}
             >
               {product.badge}
             </span>
@@ -96,7 +96,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
           {/* QR Code Traceability Button */}
           <button
             onClick={() => onShowTraceability(product)}
-            className="absolute top-2 right-2 w-6 h-6 rounded-full bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#006e24] shadow-xs hover:bg-[#DAFF01] transition-colors cursor-pointer border-0"
+            className="absolute top-2 right-2 w-6 h-6 rounded-[4px] bg-white/90 backdrop-blur-xs flex items-center justify-center text-[#006e24] shadow-xs hover:bg-[#DAFF01] transition-colors cursor-pointer border-0"
             title="Truy xuất nguồn gốc QR"
             type="button"
             aria-label={`Truy xuất nguồn gốc cho ${product.name}`}
@@ -126,7 +126,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </span>
           </div>
           {product.discountPercent && (
-            <span className="text-[10px] font-label-sm text-[#FF161F] bg-[#FF161F]/10 px-1 py-0.5 rounded font-bold">
+            <span className="text-[10px] font-label-sm text-[#FF161F] bg-[#FF161F]/10 px-1 py-0.5 rounded-[4px] font-bold">
               -{product.discountPercent}%
             </span>
           )}
@@ -134,7 +134,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
         <button
           onClick={handleAdd}
-          className="w-full py-2 bg-[#01B341] text-white font-label-md text-xs rounded-lg hover:bg-[#006e24] transition-colors flex items-center justify-center gap-1 font-bold shadow-xs cursor-pointer border-0"
+          className="w-full py-2 bg-[#01B341] text-white font-label-md text-xs rounded-[4px] hover:bg-[#006e24] transition-colors flex items-center justify-center gap-1 font-bold shadow-xs cursor-pointer border-0"
           type="button"
         >
           <span className="material-symbols-outlined text-[16px]">add_shopping_cart</span>

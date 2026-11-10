@@ -12,7 +12,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
       <div className="bg-[#FFFFFF] border-b border-[#E3E8E1] py-6">
         <div className="max-w-[1240px] mx-auto px-6 lg:px-10 grid grid-cols-2 md:grid-cols-4 gap-6">
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
+            <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
               <span className="material-symbols-outlined text-[28px]">schedule</span>
             </div>
             <div>
@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
+            <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
               <span className="material-symbols-outlined text-[28px]">verified_user</span>
             </div>
             <div>
@@ -32,7 +32,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
+            <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
               <span className="material-symbols-outlined text-[28px]">loyalty</span>
             </div>
             <div>
@@ -42,7 +42,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-lg bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
+            <div className="w-12 h-12 rounded-[4px] bg-[#F6F8F5] border border-[#E3E8E1] flex items-center justify-center text-[#01B341] shrink-0">
               <span className="material-symbols-outlined text-[28px]">storefront</span>
             </div>
             <div>
@@ -75,10 +75,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               </p>
             </div>
             <div className="flex items-center gap-2 pt-1">
-              <span className="px-2 py-1 rounded bg-[#01B341] text-white font-label-sm text-[11px] font-bold">
+              <span className="px-2 py-1 rounded-[4px] bg-[#01B341] text-white font-label-sm text-[11px] font-bold">
                 Bình ổn thị trường
               </span>
-              <span className="px-2 py-1 rounded bg-[#DAFF01] text-[#111111] font-label-sm text-[11px] font-bold">
+              <span className="px-2 py-1 rounded-[4px] bg-[#DAFF01] text-[#111111] font-label-sm text-[11px] font-bold">
                 VietGAP Food
               </span>
             </div>
@@ -103,7 +103,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Câu hỏi thường gặp (FAQ)')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Câu hỏi thường gặp (FAQ)
                 </button>
@@ -111,7 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Quy chế Điểm thưởng Thành viên')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Quy chế Điểm thưởng Thành viên
                 </button>
@@ -128,7 +128,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Chính sách giao hàng siêu tốc 2h')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Chính sách giao hàng siêu tốc 2h
                 </button>
@@ -136,7 +136,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Chính sách đổi trả & hoàn tiền trong ngày')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Chính sách đổi trả &amp; hoàn tiền trong ngày
                 </button>
@@ -144,7 +144,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Cam kết chất lượng thực phẩm VietGAP')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Cam kết chất lượng thực phẩm VietGAP
                 </button>
@@ -152,7 +152,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Chính sách bảo mật thông tin khách hàng')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Chính sách bảo mật thông tin khách hàng
                 </button>
@@ -160,7 +160,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               <li>
                 <button
                   onClick={() => onOpenPolicy?.('Điều khoản sử dụng dịch vụ mua hàng')}
-                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57]"
+                  className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-left text-xs cursor-pointer text-[#555E57] rounded-[4px]"
                 >
                   Điều khoản sử dụng dịch vụ mua hàng
                 </button>
@@ -173,7 +173,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
             <h4 className="font-title-md text-sm text-[#111111] mb-4 font-bold">
               Mạng Lưới Phục Vụ
             </h4>
-            <div className="p-4 bg-[#FFFFFF] border border-[#E3E8E1] rounded-xl space-y-2 shadow-sm">
+            <div className="p-4 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] space-y-2 shadow-sm">
               <div className="flex items-center gap-1.5 text-[#01B341] font-bold text-xs">
                 <span className="material-symbols-outlined text-[18px]">store</span>
                 <span>180+ Cửa hàng tại TP.HCM &amp; Cần Thơ</span>
@@ -183,7 +183,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
               </p>
               <button
                 onClick={onOpenStoreLocator}
-                className="inline-flex items-center justify-center w-full py-2 bg-[#01B341] text-white font-bold text-xs rounded-lg hover:bg-[#006e24] transition-colors cursor-pointer border-0 mt-2"
+                className="inline-flex items-center justify-center w-full py-2 bg-[#01B341] text-white font-bold text-xs rounded-[4px] hover:bg-[#006e24] transition-colors cursor-pointer border-0 mt-2"
                 type="button"
               >
                 Tra cứu hệ thống điểm bán
@@ -195,10 +195,10 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
                 Chứng nhận an toàn thực phẩm
               </p>
               <div className="flex items-center gap-2">
-                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded text-xs text-[#01B341] font-semibold flex items-center gap-1 shadow-2xs">
+                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#01B341] font-semibold flex items-center gap-1 shadow-2xs">
                   <span className="material-symbols-outlined text-[16px]">shield</span>Đã Đăng Ký BCT
                 </div>
-                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded text-xs text-[#111111] font-semibold flex items-center gap-1 shadow-2xs">
+                <div className="px-2.5 py-1 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] text-xs text-[#111111] font-semibold flex items-center gap-1 shadow-2xs">
                   <span className="material-symbols-outlined text-[16px] text-[#01B341]">eco</span>ATVSTP TP.HCM
                 </div>
               </div>
@@ -214,19 +214,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenStoreLocator, onOpenPolicy
           <div className="flex items-center gap-4">
             <button
               onClick={() => onOpenPolicy?.('Bảo mật thông tin')}
-              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer"
+              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer rounded-[4px]"
             >
               Bảo mật
             </button>
             <button
               onClick={() => onOpenPolicy?.('Điều khoản dịch vụ')}
-              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer"
+              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer rounded-[4px]"
             >
               Điều khoản
             </button>
             <button
               onClick={onOpenStoreLocator}
-              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer"
+              className="hover:text-[#01B341] transition-colors bg-transparent border-0 p-0 text-xs text-[#555E57] cursor-pointer rounded-[4px]"
             >
               Hệ thống cửa hàng
             </button>
