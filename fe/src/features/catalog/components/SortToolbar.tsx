@@ -88,19 +88,19 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
     <>
       {/* MOBILE FILTER & QUICK TOOLBAR (lg:hidden) matching Picture 3 & 4 */}
       <div className="lg:hidden space-y-2.5 mb-3">
-        {/* Row 1 on Mobile: "Danh mục sản phẩm" dropdown button + "HOT Khuyến mãi hot" button */}
+        {/* Row 1 on Mobile: "Danh mục sản phẩm" dropdown button + "HOT" button */}
         <div className="relative flex items-center justify-between gap-2.5 pt-0.5">
           {/* Green Category Menu Dropdown */}
           <div className="relative" ref={categoryMenuRef}>
             <button
               onClick={() => setIsCategoryMenuOpen((prev) => !prev)}
-              className="flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-[4px] font-bold text-xs hover:bg-[#009636] transition-colors cursor-pointer border-0 shadow-xs"
+              className="h-8 flex items-center gap-1.5 bg-[#01B341] text-white px-3 py-1.5 rounded-[4px] font-bold text-xs hover:bg-[#009636] transition-colors cursor-pointer border-0 shadow-xs"
               type="button"
               aria-expanded={isCategoryMenuOpen}
               aria-label="Danh mục sản phẩm"
             >
               <span className="material-symbols-outlined text-[17px]">menu</span>
-              <span className="max-w-[150px] truncate">{categoryBtnLabel}</span>
+              <span className="max-w-[170px] sm:max-w-xs truncate">{categoryBtnLabel}</span>
               {isCategoryMenuOpen ? (
                 <UpIcon className="w-3.5 h-3.5 text-white" />
               ) : (
@@ -150,22 +150,17 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
             )}
           </div>
 
-          {/* HOT Promo Button: Pink HOT badge + text Khuyến mãi hot */}
+          {/* HOT Promo Button: Just HOT on mobile as requested ("thành HOT thui bỏ khuyến mãi") */}
           <button
             onClick={() => onSelectSubCategory('Khuyến mãi hot')}
-            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-[4px] text-xs font-bold transition-all cursor-pointer border ${
+            className={`h-8 px-3.5 rounded-[4px] text-xs font-black transition-all cursor-pointer border flex items-center justify-center shrink-0 shadow-2xs ${
               selectedSubCategory === 'Khuyến mãi hot'
-                ? 'border-[#01B341] bg-[#01B341]/10 text-[#01B341] shadow-2xs'
-                : 'border-transparent bg-transparent hover:opacity-85 text-[#111111]'
+                ? 'bg-[#FC95FD] text-white border-[#01B341] ring-2 ring-[#01B341]'
+                : 'bg-[#FC95FD] text-white border-transparent hover:opacity-90 active:scale-95'
             }`}
-            aria-label="Khuyến mãi hot"
+            aria-label="Khuyến mãi HOT"
           >
-            <span className="bg-[#FC95FD] text-white font-extrabold text-[10.5px] px-1.5 py-0.5 rounded-[4px] shadow-2xs">
-              HOT
-            </span>
-            <span className="hover:text-[#01B341] font-bold text-xs transition-colors">
-              Khuyến mãi hot
-            </span>
+            HOT
           </button>
         </div>
 
