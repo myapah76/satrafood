@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useInView } from '../../../utils/useInView';
 
 interface CategoryExplorerProps {
   onNavigateToCategory: (subCategory?: string) => void;
 }
+
+const CategorySkeleton: React.FC = () => (
+  <div className="flex flex-col items-center text-center p-0">
+    <div className="w-full aspect-square rounded-[14px] stageshow-shimmer border border-[#E3E8E1] p-1.5 shadow-2xs" />
+    <div className="w-12 h-2.5 rounded-full stageshow-shimmer mt-2" />
+  </div>
+);
 
 const FEATURED_CATEGORIES = [
   {
@@ -56,8 +64,20 @@ const FEATURED_CATEGORIES = [
 ];
 
 export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateToCategory }) => {
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1, rootMargin: '-40px', once: true });
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Authentic staged skeleton preview (400ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       className="w-full bg-white rounded-[4px] p-3.5 sm:p-5 shadow-xs mb-6 border border-[#E3E8E1]"
       id="explore-categories"
     >
@@ -79,27 +99,32 @@ export const CategoryExplorer: React.FC<CategoryExplorerProps> = ({ onNavigateTo
 
       {/* 2 Rows x 4 Columns = 8 Categories in squircle containers matching Picture 5 */}
       <div className="grid grid-cols-4 sm:grid-cols-4 md:grid-cols-8 gap-2.5 sm:gap-4">
-        {FEATURED_CATEGORIES.map((cat) => (
-          <button
-            key={cat.id}
-            onClick={() => onNavigateToCategory(cat.subCategory === 'all' ? undefined : cat.subCategory)}
-            className="group flex flex-col items-center text-center p-0 cursor-pointer bg-transparent border-0 focus:outline-none"
-            type="button"
-          >
-            {/* Squircle icon container (rounded-[14px]) */}
-            <div className="w-full aspect-square rounded-[14px] bg-[#F6F8F5] border border-[#E3E8E1] p-1.5 flex items-center justify-center overflow-hidden group-hover:scale-105 group-hover:border-[#01B341] transition-all duration-200 shadow-2xs">
-              <img
-                src={cat.image}
-                alt={cat.title}
-                className="w-full h-full object-cover rounded-[10px]"
-              />
-            </div>
-            {/* Label below */}
-            <span className="font-semibold text-[11px] sm:text-xs text-[#111111] group-hover:text-[#01B341] transition-colors leading-tight line-clamp-1 mt-1.5 text-center">
-              {cat.title}
-            </span>
-          </button>
-        ))}
+        {isLoading || !isInView
+          ? Array.from({ length: 8 }).map((_, i) => (
+              <CategorySkeleton key={`cat-skel-${i}`} />
+            ))
+          : FEATURED_CATEGORIES.map((cat, index) => (
+              <button
+                key={cat.id}
+                onClick={() => onNavigateToCategory(cat.subCategory === 'all' ? undefined : cat.subCategory)}
+                className="group flex flex-col items-center text-center p-0 cursor-pointer bg-transparent border-0 focus:outline-none hover:-translate-y-0.5 transition-transform duration-150 stageshow-card-entry"
+                style={{ '--stagger-index': index, '--stagger-step': '35ms' } as React.CSSProperties}
+                type="button"
+              >
+                {/* Squircle icon container (rounded-[14px]) */}
+                <div className="w-full aspect-square rounded-[14px] bg-[#F6F8F5] border border-[#E3E8E1] p-1.5 flex items-center justify-center overflow-hidden group-hover:scale-105 group-hover:border-[#01B341] transition-all duration-200 shadow-2xs">
+                  <img
+                    src={cat.image}
+                    alt={cat.title}
+                    className="w-full h-full object-cover rounded-[10px]"
+                  />
+                </div>
+                {/* Label below */}
+                <span className="font-semibold text-[11px] sm:text-xs text-[#111111] group-hover:text-[#01B341] transition-colors leading-tight line-clamp-1 mt-1.5 text-center">
+                  {cat.title}
+                </span>
+              </button>
+            ))}
       </div>
     </section>
   );
