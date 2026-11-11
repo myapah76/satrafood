@@ -85,7 +85,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
               <li>
                 <button
                   onClick={() => onSelectSubCategory('all')}
-                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
+                  className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-all active:scale-[0.98] duration-150 cursor-pointer border-0 ${
                     selectedSubCategory === 'all'
                       ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
                       : 'text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5]'
@@ -109,7 +109,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                   <li key={cat.label}>
                     <button
                       onClick={() => onSelectSubCategory(cat.label)}
-                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-colors cursor-pointer border-0 ${
+                      className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-[4px] text-left transition-all active:scale-[0.98] duration-150 cursor-pointer border-0 ${
                         isActive
                           ? 'bg-[#F6F8F5] font-bold text-[#01B341] border-l-4 border-[#01B341]'
                           : 'text-[#555E57] hover:text-[#111111] hover:bg-[#F6F8F5]'
@@ -273,7 +273,7 @@ export const FilterSidebar: React.FC<FilterSidebarProps> = ({
                     key={tag}
                     type="button"
                     onClick={() => onToggleTag(tag)}
-                    className={`px-2.5 py-1 rounded-[4px] text-[11px] font-semibold transition-colors cursor-pointer border ${
+                    className={`px-2.5 py-1 rounded-[4px] text-[11px] font-semibold transition-all active:scale-[0.98] duration-150 cursor-pointer border ${
                       isTagActive
                         ? isDiscountTag
                           ? 'bg-[#FC95FD] text-[#24102E] border-[#FC95FD] font-bold shadow-xs tracking-[1px]'

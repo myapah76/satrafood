@@ -7,6 +7,7 @@ import { HomeIcon, LeftIcon, RightIcon } from '../../components/icons';
 import { FilterSidebar } from './components/FilterSidebar';
 import { MobileFilterDrawer } from './components/MobileFilterDrawer';
 import { ProductCard } from './components/ProductCard';
+import { ProductCardSkeleton } from './components/ProductCardSkeleton';
 import { SortToolbar } from './components/SortToolbar';
 import { CommitmentBanner } from './components/CommitmentBanner';
 import { SatraQualityBanner } from './components/SatraQualityBanner';
@@ -78,6 +79,16 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Authentic staged skeleton loading lifecycle (450ms) on category or filter change
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, [selectedSubCategory, searchQuery, sortBy, selectedStandards, selectedPriceRange, selectedTags]);
 
   // Sync when initialSubCategory prop updates from header navigation
   useEffect(() => {
@@ -287,16 +298,21 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 : 'space-y-3'
             }
           >
-            {filteredAndSortedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                viewMode={viewMode}
-                onAddToCart={onAddToCart}
-                onShowTraceability={onShowTraceability}
-                onShowToast={onShowToast}
-              />
-            ))}
+            {isLoading
+              ? Array.from({ length: 12 }).map((_, i) => (
+                  <ProductCardSkeleton key={`skeleton-${i}`} viewMode={viewMode} />
+                ))
+              : filteredAndSortedProducts.map((product, index) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    viewMode={viewMode}
+                    onAddToCart={onAddToCart}
+                    onShowTraceability={onShowTraceability}
+                    onShowToast={onShowToast}
+                    staggerIndex={index}
+                  />
+                ))}
           </div>
 
           {/* Row 3: Pagination */}

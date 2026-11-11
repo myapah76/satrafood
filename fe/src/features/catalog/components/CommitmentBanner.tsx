@@ -97,7 +97,7 @@ export const CommitmentBanner: React.FC = () => {
         {COMMITMENT_ITEMS.map((item) => (
           <div
             key={item.id}
-            className="bg-white border border-[#E3E8E1] rounded-[6px] sm:rounded-[8px] p-2.5 sm:p-4 flex items-center gap-2.5 sm:gap-3.5 shadow-2xs hover:border-[#01B341] transition-colors"
+            className="bg-white border border-[#E3E8E1] rounded-[6px] sm:rounded-[8px] p-2.5 sm:p-4 flex items-center gap-2.5 sm:gap-3.5 shadow-2xs hover:border-[#01B341] hover:-translate-y-0.5 transition-all"
           >
             {/* Squircle Icon Box */}
             <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-[10px] sm:rounded-[14px] bg-[#F6F8F5] flex items-center justify-center shrink-0">

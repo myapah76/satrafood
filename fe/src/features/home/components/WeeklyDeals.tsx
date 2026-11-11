@@ -1,21 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import promotionsData from '../../../data/promotions.json';
 import { PromoDeal } from '../../../types';
 import { formatVND } from '../../../utils/cart';
 import { TagIcon, CartIcon } from '../../../components/icons';
+import { useInView } from '../../../utils/useInView';
 
 interface WeeklyDealsProps {
   onAddDealToCart: (dealId: string) => void;
 }
+
+const WeeklyDealSkeleton: React.FC = () => (
+  <div className="bg-white rounded-[4px] shadow-md p-2.5 sm:p-3 flex flex-col justify-between border border-[#E3E8E1]">
+    <div>
+      {/* Media Image Block */}
+      <div className="w-full aspect-square rounded-[4px] stageshow-shimmer mb-2 border border-[#E3E8E1]" />
+      {/* Category bar */}
+      <div className="w-16 h-2.5 rounded-full stageshow-shimmer mb-1.5" />
+      {/* Title bar */}
+      <div className="w-full h-3.5 rounded-full stageshow-shimmer mb-1" />
+      {/* Spec bar */}
+      <div className="w-20 h-2.5 rounded-full stageshow-shimmer mb-2" />
+    </div>
+    {/* Price and Cart button row */}
+    <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1] gap-1">
+      <div className="w-20 h-3.5 rounded-full stageshow-shimmer" />
+      <div className="w-7 h-7 rounded-[4px] stageshow-shimmer shrink-0" />
+    </div>
+  </div>
+);
 
 export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => {
   const deals = promotionsData.featuredDeals as PromoDeal[];
   const campaign = promotionsData.campaign;
 
   const [hours, minutes, seconds] = (campaign.countdownHours || '02:14:48').split(':');
+  const [sectionRef, isInView] = useInView<HTMLElement>({ threshold: 0.1, rootMargin: '-40px', once: true });
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Authentic staged skeleton preview (450ms)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 450);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <section className="w-full my-4">
+    <section ref={sectionRef} className="w-full my-4">
       <div className="rounded-[4px] p-4 sm:p-6 shadow-lg text-white relative overflow-hidden bg-[#01B341]">
         {/* Decorative Packaging Graphic Texture */}
         <div className="absolute -right-16 -top-16 w-64 h-64 bg-[#DAFF01]/15 rounded-[4px] blur-2xl pointer-events-none" />
@@ -32,7 +63,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
             </span>
           </div>
 
-          {/* Countdown Timer */}
+          {/* Countdown Timer with Pulsing Colons */}
           <div className="flex items-center gap-2 bg-white/15 backdrop-blur-md px-3.5 py-1.5 rounded-[4px] text-white self-start sm:self-auto">
             <span className="font-label-sm text-[11px] text-[#DAFF01] uppercase font-bold">
               Kết thúc sau:
@@ -41,11 +72,11 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
               <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {hours || '02'}
               </span>
-              :
+              <span className="animate-colon-pulse text-white select-none">:</span>
               <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {minutes || '14'}
               </span>
-              :
+              <span className="animate-colon-pulse text-white select-none">:</span>
               <span className="px-2 py-0.5 bg-white text-[#111111] rounded-[4px]">
                 {seconds || '48'}
               </span>
@@ -55,81 +86,86 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
 
         {/* 4 Featured Deals in 2x2 Grid (Mobile) / 4-column (Desktop) */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3.5 relative z-10">
-          {deals.map((deal) => {
-            const badgeBg =
-              deal.tagType === 'discount'
-                ? 'bg-[#FC95FD] text-[#24102E] tracking-[1px]'
-                : deal.tagType === 'same_price'
-                ? 'bg-[#DAFF01] text-[#111111]'
-                : deal.tagType === 'combo'
-                ? 'bg-[#FF9400] text-white'
-                : 'bg-[#DAFF01] text-[#111111]';
+          {isLoading || !isInView
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <WeeklyDealSkeleton key={`deal-skel-${i}`} />
+              ))
+            : deals.map((deal, index) => {
+                const badgeBg =
+                  deal.tagType === 'discount'
+                    ? 'bg-[#FC95FD] text-[#24102E] tracking-[1px]'
+                    : deal.tagType === 'same_price'
+                    ? 'bg-[#DAFF01] text-[#111111]'
+                    : deal.tagType === 'combo'
+                    ? 'bg-[#FF9400] text-white'
+                    : 'bg-[#DAFF01] text-[#111111]';
 
-            return (
-              <div
-                key={deal.id}
-                className="bg-white rounded-[4px] text-[#111111] shadow-md hover:shadow-xl transition-all relative overflow-hidden group p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer"
-                onClick={() => onAddDealToCart(deal.id)}
-              >
-                {/* Top-right corner tag */}
-                <div
-                  className={`absolute top-0 right-0 font-label-md text-[10px] sm:text-[11px] font-extrabold px-2.5 py-0.5 rounded-bl-[4px] shadow-xs z-10 ${badgeBg}`}
-                >
-                  {deal.tag}
-                </div>
-
-                <div>
-                  {/* Image Box */}
-                  <div className="w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2 border border-[#E3E8E1]">
-                    <img
-                      src={deal.image}
-                      alt={deal.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-
-                  {/* Category */}
-                  <span className="text-[10px] sm:text-[11px] font-bold text-[#006e24] uppercase tracking-wider block mb-0.5 truncate">
-                    {deal.category}
-                  </span>
-
-                  {/* Title */}
-                  <h3 className="font-bold text-xs sm:text-[13px] text-[#111111] line-clamp-1 mb-1 leading-snug">
-                    {deal.title}
-                  </h3>
-
-                  {/* Specification */}
-                  <p className="font-body-sm text-[11px] text-[#555E57] line-clamp-1 mb-2">
-                    {deal.spec}
-                  </p>
-                </div>
-
-                {/* Price and Cart button - Mobile stacked & compact to prevent awkward line breaks */}
-                <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1] gap-1">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5 min-w-0 pr-0.5">
-                    <span className="font-title-lg text-[11px] sm:text-sm text-[#FF161F] font-black leading-tight whitespace-nowrap">
-                      {formatVND(deal.price)}
-                    </span>
-                    <span className="font-body-sm text-[9px] sm:text-[11px] text-[#717A73] line-through leading-tight whitespace-nowrap">
-                      {formatVND(deal.originalPrice)}
-                    </span>
-                  </div>
-                  <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onAddDealToCart(deal.id);
-                    }}
-                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0 shrink-0"
-                    title="Thêm vào giỏ"
-                    type="button"
-                    aria-label={`Thêm ${deal.title} vào giỏ hàng`}
+                return (
+                  <div
+                    key={deal.id}
+                    className="bg-white rounded-[4px] text-[#111111] shadow-md hover:shadow-xl transition-all relative overflow-hidden group p-2.5 sm:p-3 flex flex-col justify-between cursor-pointer stageshow-card-entry"
+                    style={{ '--stagger-index': index } as React.CSSProperties}
+                    onClick={() => onAddDealToCart(deal.id)}
                   >
-                    <CartIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" aria-hidden="true" />
-                  </button>
-                </div>
-              </div>
-            );
-          })}
+                    {/* Top-right corner tag */}
+                    <div
+                      className={`absolute top-0 right-0 font-label-md text-[10px] sm:text-[11px] font-extrabold px-2.5 py-0.5 rounded-bl-[4px] shadow-xs z-10 ${badgeBg}`}
+                    >
+                      {deal.tag}
+                    </div>
+
+                    <div>
+                      {/* Image Box */}
+                      <div className="w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2 border border-[#E3E8E1]">
+                        <img
+                          src={deal.image}
+                          alt={deal.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+
+                      {/* Category */}
+                      <span className="text-[10px] sm:text-[11px] font-bold text-[#006e24] uppercase tracking-wider block mb-0.5 truncate">
+                        {deal.category}
+                      </span>
+
+                      {/* Title */}
+                      <h3 className="font-bold text-xs sm:text-[13px] text-[#111111] line-clamp-1 mb-1 leading-snug">
+                        {deal.title}
+                      </h3>
+
+                      {/* Specification */}
+                      <p className="font-body-sm text-[11px] text-[#555E57] line-clamp-1 mb-2">
+                        {deal.spec}
+                      </p>
+                    </div>
+
+                    {/* Price and Cart button - Mobile stacked & compact to prevent awkward line breaks */}
+                    <div className="flex items-center justify-between pt-1.5 border-t border-[#E3E8E1] gap-1">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline gap-0.5 sm:gap-1.5 min-w-0 pr-0.5">
+                        <span className="font-title-lg text-[11px] sm:text-sm text-[#FF161F] font-black leading-tight whitespace-nowrap">
+                          {formatVND(deal.price)}
+                        </span>
+                        <span className="font-body-sm text-[9px] sm:text-[11px] text-[#717A73] line-through leading-tight whitespace-nowrap">
+                          {formatVND(deal.originalPrice)}
+                        </span>
+                      </div>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAddDealToCart(deal.id);
+                        }}
+                        className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] active:scale-95 transition-all shadow-xs cursor-pointer border-0 shrink-0"
+                        title="Thêm vào giỏ"
+                        type="button"
+                        aria-label={`Thêm ${deal.title} vào giỏ hàng`}
+                      >
+                        <CartIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white" aria-hidden="true" />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </section>

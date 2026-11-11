@@ -38,6 +38,18 @@ export const Header: React.FC<HeaderProps> = ({
   const [isCategoryMenuOpen, setIsCategoryMenuOpen] = useState(false);
   const categoryMenuRef = useRef<HTMLDivElement>(null);
   const totalCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+  const [isCartBumping, setIsCartBumping] = useState(false);
+  const prevCountRef = useRef(totalCount);
+
+  // Animate cart badge pop & number tick on count change
+  useEffect(() => {
+    if (totalCount !== prevCountRef.current) {
+      setIsCartBumping(true);
+      const timer = setTimeout(() => setIsCartBumping(false), 380);
+      prevCountRef.current = totalCount;
+      return () => clearTimeout(timer);
+    }
+  }, [totalCount]);
 
   // Close dropdown menu when clicking outside
   useEffect(() => {
@@ -90,7 +102,11 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 <BoxIcon className="w-5 h-5 text-[#01B341] shrink-0" />
                 <div className="flex flex-col text-left">
-                  <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none whitespace-nowrap">
+                  <span className="font-label-sm text-[9.5px] text-[#01B341] uppercase font-black tracking-wider leading-none whitespace-nowrap flex items-center gap-1.5">
+                    <span className="relative flex h-2 w-2 shrink-0">
+                      <span className="animate-stageshow-beacon absolute inline-flex h-full w-full rounded-full bg-[#01B341]" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-[#01B341]" />
+                    </span>
                     GIAO NHANH 2H
                   </span>
                   <div className="flex items-center gap-0.5 leading-tight">
@@ -177,11 +193,13 @@ export const Header: React.FC<HeaderProps> = ({
               {/* Cart Box with Lime Yellow Badge */}
               <button
                 onClick={onOpenCart}
-                className="relative flex items-center gap-2 bg-[#FFFFFF] border border-[#E3E8E1] rounded-[4px] px-3 py-1.5 hover:border-[#01B341] transition-colors cursor-pointer shadow-2xs"
+                className={`relative flex items-center gap-2 bg-[#FFFFFF] border rounded-[4px] px-3 py-1.5 hover:border-[#01B341] transition-all cursor-pointer shadow-2xs ${
+                  isCartBumping ? 'border-[#01B341] ring-1 ring-[#01B341]/20' : 'border-[#E3E8E1]'
+                }`}
                 type="button"
                 aria-label="Giỏ hàng Satrafoods"
               >
-                <CartIcon className="w-5 h-5 text-[#01B341]" />
+                <CartIcon className={`w-5 h-5 text-[#01B341] transition-transform duration-200 ${isCartBumping ? 'scale-110' : ''}`} />
                 <div className="flex flex-col text-left">
                   <span className="font-label-sm text-[9.5px] text-[#555E57] leading-none">
                     Giỏ hàng
@@ -190,8 +208,13 @@ export const Header: React.FC<HeaderProps> = ({
                     {totalCount > 0 ? `${totalCount} món` : '0đ'}
                   </span>
                 </div>
-                {/* Yellow counter badge matching screenshot */}
-                <span className="bg-[#DAFF01] text-[#111111] font-black text-[11px] px-1.5 py-0.2 rounded-[4px] ml-1 shadow-2xs">
+                {/* Yellow counter badge with pop bounce & number tick */}
+                <span
+                  key={totalCount}
+                  className={`bg-[#DAFF01] text-[#111111] font-black text-[11px] px-1.5 py-0.2 rounded-[4px] ml-1 shadow-2xs transition-transform ${
+                    isCartBumping ? 'animate-stageshow-pop' : ''
+                  }`}
+                >
                   {totalCount}
                 </span>
               </button>
@@ -346,12 +369,19 @@ export const Header: React.FC<HeaderProps> = ({
 
             <button
               onClick={onOpenCart}
-              className="relative w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center cursor-pointer hover:bg-[#006e24]"
+              className={`relative w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center cursor-pointer hover:bg-[#006e24] transition-transform ${
+                isCartBumping ? 'scale-110' : ''
+              }`}
               aria-label="Giỏ hàng"
             >
               <CartIcon className="w-4 h-4 text-white" />
               {totalCount > 0 && (
-                <span className="absolute -top-1 -right-1 min-w-[16px] h-4 px-0.5 bg-[#DAFF01] text-[#111111] text-[9px] rounded-[4px] flex items-center justify-center font-black border border-white">
+                <span
+                  key={totalCount}
+                  className={`absolute -top-1 -right-1 min-w-[16px] h-4 px-0.5 bg-[#DAFF01] text-[#111111] text-[9px] rounded-[4px] flex items-center justify-center font-black border border-white ${
+                    isCartBumping ? 'animate-stageshow-pop' : ''
+                  }`}
+                >
                   {totalCount}
                 </span>
               )}
