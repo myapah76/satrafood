@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 interface HeroDemoState {
   cursorPos: { x: number; y: number };
+  cursorType: 'arrow' | 'pointer';
   isClicking: boolean;
   activeItem: 'none' | 'lettuce' | 'pork';
   showTraceability: boolean;
@@ -13,6 +14,7 @@ interface HeroDemoState {
 
 const INITIAL_STATE: HeroDemoState = {
   cursorPos: { x: 78, y: 76 }, // percentage-based for seamless responsiveness
+  cursorType: 'arrow',
   isClicking: false,
   activeItem: 'none',
   showTraceability: false,
@@ -24,6 +26,7 @@ const INITIAL_STATE: HeroDemoState = {
 
 const POSTER_STATE: HeroDemoState = {
   cursorPos: { x: 62, y: 58 },
+  cursorType: 'pointer',
   isClicking: false,
   activeItem: 'pork',
   showTraceability: false,
@@ -66,6 +69,7 @@ export const HeroStageshowDemo: React.FC<{ onExplore?: () => void }> = ({ onExpl
           setState((prev) => ({
             ...prev,
             cursorPos: { x: 26, y: 64 },
+            cursorType: 'pointer',
             activeItem: 'lettuce',
           }));
         }, 1200)
@@ -99,6 +103,7 @@ export const HeroStageshowDemo: React.FC<{ onExplore?: () => void }> = ({ onExpl
             showTraceability: false,
             activeItem: 'none',
             cursorPos: { x: 62, y: 65 },
+            cursorType: 'pointer',
           }));
         }, 4600)
       );
@@ -144,6 +149,7 @@ export const HeroStageshowDemo: React.FC<{ onExplore?: () => void }> = ({ onExpl
           setState((prev) => ({
             ...prev,
             cursorPos: { x: 82, y: 78 },
+            cursorType: 'arrow',
             activeItem: 'none',
           }));
         }, 8200)
@@ -343,7 +349,9 @@ export const HeroStageshowDemo: React.FC<{ onExplore?: () => void }> = ({ onExpl
                   : 'opacity-0 scale-95 translate-y-2 pointer-events-none'
               }`}
             >
-              <div className="bg-[#111111] text-white p-2 rounded-[4px] shadow-2xl border border-[#01B341] text-[10px]">
+              <div className="relative bg-[#111111] text-white p-2.5 rounded-[4px] shadow-2xl border border-[#01B341] text-[10px]">
+                {/* Pointer Notch */}
+                <div className="absolute -bottom-1 left-6 sm:left-auto sm:right-10 w-2.5 h-2.5 bg-[#111111] rotate-45 border-r border-b border-[#01B341]" />
                 <div className="flex items-center gap-1 font-bold text-[#DAFF01] mb-0.5">
                   <span>✓ 100% NÔNG TRƯỜNG VIETGAP</span>
                 </div>
@@ -472,30 +480,47 @@ export const HeroStageshowDemo: React.FC<{ onExplore?: () => void }> = ({ onExpl
             transform: 'translate(-2px, -2px)',
           }}
         >
-          {/* Cursor Graphic */}
+          {/* Cursor Graphic with Arrow / Pointer Hand Morphing */}
           <div
             className={`transition-transform duration-150 ${
               current.isClicking ? 'scale-85 translate-y-0.5' : 'scale-100'
             }`}
           >
-            <svg
-              className="w-5 h-5 drop-shadow-md"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 3L10.5 21L13.8 13.8L21 10.5L3 3Z"
-                fill="#111111"
-                stroke="#FFFFFF"
-                strokeWidth="1.5"
-                strokeLinejoin="round"
-              />
-            </svg>
+            {current.cursorType === 'pointer' ? (
+              <svg
+                className="w-5 h-5 drop-shadow-md text-[#111111]"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M7.5 10.5V4.5C7.5 3.67 8.17 3 9 3C9.83 3 10.5 3.67 10.5 4.5V9.5H11.5V6.5C11.5 5.67 12.17 5 13 5C13.83 5 14.5 5.67 14.5 6.5V9.5H15.5V7.5C15.5 6.67 16.17 6 17 6C17.83 6 18.5 6.67 18.5 7.5V13.5C18.5 17.09 15.59 20 12 20C9.25 20 6.9 18.28 6.01 15.83L4.2 11.31C3.89 10.54 4.34 9.69 5.14 9.53C5.74 9.41 6.34 9.75 6.58 10.31L7.5 12.5V10.5Z"
+                  fill="#111111"
+                  stroke="#FFFFFF"
+                  strokeWidth="1.2"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            ) : (
+              <svg
+                className="w-5 h-5 drop-shadow-md"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 3L10.5 21L13.8 13.8L21 10.5L3 3Z"
+                  fill="#111111"
+                  stroke="#FFFFFF"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            )}
 
             {/* Ripple Wave when clicking */}
             {current.isClicking && (
-              <span className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#01B341]/30 animate-ping pointer-events-none" />
+              <span className="absolute -top-1 -left-1 w-7 h-7 rounded-full bg-[#01B341]/40 animate-ping pointer-events-none" />
             )}
           </div>
         </div>
