@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../../../types';
 import { formatVND } from '../../../utils/cart';
 
@@ -19,10 +19,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   onShowTraceability,
   onShowToast,
 }) => {
+  const [isAdded, setIsAdded] = useState(false);
+  const [showGhostArc, setShowGhostArc] = useState(false);
+
   const handleAdd = (e: React.MouseEvent) => {
     e.stopPropagation();
+    setIsAdded(true);
+    setShowGhostArc(true);
     onAddToCart(product);
     onShowToast(`Đã thêm "${product.name}" vào giỏ`);
+    setTimeout(() => setIsAdded(false), 850);
+    setTimeout(() => setShowGhostArc(false), 600);
   };
 
   const isSafetyBadge = product.badge && VALID_SAFETY_STANDARDS.includes(product.badge);
@@ -34,7 +41,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   if (viewMode === 'list') {
     return (
-      <div className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] transition-all">
+      <div className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] hover:-translate-y-[2px] hover:shadow-md transition-all duration-200 animate-stageshow-rise">
         <div className="flex items-center gap-3 min-w-0">
           <div className="relative w-20 h-20 shrink-0 rounded-[4px] overflow-hidden bg-[#F6F8F5] border border-[#E3E8E1]">
             <img
@@ -73,20 +80,35 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         <div className="text-right shrink-0">
           <div className="text-base font-black text-[#01B341]">{formatVND(product.price)}</div>
           <div className="text-xs text-[#888888] line-through">{formatVND(product.originalPrice)}</div>
-          <button
-            onClick={handleAdd}
-            className="mt-2 px-4 py-1.5 bg-[#01B341] text-white text-xs font-bold rounded-[4px] hover:bg-[#009636] transition-colors cursor-pointer flex items-center justify-center gap-1 border-0 shadow-xs"
-            type="button"
-          >
-            + Thêm
-          </button>
+          <div className="relative mt-2">
+            {showGhostArc && (
+              <span className="absolute left-1/2 -top-2 w-2.5 h-2.5 rounded-full bg-[#01B341] pointer-events-none z-30 animate-stageshow-arc" />
+            )}
+            <button
+              onClick={handleAdd}
+              className={`px-4 py-1.5 text-white text-xs font-bold rounded-[4px] transition-all duration-200 cursor-pointer flex items-center justify-center gap-1 border-0 shadow-xs active:scale-[0.96] ${
+                isAdded
+                  ? 'bg-[#006e24] shadow-inner ring-1 ring-[#DAFF01]/40'
+                  : 'bg-[#01B341] hover:bg-[#009636]'
+              }`}
+              type="button"
+            >
+              {isAdded ? (
+                <>
+                  <span className="text-[11px]">✓</span> Đã thêm
+                </>
+              ) : (
+                '+ Thêm'
+              )}
+            </button>
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-white rounded-[4px] shadow-xs hover:shadow-lg transition-all flex flex-col justify-between group p-2.5 border border-[#E3E8E1]">
+    <div className="bg-white rounded-[4px] shadow-xs hover:shadow-lg hover:-translate-y-[3px] transition-all duration-200 flex flex-col justify-between group p-2.5 border border-[#E3E8E1] animate-stageshow-rise">
       <div>
         {/* Product Image Box matching Picture 2 */}
         <div className="relative w-full aspect-square rounded-[4px] overflow-hidden bg-[#F6F8F5] mb-2">
@@ -124,11 +146,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             </span>
           )}
 
-          {/* Bottom image overlay strip: dark semi-transparent bar with left tag and right yellow/gold tag */}
+          {/* Bottom image overlay strip with glowing border on group hover */}
           {(product.overlayLeft || product.overlayRight) && (
             <div
               onClick={() => onShowTraceability(product)}
-              className="absolute bottom-0 inset-x-0 bg-black/75 backdrop-blur-xs px-2 py-1 flex items-center justify-between text-[10px] cursor-pointer hover:bg-black/85 transition-colors z-10"
+              className="absolute bottom-0 inset-x-0 bg-black/75 backdrop-blur-xs px-2 py-1 flex items-center justify-between text-[10px] cursor-pointer hover:bg-black/85 transition-all duration-200 z-10 border-t border-transparent group-hover:border-[#01B341]/60 group-hover:shadow-[0_0_8px_rgba(1,179,65,0.25)]"
               title="Bấm để xem truy xuất nguồn gốc"
             >
               <span className="text-white font-medium truncate pr-1">
@@ -162,15 +184,30 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         </div>
       </div>
 
-      {/* Full-width + Thêm button */}
-      <button
-        onClick={handleAdd}
-        className="w-full mt-2.5 py-1.5 sm:py-2 bg-[#01B341] hover:bg-[#009636] text-white font-bold text-xs rounded-[4px] flex items-center justify-center gap-1 transition-colors cursor-pointer border-0 shadow-xs"
-        type="button"
-        aria-label={`Thêm ${product.name} vào giỏ hàng`}
-      >
-        + Thêm
-      </button>
+      {/* Full-width + Thêm button with staged interaction & flying ghost pill */}
+      <div className="relative w-full mt-2.5">
+        {showGhostArc && (
+          <span className="absolute left-1/2 -top-2 w-3 h-3 rounded-full bg-[#01B341] pointer-events-none z-30 animate-stageshow-arc" />
+        )}
+        <button
+          onClick={handleAdd}
+          className={`w-full py-1.5 sm:py-2 text-white font-bold text-xs rounded-[4px] flex items-center justify-center gap-1 transition-all duration-200 cursor-pointer border-0 shadow-xs active:scale-[0.96] ${
+            isAdded
+              ? 'bg-[#006e24] shadow-inner ring-2 ring-[#DAFF01]/40'
+              : 'bg-[#01B341] hover:bg-[#009636]'
+          }`}
+          type="button"
+          aria-label={`Thêm ${product.name} vào giỏ hàng`}
+        >
+          {isAdded ? (
+            <>
+              <span className="text-[12px]">✓</span> Đã thêm
+            </>
+          ) : (
+            '+ Thêm'
+          )}
+        </button>
+      </div>
     </div>
   );
 };

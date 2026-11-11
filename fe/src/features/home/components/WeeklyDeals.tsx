@@ -119,7 +119,7 @@ export const WeeklyDeals: React.FC<WeeklyDealsProps> = ({ onAddDealToCart }) => 
                       e.stopPropagation();
                       onAddDealToCart(deal.id);
                     }}
-                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] transition-colors shadow-xs cursor-pointer border-0 shrink-0"
+                    className="w-7 h-7 rounded-[4px] bg-[#01B341] text-white flex items-center justify-center hover:bg-[#006e24] active:scale-95 transition-all shadow-xs cursor-pointer border-0 shrink-0"
                     title="Thêm vào giỏ"
                     type="button"
                     aria-label={`Thêm ${deal.title} vào giỏ hàng`}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export interface CommitmentItem {
   id: string;
@@ -90,7 +90,32 @@ export const COMMITMENT_ITEMS: CommitmentItem[] = [
 ];
 
 export const CommitmentBanner: React.FC = () => {
-  const [activeStep, setActiveStep] = useState<number>(2);
+  // Live Shipper route progress and number rolling simulation
+  const shipperSteps = [
+    { eta: '18 phút', dist: '1.2km', progress: 54 },
+    { eta: '16 phút', dist: '1.0km', progress: 68 },
+    { eta: '14 phút', dist: '0.8km', progress: 79 },
+    { eta: '11 phút', dist: '0.5km', progress: 88 },
+  ];
+  const [stepIndex, setStepIndex] = useState(0);
+  const [scanResolved, setScanResolved] = useState(false);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setStepIndex((prev) => (prev + 1) % shipperSteps.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  useEffect(() => {
+    const scanTimer = setInterval(() => {
+      setScanResolved(false);
+      setTimeout(() => setScanResolved(true), 1300);
+    }, 2800);
+    return () => clearInterval(scanTimer);
+  }, []);
+
+  const currentShipper = shipperSteps[stepIndex];
 
   return (
     <section className="w-full my-6" aria-label="Cam kết chất lượng và giá trị cốt lõi Satrafoods">
@@ -137,12 +162,17 @@ export const CommitmentBanner: React.FC = () => {
             {/* Top Shipper Status Pill */}
             <div className="flex items-center justify-between mb-3 text-[11px]">
               <div className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[#01B341] animate-ping" />
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="animate-stageshow-beacon absolute inline-flex h-full w-full rounded-full bg-[#01B341]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#01B341]" />
+                </span>
                 <span className="font-bold text-[#006e24]">Shipper Satra đang di chuyển</span>
-                <span className="text-[#717A73] hidden sm:inline">• Cách bạn 1.2km</span>
+                <span className="text-[#717A73] hidden sm:inline transition-all duration-300">
+                  • Cách bạn <span className="font-semibold text-[#111111]">{currentShipper.dist}</span>
+                </span>
               </div>
-              <span className="font-bold text-[#FF161F] bg-white px-2 py-0.5 rounded-[3px] border border-[#E3E8E1] shadow-2xs">
-                Dự kiến: 18 phút
+              <span className="font-bold text-[#FF161F] bg-white px-2 py-0.5 rounded-[3px] border border-[#E3E8E1] shadow-2xs transition-all duration-300">
+                Dự kiến: <span className="text-[#FF161F]">{currentShipper.eta}</span>
               </span>
             </div>
 
@@ -150,7 +180,10 @@ export const CommitmentBanner: React.FC = () => {
             <div className="relative flex items-center justify-between z-10 px-2 sm:px-6 py-2">
               {/* Connecting line */}
               <div className="absolute left-6 right-6 top-1/2 -translate-y-1/2 h-1 bg-[#E3E8E1] z-0">
-                <div className="h-full bg-[#01B341] w-2/3 transition-all duration-700" />
+                <div
+                  className="h-full bg-[#01B341] transition-all duration-700 ease-out"
+                  style={{ width: `${currentShipper.progress}%` }}
+                />
               </div>
 
               {/* Step 1: Packaged */}
@@ -161,9 +194,12 @@ export const CommitmentBanner: React.FC = () => {
                 <span className="text-[10px] font-semibold text-[#111111]">Đóng gói tươi</span>
               </div>
 
-              {/* Step 2: On Route (Active Shipper) */}
-              <div className="flex flex-col items-center gap-1 relative z-10">
-                <div className="w-7 h-7 rounded-full bg-[#01B341] text-white flex items-center justify-center text-xs font-bold shadow-md ring-4 ring-[#01B341]/20 animate-bounce">
+              {/* Step 2: On Route (Active Shipper with Smooth Track Ride) */}
+              <div
+                className="flex flex-col items-center gap-1 relative z-10 transition-all duration-700 ease-out"
+                style={{ transform: `scale(${1 + (currentShipper.progress % 10) * 0.01})` }}
+              >
+                <div className="w-7 h-7 rounded-full bg-[#01B341] text-white flex items-center justify-center text-xs font-bold shadow-md ring-4 ring-[#01B341]/20">
                   🛵
                 </div>
                 <span className="text-[10px] font-bold text-[#006e24]">Đang giao hàng</span>
@@ -253,9 +289,10 @@ export const CommitmentBanner: React.FC = () => {
 
           {/* Cropped QR Verification Component */}
           <div className="bg-[#F6F8F5] border border-[#E3E8E1] rounded-[4px] p-3 flex items-center gap-3 relative overflow-hidden">
-            {/* Animated Laser Scanning Beam */}
+            {/* Animated Laser Scanning Beam & Matrix */}
             <div className="relative w-14 h-14 bg-white rounded-[4px] border border-[#E3E8E1] p-1 shrink-0 flex items-center justify-center overflow-hidden">
-              <div className="absolute inset-x-0 h-0.5 bg-[#01B341] shadow-[0_0_8px_#01B341] animate-pulse" style={{ top: '45%' }} />
+              {/* Laser scan line sweeping down */}
+              <div className="absolute inset-x-0 h-0.5 bg-[#01B341] shadow-[0_0_8px_#01B341] animate-stageshow-scan" />
               {/* QR Mock Matrix */}
               <div className="w-full h-full grid grid-cols-4 gap-0.5 opacity-80">
                 <div className="bg-[#111111] rounded-xs" />
@@ -277,7 +314,7 @@ export const CommitmentBanner: React.FC = () => {
               </div>
             </div>
 
-            {/* Verification Metadata */}
+            {/* Verification Metadata with resolving checkmark */}
             <div className="min-w-0 flex-1">
               <span className="font-bold text-[11px] text-[#006e24] block truncate">
                 Mã Lô: #SG-VG-2026
@@ -285,8 +322,13 @@ export const CommitmentBanner: React.FC = () => {
               <span className="text-[10px] text-[#555E57] block truncate">
                 HTX Nông Nghiệp Củ Chi
               </span>
-              <span className="text-[9.5px] font-semibold text-[#01B341] bg-[#E8F8EC] px-1.5 py-0.2 rounded-[2px] inline-block mt-0.5">
-                ✓ Đạt chuẩn an toàn VSTP
+              <span
+                className={`text-[9.5px] font-semibold text-[#01B341] bg-[#E8F8EC] px-1.5 py-0.2 rounded-[2px] inline-flex items-center gap-1 mt-0.5 transition-all duration-500 ${
+                  scanResolved ? 'opacity-100 scale-100 ring-1 ring-[#01B341]/30' : 'opacity-85 scale-98'
+                }`}
+              >
+                <span className="text-[10px] font-bold text-[#01B341]">✓</span>
+                <span>Đạt chuẩn an toàn VSTP</span>
               </span>
             </div>
           </div>
