@@ -298,16 +298,6 @@ export const CatalogScreen: React.FC<CatalogScreenProps> = ({
                 : 'space-y-3'
             }
           >
-            {filteredAndSortedProducts.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                viewMode={viewMode}
-                onAddToCart={onAddToCart}
-                onShowTraceability={onShowTraceability}
-                onShowToast={onShowToast}
-              />
-            ))}
             {isLoading
               ? Array.from({ length: 12 }).map((_, i) => (
                   <ProductCardSkeleton key={`skeleton-${i}`} viewMode={viewMode} />

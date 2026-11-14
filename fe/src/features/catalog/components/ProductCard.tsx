@@ -43,7 +43,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
   if (viewMode === 'list') {
     return (
-      <div className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] hover:-translate-y-[2px] hover:shadow-md transition-all duration-200 animate-stageshow-rise">
       <div
         className="bg-white rounded-[4px] p-3 border border-[#E3E8E1] flex items-center justify-between gap-4 shadow-xs hover:border-[#01B341] hover:-translate-y-[2px] hover:shadow-md transition-all duration-200 stageshow-card-entry"
         style={{ '--stagger-index': staggerIndex } as React.CSSProperties}
@@ -92,7 +91,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
             )}
             <button
               onClick={handleAdd}
-              className={`px-4 py-1.5 text-white text-xs font-bold rounded-[4px] transition-all duration-200 cursor-pointer flex items-center justify-center gap-1 border-0 shadow-xs active:scale-[0.96] ${
               className={`px-4 py-1.5 text-white text-xs font-bold rounded-[4px] transition-all duration-200 cursor-pointer flex items-center justify-center gap-1 border-0 shadow-xs active:scale-[0.95] ${
                 isAdded
                   ? 'bg-[#006e24] shadow-inner ring-1 ring-[#DAFF01]/40'
@@ -115,7 +113,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   }
 
   return (
-    <div className="bg-white rounded-[4px] shadow-xs hover:shadow-lg hover:-translate-y-[3px] transition-all duration-200 flex flex-col justify-between group p-2.5 border border-[#E3E8E1] animate-stageshow-rise">
     <div
       className="bg-white rounded-[4px] shadow-xs hover:shadow-lg hover:-translate-y-[3px] transition-all duration-200 flex flex-col justify-between group p-2.5 border border-[#E3E8E1] stageshow-card-entry"
       style={{ '--stagger-index': staggerIndex } as React.CSSProperties}
@@ -202,7 +199,6 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         )}
         <button
           onClick={handleAdd}
-          className={`w-full py-1.5 sm:py-2 text-white font-bold text-xs rounded-[4px] flex items-center justify-center gap-1 transition-all duration-200 cursor-pointer border-0 shadow-xs active:scale-[0.96] ${
           className={`w-full py-1.5 sm:py-2 text-white font-bold text-xs rounded-[4px] flex items-center justify-center gap-1 transition-all duration-200 cursor-pointer border-0 shadow-xs active:scale-[0.95] ${
             isAdded
               ? 'bg-[#006e24] shadow-inner ring-2 ring-[#DAFF01]/40'

@@ -198,7 +198,6 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
                 <button
                   key={std.id}
                   onClick={() => onToggleStandard?.(std.id)}
-                  className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 transition-all flex items-center gap-1 ${
                   className={`px-2.5 py-1.5 rounded-[4px] text-xs font-semibold shrink-0 cursor-pointer border-0 transition-all active:scale-[0.98] duration-150 flex items-center gap-1 ${
                     isActive
                       ? 'bg-[#01B341] text-white font-bold shadow-2xs'
@@ -251,7 +250,6 @@ export const SortToolbar: React.FC<SortToolbarProps> = ({
               <button
                 key={sort.id}
                 onClick={() => onSortChange(sort.id)}
-                className={`px-3 py-1.5 rounded-[4px] text-xs font-bold shrink-0 transition-colors cursor-pointer border-0 ${
                 className={`px-3 py-1.5 rounded-[4px] text-xs font-bold shrink-0 transition-all active:scale-[0.98] duration-150 cursor-pointer border-0 ${
                   isActive
                     ? 'bg-[#01B341] text-white shadow-xs'
