@@ -55,3 +55,4 @@ export const ProductCardSkeleton: React.FC<ProductCardSkeletonProps> = ({ viewMo
     </div>
   );
 };
+
